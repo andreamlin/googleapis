@@ -24,6 +24,7 @@ common:
     staging:
       location: git@github.com:googleapis/api-client-staging.git
 java:
+  gapic_code_dir: ${REPOROOT}/artman/output/java/common-proto
   git_repos:
     staging:
       paths:
