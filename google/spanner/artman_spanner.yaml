@@ -31,6 +31,17 @@ artifacts:
   type: GAPIC_ONLY
   language: PYTHON
   publish_targets:
+  - name: python
+    type: GITHUB
+    location: git@github.com:GoogleCloudPlatform/google-cloud-python.git
+    directory_mappings:
+    - src: google/cloud/gapic
+      dest: spanner/google/cloud/gapic
+    - src: test/google/cloud/gapic/spanner/v1
+      dest: spanner/tests/gapic
+    - name: grpc
+      src: google/cloud/proto
+      dest: spanner/google/cloud/proto
   - name: staging
     type: GITHUB
     location: git@github.com:googleapis/api-client-staging.git
@@ -38,17 +49,6 @@ artifacts:
     - dest: generated/python/gapic-google-cloud-spanner-v1
     - name: grpc
       dest: generated/python/proto-google-cloud-spanner-v1
-  - name: python
-    type: GITHUB
-    location: git@github.com:GoogleCloudPlatform/google-cloud-python.git
-    directory_mappings:
-    - src: google/cloud/spanner_v1
-      dest: spanner/google/cloud/spanner_v1
-    - src: tests/unit/gapic/v1
-      dest: spanner/tests/gapic
-    - name: grpc
-      src: google/cloud/proto
-      dest: spanner/google/cloud/proto
 - name: php_gapic
   type: GAPIC_ONLY
   language: PHP
@@ -58,21 +58,23 @@ artifacts:
     location: git@github.com:googleapis/api-client-staging.git
     directory_mappings:
     - dest: generated/php/google-cloud-spanner-v1
+    - name: grpc
+      dest: generated/php/google-cloud-spanner-v1/proto
 - name: ruby_gapic
   type: GAPIC_ONLY
   language: RUBY
   publish_targets:
-  - name: staging
-    type: GITHUB
-    location: git@github.com:googleapis/api-client-staging.git
-    directory_mappings:
-    - dest: generated/ruby/google-cloud-spanner
   - name: ruby
     type: GITHUB
     location: git@github.com:GoogleCloudPlatform/google-cloud-ruby.git
     directory_mappings:
     - src: lib/google/cloud/spanner/v1
       dest: google-cloud-spanner/lib/google/cloud/spanner/v1
+  - name: staging
+    type: GITHUB
+    location: git@github.com:googleapis/api-client-staging.git
+    directory_mappings:
+    - dest: generated/ruby/google-cloud-ruby/google-cloud-spanner
 - name: go_gapic
   type: GAPIC_ONLY
   language: GO
@@ -81,7 +83,7 @@ artifacts:
     type: GITHUB
     location: git@github.com:googleapis/api-client-staging.git
     directory_mappings:
-    - dest: generated/go/vendor/cloud.google.com/go/google-spanner-v1/vendor
+    - dest: generated/go/vendor/cloud.google.com/go/google-spanner-admin-v1/vendor
   - name: go
     type: GITHUB
     location: git@github.com:GoogleCloudPlatform/google-cloud-go.git

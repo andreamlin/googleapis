@@ -43,6 +43,8 @@ artifacts:
     location: git@github.com:googleapis/api-client-staging.git
     directory_mappings:
     - dest: generated/php/google-cloud-spanner-admin-instance-v1
+    - name: grpc
+      dest: generated/php/google-cloud-spanner-admin-instance-v1/proto
 - name: ruby_gapic
   type: GAPIC_ONLY
   language: RUBY
@@ -57,21 +59,21 @@ artifacts:
     type: GITHUB
     location: git@github.com:googleapis/api-client-staging.git
     directory_mappings:
-    - dest: generated/ruby/google-cloud-spanner-admin-instance
+    - dest: generated/ruby/google-cloud-ruby/google-cloud-spanner-admin-instance
 - name: go_gapic
   type: GAPIC_ONLY
   language: GO
   publish_targets:
-  - name: go
-    type: GITHUB
-    location: git@github.com:GoogleCloudPlatform/google-cloud-go.git
-    directory_mappings:
-    - dest: spanner/admin/instance/apiv1
   - name: staging
     type: GITHUB
     location: git@github.com:googleapis/api-client-staging.git
     directory_mappings:
     - dest: generated/go/vendor/cloud.google.com/go/google-spanner-admin-instance-v1/vendor
+  - name: go
+    type: GITHUB
+    location: git@github.com:GoogleCloudPlatform/google-cloud-go.git
+    directory_mappings:
+    - dest: spanner/admin/instance/apiv1
 - name: csharp_gapic
   type: GAPIC_ONLY
   language: CSHARP
