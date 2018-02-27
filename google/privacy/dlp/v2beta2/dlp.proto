@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc.
+// Copyright 2018 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ service DlpService {
   }
 
   // Schedules a job to compute risk analysis metrics over content in a Google
-  // Cloud Platform repository. [How-to guide}(/dlp/docs/compute-risk-analysis)
+  // Cloud Platform repository. [How-to guide](/dlp/docs/compute-risk-analysis)
   rpc AnalyzeDataSourceRisk(AnalyzeDataSourceRiskRequest) returns (DlpJob) {
     option (google.api.http) = { post: "/v2beta2/{parent=projects/*}/dataSource:analyze" body: "*" };
   }
@@ -88,54 +88,145 @@ service DlpService {
 
   // Creates an inspect template for re-using frequently used configuration
   // for inspecting content, images, and storage.
-  rpc CreateInspectTemplate(CreateInspectTemplateRequest) returns (InspectTemplate) {
-    option (google.api.http) = { post: "/v2beta2/{parent=organizations/*}/inspectTemplates" body: "*" };
+  rpc CreateInspectTemplate(CreateInspectTemplateRequest)
+      returns (InspectTemplate) {
+    option (google.api.http) = {
+      post: "/v2beta2/{parent=organizations/*}/inspectTemplates"
+      body: "*"
+      additional_bindings {
+        post: "/v2beta2/{parent=projects/*}/inspectTemplates"
+        body: "*"
+      }
+    };
   }
 
   // Updates the inspect template.
-  rpc UpdateInspectTemplate(UpdateInspectTemplateRequest) returns (InspectTemplate) {
-    option (google.api.http) = { patch: "/v2beta2/{name=organizations/*/inspectTemplates/*}" body: "*" };
+  rpc UpdateInspectTemplate(UpdateInspectTemplateRequest)
+      returns (InspectTemplate) {
+    option (google.api.http) = {
+      patch: "/v2beta2/{name=organizations/*/inspectTemplates/*}"
+      body: "*"
+      additional_bindings:
+          { patch: "/v2beta2/{name=projects/*/inspectTemplates/*}" body: "*" }
+    };
   }
 
   // Gets an inspect template.
   rpc GetInspectTemplate(GetInspectTemplateRequest) returns (InspectTemplate) {
-    option (google.api.http) = { get: "/v2beta2/{name=organizations/*/inspectTemplates/*}" };
+    option (google.api.http) = {
+      get: "/v2beta2/{name=organizations/*/inspectTemplates/*}"
+      additional_bindings {
+        get: "/v2beta2/{name=projects/*/inspectTemplates/*}"
+      }
+    };
   }
 
   // Lists inspect templates.
-  rpc ListInspectTemplates(ListInspectTemplatesRequest) returns (ListInspectTemplatesResponse) {
-    option (google.api.http) = { get: "/v2beta2/{parent=organizations/*}/inspectTemplates" };
+  rpc ListInspectTemplates(ListInspectTemplatesRequest)
+      returns (ListInspectTemplatesResponse) {
+    option (google.api.http) = {
+      get: "/v2beta2/{parent=organizations/*}/inspectTemplates"
+      additional_bindings {
+        get: "/v2beta2/{parent=projects/*}/inspectTemplates"
+      }
+    };
   }
 
   // Deletes inspect templates.
-  rpc DeleteInspectTemplate(DeleteInspectTemplateRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = { delete: "/v2beta2/{name=organizations/*/inspectTemplates/*}" };
+  rpc DeleteInspectTemplate(DeleteInspectTemplateRequest)
+      returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v2beta2/{name=organizations/*/inspectTemplates/*}"
+      additional_bindings {
+        delete: "/v2beta2/{name=projects/*/inspectTemplates/*}"
+      }
+    };
   }
 
   // Creates an Deidentify template for re-using frequently used configuration
   // for Deidentifying content, images, and storage.
-  rpc CreateDeidentifyTemplate(CreateDeidentifyTemplateRequest) returns (DeidentifyTemplate) {
-    option (google.api.http) = { post: "/v2beta2/{parent=organizations/*}/deidentifyTemplates" body: "*" };
+  rpc CreateDeidentifyTemplate(CreateDeidentifyTemplateRequest)
+      returns (DeidentifyTemplate) {
+    option (google.api.http) = {
+      post: "/v2beta2/{parent=organizations/*}/deidentifyTemplates"
+      body: "*"
+      additional_bindings {
+        post: "/v2beta2/{parent=projects/*}/deidentifyTemplates"
+        body: "*"
+      }
+    };
   }
 
   // Updates the inspect template.
-  rpc UpdateDeidentifyTemplate(UpdateDeidentifyTemplateRequest) returns (DeidentifyTemplate) {
-    option (google.api.http) = { patch: "/v2beta2/{name=organizations/*/deidentifyTemplates/*}" body: "*" };
+  rpc UpdateDeidentifyTemplate(UpdateDeidentifyTemplateRequest)
+      returns (DeidentifyTemplate) {
+    option (google.api.http) = {
+      patch: "/v2beta2/{name=organizations/*/deidentifyTemplates/*}"
+      body: "*"
+      additional_bindings: {
+        patch: "/v2beta2/{name=projects/*/deidentifyTemplates/*}"
+        body: "*"
+      }
+    };
   }
 
   // Gets an inspect template.
-  rpc GetDeidentifyTemplate(GetDeidentifyTemplateRequest) returns (DeidentifyTemplate) {
-    option (google.api.http) = { get: "/v2beta2/{name=organizations/*/deidentifyTemplates/*}" };
+  rpc GetDeidentifyTemplate(GetDeidentifyTemplateRequest)
+      returns (DeidentifyTemplate) {
+    option (google.api.http) = {
+      get: "/v2beta2/{name=organizations/*/deidentifyTemplates/*}"
+      additional_bindings {
+        get: "/v2beta2/{name=projects/*/deidentifyTemplates/*}"
+      }
+    };
   }
 
   // Lists inspect templates.
-  rpc ListDeidentifyTemplates(ListDeidentifyTemplatesRequest) returns (ListDeidentifyTemplatesResponse) {
-    option (google.api.http) = { get: "/v2beta2/{parent=organizations/*}/deidentifyTemplates" };
+  rpc ListDeidentifyTemplates(ListDeidentifyTemplatesRequest)
+      returns (ListDeidentifyTemplatesResponse) {
+    option (google.api.http) = {
+      get: "/v2beta2/{parent=organizations/*}/deidentifyTemplates"
+      additional_bindings {
+        get: "/v2beta2/{parent=projects/*}/deidentifyTemplates"
+      }
+    };
   }
 
   // Deletes inspect templates.
-  rpc DeleteDeidentifyTemplate(DeleteDeidentifyTemplateRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = { delete: "/v2beta2/{name=organizations/*/deidentifyTemplates/*}" };
+  rpc DeleteDeidentifyTemplate(DeleteDeidentifyTemplateRequest)
+      returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v2beta2/{name=organizations/*/deidentifyTemplates/*}"
+      additional_bindings {
+        delete: "/v2beta2/{name=projects/*/deidentifyTemplates/*}"
+      }
+    };
+  }
+
+  // Creates a job to run DLP actions such as scanning storage for sensitive
+  // information on a set schedule.
+  rpc CreateJobTrigger(CreateJobTriggerRequest) returns (JobTrigger) {
+    option (google.api.http) = { post: "/v2beta2/{parent=projects/*}/jobTriggers" body: "*" };
+  }
+
+  // Updates a job trigger.
+  rpc UpdateJobTrigger(UpdateJobTriggerRequest) returns (JobTrigger) {
+    option (google.api.http) = { patch: "/v2beta2/{name=projects/*/jobTriggers/*}" body: "*" };
+  }
+
+  // Gets a job trigger.
+  rpc GetJobTrigger(GetJobTriggerRequest) returns (JobTrigger) {
+    option (google.api.http) = { get: "/v2beta2/{name=projects/*/jobTriggers/*}" };
+  }
+
+  // Lists job triggers.
+  rpc ListJobTriggers(ListJobTriggersRequest) returns (ListJobTriggersResponse) {
+    option (google.api.http) = { get: "/v2beta2/{parent=projects/*}/jobTriggers" };
+  }
+
+  // Deletes a job trigger.
+  rpc DeleteJobTrigger(DeleteJobTriggerRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = { delete: "/v2beta2/{name=projects/*/jobTriggers/*}" };
   }
 
   // Lists DlpJobs that match the specified filter in the request.
@@ -262,7 +353,9 @@ message InspectResult {
 message Finding {
   // The content that was found. Even if the content is not textual, it
   // may be converted to a textual representation here.
-  // Provided if requested by the `InspectConfig`.
+  // Provided if requested by the `InspectConfig` and the finding is
+  // less than or equal to 4096 bytes long. If the finding exceeds 4096 bytes
+  // in length, the quote may be omitted.
   string quote = 1;
 
   // The type of content that might have been found.
@@ -277,6 +370,9 @@ message Finding {
 
   // Timestamp when finding was detected.
   google.protobuf.Timestamp create_time = 6;
+
+  // InfoType-dependent details parsed from quote.
+  QuoteInfo quote_info = 7;
 }
 
 // Specifies the location of the finding.
@@ -529,14 +625,56 @@ message InspectDataSourceRequest {
 
   // A configuration for the job.
   InspectJobConfig job_config = 2;
+
+  // Optional job ID to use for the created job. If not provided, a job ID will
+  // automatically be generated. Must be unique within the project. The job ID
+  // can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+  // it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length
+  // is 100 characters. Can be empty to allow the system to generate one.
+  string job_id = 3;
 }
 
 // Cloud repository for storing output.
 message OutputStorageConfig {
+  // Predefined schemas for storing findings.
+  enum OutputSchema {
+    OUTPUT_SCHEMA_UNSPECIFIED = 0;
+
+    // Basic schema including only `info_type`, `quote`, `certainty`, and
+    // `timestamp`.
+    BASIC_COLUMNS = 1;
+
+    // Schema tailored to findings from scanning Google Cloud Storage.
+    GCS_COLUMNS = 2;
+
+    // Schema tailored to findings from scanning Google Datastore.
+    DATASTORE_COLUMNS = 3;
+
+    // Schema tailored to findings from scanning Google BigQuery.
+    BIG_QUERY_COLUMNS = 4;
+
+    // Schema containing all columns.
+    ALL_COLUMNS = 5;
+  }
+
   oneof type {
-    // Store findings in a new table in an existing dataset.
+    // Store findings in an existing table or a new table in an existing
+    // dataset. Each column in an existing table must have the same name, type,
+    // and mode of a field in the `Finding` object. If table_id is not set a new
+    // one will be generated for you with the following format:
+    // dlp_googleapis_yyyy_mm_dd_[dlp_job_id]. Pacific timezone will be used for
+    // generating the date details.
     BigQueryTable table = 1;
   }
+
+  // Schema used for writing the findings. Columns are derived from the
+  // `Finding` object. If appending to an existing table, any columns from the
+  // predefined schema that are missing will be added. No columns in the
+  // existing table will be deleted.
+  //
+  // If unspecified, then all available columns will be used for a new table,
+  // and no changes will be made to an existing table.
+  OutputSchema output_schema = 3;
 }
 
 // Statistics regarding a specific InfoType.
@@ -614,6 +752,13 @@ message AnalyzeDataSourceRiskRequest {
 
   // Configuration for this risk analysis job.
   RiskAnalysisJobConfig job_config = 2;
+
+  // Optional job ID to use for the created job. If not provided, a job ID will
+  // automatically be generated. Must be unique within the project. The job ID
+  // can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+  // it must match the regular expression: `[a-zA-Z\\d-]+`. The maximum length
+  // is 100 characters. Can be empty to allow the system to generate one.
+  string job_id = 3;
 }
 
 // Configuration for a risk analysis job.
@@ -623,6 +768,10 @@ message RiskAnalysisJobConfig {
 
   // Input dataset to compute metrics over.
   BigQueryTable source_table = 2;
+
+  // Actions to execute at the completion of the job. Are executed in the order
+  // provided.
+  repeated Action actions = 3;
 }
 
 // Privacy metric to compute for reidentification risk analysis.
@@ -698,6 +847,8 @@ message PrivacyMetric {
         // A column can be tagged with a InfoType to use the relevant public
         // dataset as a statistical model of population, if available. We
         // currently support US ZIP codes, region codes, ages and genders.
+        // To programmatically obtain the list of supported InfoTypes, use
+        // ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
         InfoType info_type = 2;
 
         // A column can be tagged with a custom tag. In this case, the user must
@@ -971,7 +1122,36 @@ message Value {
     google.type.TimeOfDay time_value = 6;
 
     google.type.Date date_value = 7;
+
+    google.type.DayOfWeek day_of_week_value = 8;
   }
+}
+
+// Message for infoType-dependent details parsed from quote.
+message QuoteInfo {
+  // Object representation of the quote.
+  oneof parsed_quote {
+    DateTime date_time = 2;
+  }
+}
+
+// Message for a date time object.
+message DateTime {
+  message TimeZone {
+    // Set only if the offset can be determined. Positive for time ahead of UTC.
+    // E.g. For "UTC-9", this value is -540.
+    int32 offset_minutes = 1;
+  }
+
+  // One or more of the following must be set. All fields are optional, but
+  // when set must be valid date or time values.
+  google.type.Date date = 1;
+
+  google.type.DayOfWeek day_of_week = 2;
+
+  google.type.TimeOfDay time = 3;
+
+  TimeZone time_zone = 4;
 }
 
 // The configuration that controls how the data will change.
@@ -1008,6 +1188,8 @@ message PrimitiveTransformation {
     TimePartConfig time_part_config = 8;
 
     CryptoHashConfig crypto_hash_config = 9;
+
+    DateShiftConfig date_shift_config = 11;
   }
 }
 
@@ -1332,6 +1514,35 @@ message KmsWrappedCryptoKey {
   string crypto_key_name = 2;
 }
 
+// Shifts dates by random number of days, with option to be consistent for the
+// same context.
+message DateShiftConfig {
+  // Range of shift in days. Actual shift will be selected at random within this
+  // range (inclusive ends). Negative means shift to earlier in time. Must not
+  // be more than 365250 days (1000 years) each direction.
+  //
+  // For example, 3 means shift date to at most 3 days into the future.
+  // [Required]
+  int32 upper_bound_days = 1;
+
+  // For example, -5 means shift date to at most 5 days back in the past.
+  // [Required]
+  int32 lower_bound_days = 2;
+
+  // Points to the field that contains the context, for example, an entity id.
+  // If set, must also set method. If set, shift will be consistent for the
+  // given context.
+  FieldId context = 3;
+
+  // Method for calculating shift that takes context into consideration. If
+  // set, must also set context. Can only be applied to table items.
+  oneof method {
+    // Causes the shift to be computed based on this key and the context. This
+    // results in the same shift for the same context and crypto_key.
+    CryptoKey crypto_key = 4;
+  }
+}
+
 // A type of transformation that will scan unstructured text and
 // apply various `PrimitiveTransformation`s to each finding, where the
 // transformation is applied to only values that were identified as a specific
@@ -1514,6 +1725,21 @@ message TransformationSummary {
   int64 transformed_bytes = 7;
 }
 
+// Schedule for triggeredJobs.
+message Schedule {
+  oneof option {
+    // With this option a job is started a regular periodic basis. For
+    // example: every 10 minutes.
+    //
+    // A scheduled start time will be skipped if the previous
+    // execution has not ended when its scheduled time occurs.
+    //
+    // This value must be set to a time duration greater than or equal
+    // to 60 minutes and can be no longer than 60 days.
+    google.protobuf.Duration reccurrence_period_duration = 1;
+  }
+}
+
 // The inspectTemplate contains a configuration (set of types of sensitive data
 // to be detected) to be used anywhere you otherwise would normally specify
 // InspectConfig.
@@ -1566,6 +1792,108 @@ message DeidentifyTemplate {
   DeidentifyConfig deidentify_config = 6;
 }
 
+// Contains a configuration to make dlp api calls on a repeating basis.
+message JobTrigger {
+  // What event needs to occur for a new job to be started.
+  message Trigger {
+    oneof trigger {
+      // Create a job on a repeating basis based on the elapse of time.
+      Schedule schedule = 1;
+    }
+  }
+
+  // The results of an unsuccessful activation of the JobTrigger.
+  message Error {
+    google.rpc.Status details = 1;
+
+    // The times the error occurred.
+    repeated google.protobuf.Timestamp timestamps = 2;
+  }
+
+  // Whether the trigger is currently active. If PAUSED or CANCELLED, no jobs
+  // will be created with this configuration. The service may automatically
+  // pause triggers experiencing frequent errors. To restart a job, set the
+  // status to HEALTHY after correcting user errors.
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+
+    // Trigger is healthy.
+    HEALTHY = 1;
+
+    // Trigger is temporarily paused.
+    PAUSED = 2;
+
+    // Trigger is cancelled and can not be resumed.
+    CANCELLED = 3;
+  }
+
+  // Unique resource name for the triggeredJob, assigned by the service when the
+  // triggeredJob is created, for example
+  // `projects/dlp-test-project/triggeredJobs/53234423`.
+  string name = 1;
+
+  // Display name (max 100 chars)
+  string display_name = 2;
+
+  // User provided description (max 256 chars)
+  string description = 3;
+
+  // The configuration details for the specific type of job to run.
+  oneof job {
+    InspectJobConfig inspect_job = 4;
+  }
+
+  // A list of triggers which will be OR'ed together. Only one in the list
+  // needs to trigger for a job to be started. The list may contain only
+  // a single Schedule trigger and must have at least one object.
+  repeated Trigger triggers = 5;
+
+  // A stream of errors encountered when the trigger was activated. Repeated
+  // errors may result in the JobTrigger automaticaly being paused.
+  // Will return the last 100 errors. Whenever the JobTrigger is modified
+  // this list will be cleared. Output only field.
+  repeated Error errors = 6;
+
+  // The creation timestamp of a triggeredJob, output only field.
+  google.protobuf.Timestamp create_time = 7;
+
+  // The last update timestamp of a triggeredJob, output only field.
+  google.protobuf.Timestamp update_time = 8;
+
+  // The timestamp of the last time this trigger executed.
+  google.protobuf.Timestamp last_run_time = 9;
+
+  // A status for this trigger. [required]
+  Status status = 10;
+}
+
+// A task to execute on the completion of a job.
+message Action {
+  // If set, the detailed findings will be persisted to the specified
+  // OutputStorageConfig. Compatible with: Inspect
+  message SaveFindings {
+    OutputStorageConfig output_config = 1;
+  }
+
+  // Publish the results of a DlpJob to a pub sub channel.
+  // Compatible with: Inpect, Risk
+  message PublishToPubSub {
+    // Cloud Pub/Sub topic to send notifications to. The topic must have given
+    // publishing access rights to the DLP API service account executing
+    // the long running DlpJob sending the notifications.
+    // Format is projects/{project}/topics/{topic}.
+    string topic = 1;
+  }
+
+  oneof action {
+    // Save resulting findings in a provided location.
+    SaveFindings save_findings = 1;
+
+    // Publish a notification to a pubsub topic.
+    PublishToPubSub pub_sub = 2;
+  }
+}
+
 // Request message for CreateInspectTemplate.
 message CreateInspectTemplateRequest {
   // The parent resource name, for example projects/my-project-id or
@@ -1585,7 +1913,8 @@ message CreateInspectTemplateRequest {
 // Request message for UpdateInspectTemplate.
 message UpdateInspectTemplateRequest {
   // Resource name of organization and inspectTemplate to be updated, for
-  // example `organizations/433245324/inspectTemplates/432452342`.
+  // example `organizations/433245324/inspectTemplates/432452342` or
+  // projects/project-id/inspectTemplates/432452342.
   string name = 1;
 
   // New InspectTemplate value.
@@ -1598,7 +1927,8 @@ message UpdateInspectTemplateRequest {
 // Request message for GetInspectTemplate.
 message GetInspectTemplateRequest {
   // Resource name of the organization and inspectTemplate to be read, for
-  // example `organizations/433245324/inspectTemplates/432452342`.
+  // example `organizations/433245324/inspectTemplates/432452342` or
+  // projects/project-id/inspectTemplates/432452342.
   string name = 1;
 }
 
@@ -1630,7 +1960,89 @@ message ListInspectTemplatesResponse {
 // Request message for DeleteInspectTemplate.
 message DeleteInspectTemplateRequest {
   // Resource name of the organization and inspectTemplate to be deleted, for
-  // example `organizations/433245324/inspectTemplates/432452342`.
+  // example `organizations/433245324/inspectTemplates/432452342` or
+  // projects/project-id/inspectTemplates/432452342.
+  string name = 1;
+}
+
+// Request message for CreateJobTrigger.
+message CreateJobTriggerRequest {
+  // The parent resource name, for example projects/my-project-id.
+  string parent = 1;
+
+  // The JobTrigger to create.
+  JobTrigger job_trigger = 2;
+
+  // The trigger id can contain uppercase and lowercase letters,
+  // numbers, and hyphens; that is, it must match the regular
+  // expression: `[a-zA-Z\\d-]+`. The maximum length is 100
+  // characters. Can be empty to allow the system to generate one.
+  string trigger_id = 3;
+}
+
+// Request message for UpdateJobTrigger.
+message UpdateJobTriggerRequest {
+  // Resource name of the project and the triggeredJob, for example
+  // `projects/dlp-test-project/jobTriggers/53234423`.
+  string name = 1;
+
+  // New JobTrigger value.
+  JobTrigger job_trigger = 2;
+
+  // Mask to control which fields get updated.
+  google.protobuf.FieldMask update_mask = 3;
+}
+
+// Request message for GetJobTrigger.
+message GetJobTriggerRequest {
+  // Resource name of the project and the triggeredJob, for example
+  // `projects/dlp-test-project/jobTriggers/53234423`.
+  string name = 1;
+}
+
+// Request message for ListJobTriggers.
+message ListJobTriggersRequest {
+  // The parent resource name, for example projects/my-project-id.
+  string parent = 1;
+
+  // Optional page token to continue retrieval. Comes from previous call
+  // to ListJobTriggers. `order_by` and `filter` should not change for
+  // subsequent calls, but can be omitted if token is specified.
+  string page_token = 2;
+
+  // Optional size of the page, can be limited by a server.
+  int32 page_size = 3;
+
+  // Optional comma separated list of triggeredJob fields to order by,
+  // followed by 'asc/desc' postfix, i.e.
+  // `"create_time asc,name desc,schedule_mode asc"`. This list is
+  // case-insensitive.
+  //
+  // Example: `"name asc,schedule_mode desc, status desc"`
+  //
+  // Supported filters keys and values are:
+  //
+  // - `create_time`: corresponds to time the triggeredJob was created.
+  // - `update_time`: corresponds to time the triggeredJob was last updated.
+  // - `name`: corresponds to JobTrigger's display name.
+  // - `status`: corresponds to the triggeredJob status.
+  string order_by = 4;
+}
+
+// Response message for ListJobTriggers.
+message ListJobTriggersResponse {
+  // List of triggeredJobs, up to page_size in ListJobTriggersRequest.
+  repeated JobTrigger job_triggers = 1;
+
+  // If the next page is available then the next page token to be used
+  // in following ListJobTriggers request.
+  string next_page_token = 2;
+}
+
+// Request message for DeleteJobTrigger.
+message DeleteJobTriggerRequest {
+  // Resource name of the project and the triggeredJob, for example
+  // `projects/dlp-test-project/jobTriggers/53234423`.
   string name = 1;
 }
 
@@ -1648,6 +2060,10 @@ message InspectJobConfig {
   // `inspect_config` will be merged into the values persisted as part of the
   // template.
   string inspect_template_name = 4;
+
+  // Actions to execute at the completion of the job. Are executed in the order
+  // provided.
+  repeated Action actions = 5;
 }
 
 // Combines all of the information about a DLP job.
@@ -1699,6 +2115,10 @@ message DlpJob {
 
   // A stream of errors encountered running the job.
   repeated google.rpc.Status error_results = 9;
+
+  // If created by a job trigger, the resource name of the trigger that
+  // instantiated the job.
+  string job_trigger_name = 10;
 }
 
 // The request message for [DlpJobs.GetDlpJob][].
@@ -1723,6 +2143,7 @@ message ListDlpJobsRequest {
   // * Supported fields/values for inspect jobs:
   //     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
   //     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
+  //     - `trigger_name` - The resource name of the trigger that created job.
   // * Supported fields for risk analysis jobs:
   //     - `state` - RUNNING|CANCELED|FINISHED|FAILED
   // * The operator must be `=` or `!=`.
@@ -1786,7 +2207,8 @@ message CreateDeidentifyTemplateRequest {
 // Request message for UpdateDeidentifyTemplate.
 message UpdateDeidentifyTemplateRequest {
   // Resource name of organization and deidentify template to be updated, for
-  // example `organizations/433245324/deidentifyTemplates/432452342`.
+  // example `organizations/433245324/deidentifyTemplates/432452342` or
+  // projects/project-id/deidentifyTemplates/432452342.
   string name = 1;
 
   // New DeidentifyTemplate value.
@@ -1799,7 +2221,8 @@ message UpdateDeidentifyTemplateRequest {
 // Request message for GetDeidentifyTemplate.
 message GetDeidentifyTemplateRequest {
   // Resource name of the organization and deidentify template to be read, for
-  // example `organizations/433245324/deidentifyTemplates/432452342`.
+  // example `organizations/433245324/deidentifyTemplates/432452342` or
+  // projects/project-id/deidentifyTemplates/432452342.
   string name = 1;
 }
 
@@ -1832,7 +2255,8 @@ message ListDeidentifyTemplatesResponse {
 // Request message for DeleteDeidentifyTemplate.
 message DeleteDeidentifyTemplateRequest {
   // Resource name of the organization and deidentify template to be deleted,
-  // for example `organizations/433245324/deidentifyTemplates/432452342`.
+  // for example `organizations/433245324/deidentifyTemplates/432452342` or
+  // projects/project-id/deidentifyTemplates/432452342.
   string name = 1;
 }
 

@@ -11,6 +11,8 @@ language_settings:
     package_name: cloud.google.com/go/bigtable/apiv2
   csharp:
     package_name: Google.Cloud.Bigtable.V2
+    interface_names:
+      google.bigtable.v2.Bigtable: BigtableServiceApi
   ruby:
     package_name: Google::Cloud::Bigtable::V2
   php:
@@ -83,7 +85,7 @@ interfaces:
     - row_key
     - mutations
     request_object_method: true
-    retry_codes_name: non_idempotent
+    retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
       table_name: table
@@ -99,7 +101,7 @@ interfaces:
     - table_name
     - entries
     request_object_method: true
-    retry_codes_name: non_idempotent
+    retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
       table_name: table

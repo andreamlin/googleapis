@@ -144,6 +144,8 @@ http:
   rules:
   - selector: google.longrunning.Operations.GetOperation
     get: '/v2beta1/{name=projects/*/operations/*}'
+    additional_bindings:
+    - get: '/v2/{name=projects/*/operations/*}'
 
 
 authentication:
