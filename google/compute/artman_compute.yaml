@@ -3,8 +3,16 @@ common:
   api_version: v1
   organization_name: google-cloud
   gapic_yaml: v1/compute_gapic.yaml
-  # TODO(andrealin): Pull discovery doc from source-of-truth repo
-  discovery_doc: google/compute/v1/compute.v1.json
+  # TODO(andrealin): Make discovery_doc a relative path to google/compute
+  discovery_document:
+    # type: LOCAL
+    # location: google/compute/v1/compute.v1.json
+    type: GITHUB
+    location: git@github.com:googleapis/discovery-artifact-manager.git
+    filepath: discoveries/compute.v1.json
+    # type: WEB_ADDRESS
+    # location: https://raw.githubusercontent.com
+    # filepath: googleapis/discovery-artifact-manager/master/discoveries/compute.v1.json
 artifacts:
 - name: java_discogapic
   type: DISCOGAPIC
