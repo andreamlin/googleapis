@@ -8,7 +8,7 @@ java:
   gapic_language_yaml:
     - ${GOOGLEAPIS}/gapic/lang/java_gapic.yaml
   discogapic_language_yaml:
-    - ${GOOGLEAPIS}/gapic/lang/java_discogapic.yam
+    - ${GOOGLEAPIS}/gapic/lang/java_discogapic.yaml
 python:
   gapic_language_yaml:
     - ${GOOGLEAPIS}/gapic/lang/python_gapic.yaml
