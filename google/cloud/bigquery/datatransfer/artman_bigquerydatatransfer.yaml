@@ -1,5 +1,5 @@
 common:
-  api_name: bigquerydatatransfer
+  api_name: bigquery-datatransfer
   api_version: v1
   organization_name: google-cloud
   proto_deps:
