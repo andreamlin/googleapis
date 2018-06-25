@@ -1,0 +1,144 @@
+// Copyright 2018 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package google.cloud.bigquery.v3;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "google.golang.org/genproto/googleapis/cloud/bigquery/v3;bigquery";
+option java_package = "com.google.cloud.bigquery.v3";
+
+
+// Represents a single schema-less (variable type) row.
+message Row {
+  oneof data {
+    StructValue value = 2;
+
+    // Optionally populated to transfer data in custom serialized formats (e.g.
+    // CSV).
+    bytes serialized_value = 3;
+  }
+}
+
+// Based on googlesql.ValueProto and google.protobuf.Struct. Maps to JSON based
+// on go/api-json.
+message Value {
+  // Each non-null value will have exactly one of these fields specified.
+  // Null values will have no fields set.
+  oneof value {
+    // Represents TYPE_INT64 values. Maps to JSON "string".
+    int64 int64_value = 1;
+
+    // Represents TYPE_BOOL values. Maps to JSON "boolean".
+    bool bool_value = 2;
+
+    // Represents TYPE_FLOAT64 values. Maps to JSON "number".
+    double float64_value = 3;
+
+    // Represents TYPE_STRING, TYPE_DATE, TYPE_TIME, and TYPE_DATETIME values.
+    // Maps to JSON "string".
+    string string_value = 4;
+
+    // Represents TYPE_BYTES values. Maps to JSON "string" (base64 encoding).
+    bytes bytes_value = 5;
+
+    // Represents TYPE_TIMESTAMP values. Maps to JSON "string" (RFC 3339
+    // encoding).
+    google.protobuf.Timestamp timestamp_value = 6;
+
+    // Represents TYPE_ARRAY values.
+    ArrayValue array_value = 7;
+
+    // Represents TYPE_STRUCT values.
+    StructValue struct_value = 8;
+
+    // Represents if the value is null.
+    NullValue null_value = 9;
+  }
+}
+
+// Represents a GoogleSQL struct value.  The JSON representation is "array".
+message StructValue {
+  // Ordered list of dynamically typed values. The order of fields match
+  // StructType
+  // defined below. StructType defines field name and type for the corresponding
+  // values.
+  repeated Value fields = 1;
+}
+
+// An ordered collection of elements. The JSON representation is "array".
+message ArrayValue {
+  repeated Value elements = 1;
+}
+
+// Schema: sent once in a session. A stripped down version of
+// googlesql.TypeProto.
+message Type {
+  TypeKind type_kind = 1;
+
+  oneof sub_type {
+    Type array_type = 2;
+
+    StructType struct_type = 3;
+  }
+}
+
+message StructField {
+  string field_name = 1;
+
+  Type field_type = 2;
+
+  string field_description = 3;
+}
+
+message StructType {
+  repeated StructField fields = 1;
+}
+
+enum NullValue {
+  // Null value.
+  NULL_VALUE = 0;
+}
+
+enum TypeKind {
+  TYPE_INVALID = 0;
+
+  TYPE_INT64 = 1;
+
+  TYPE_BOOL = 2;
+
+  TYPE_FLOAT64 = 3;
+
+  TYPE_STRING = 4;
+
+  TYPE_BYTES = 5;
+
+  TYPE_TIMESTAMP = 6;
+
+  TYPE_DATE = 7;
+
+  TYPE_TIME = 8;
+
+  TYPE_DATETIME = 9;
+
+  TYPE_ARRAY = 10;
+
+  TYPE_STRUCT = 11;
+
+  TYPE_GEOGRAPHY = 12;
+
+  TYPE_NUMERIC = 13;
+}

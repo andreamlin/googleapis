@@ -1,0 +1,166 @@
+// Copyright 2017 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package google.cloud.bigquery.v3;
+
+import "google/cloud/bigquery/v3/read_options.proto";
+import "google/cloud/bigquery/v3/row.proto";
+import "google/cloud/bigquery/v3/table_reference.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "google.golang.org/genproto/googleapis/cloud/bigquery/v3;bigquery";
+option java_package = "com.google.cloud.bigquery.v3";
+
+
+// Provides methods for reading a single BigQuery table with high throughput
+service ParallelReadService {
+  // Starts a new session to read a given table.
+  rpc CreateSession(CreateSessionRequest) returns (Session);
+
+  // Get metadata for an already created session.
+  rpc GetSession(GetSessionRequest) returns (Session);
+
+  // Reads back rows using the specified token.
+  rpc ReadRows(ReadRowsRequest) returns (stream ReadRowsResponse);
+
+  // Adds new readers, increasing the potential parallelism of the table read.
+  rpc CreateReaders(CreateReadersRequest) returns (CreateReadersResponse);
+
+  // Delete the reader and allow other readers to read the rows previously
+  // read by this reader.
+  rpc DeleteReader(DeleteReaderRequest) returns (google.protobuf.Empty);
+}
+
+message Session {
+  // Unique identifier for the session. In the form
+  // `projects/{project_id}/datasets/{dataset_id}/tables/{table_id}/
+  // sessions/{session_id}`
+  string name = 1;
+
+  // Time at which the session becomes invalid. After this time, subsequent
+  // requests with the token will return errors.
+  google.protobuf.Timestamp expiration_time = 2;
+
+  // The schema for the read. If read_options.selected_fields is set, the
+  // schema may be different from the table schema as it will only contain
+  // the selected fields.
+  StructType projected_schema = 3;
+
+  // Starting ReadLocations for this Session.
+  repeated ReadLocation initial_read_locations = 4;
+
+  // The approximate percentage of rows that have been read by Readers in this
+  // session. Callers can use this to determine if more Readers should be
+  // added to speed up ingestion.
+  double percent_rows_processed = 5;
+}
+
+// Reader associated with a particular Session. Allocated via CreateSession
+// or CreateReaders.
+message Reader {
+  // Name of the reader. In the form `{session_name}/readers/{reader_id}`
+  string name = 1;
+}
+
+// Location for a given Reader.
+message ReadLocation {
+  Reader reader = 1;
+
+  // Identifier for a particular location in reader.
+  string token = 2;
+}
+
+// Options affecting the semantics of a read, such as limits on the returned
+// data, column selections or filters to push down.
+message ReadOptions {
+  // Optional. Upper limit for rows in the response. If unset or 0, response
+  // limits will be determined by BigQuery. Must be non-negative.
+  int64 max_rows = 1;
+}
+
+// Request message for ParallelReadService.CreateSession.
+message CreateSessionRequest {
+  // Required. Reference to the table to read.
+  TableReference table_reference = 1;
+
+  // Optional. Project to bill for the access to this table. If unset, the
+  // project that contains the specified table will be used.
+  string billable_project_id = 2;
+
+  // Optional. Initial number of parallel readers. If unset or 0, we will
+  // provide an initial number of initial_read_locations so as to produce
+  // optimal throughput. Must be non-negative. This number of readers returned
+  // may be lower than the requested number, depending on the amount
+  // parallelism that is reasonable for the table and the maximum amount of
+  // parallelism allowed by the system.
+  int32 reader_count = 3;
+
+  // Optional. Read options for this session (e.g. column selection, filters).
+  TableReadOptions read_options = 4;
+}
+
+// Request message for ParallelReadService.GetSession.
+message GetSessionRequest {
+  // Name of the session to retrieve.
+  string name = 1;
+}
+
+// Request message for ParallelReadService.ReadRows.
+message ReadRowsRequest {
+  // Required. Unique identifier of a row in a reader. Must contain a token
+  // obtained from a previous call to CreateSession, ReadRows, or AddReaders in
+  // this session. Must not be for a reader that has been invalidated by a call
+  // to DeleteReader.
+  ReadLocation read_location = 1;
+
+  // Optional. Options affecting the semantics of the initial read.
+  ReadOptions options = 2;
+}
+
+// Response message for ParallelReadService.ReadRows.
+message ReadRowsResponse {
+  // ReadLocation required for this reader resume reading rows in the new stream
+  // on the same shard. May not be set on every response.
+  ReadLocation read_location = 1;
+
+  // Row data.
+  repeated Row rows = 2;
+}
+
+// Request message for ParallelReadService.CreateReaders.
+message CreateReadersRequest {
+  // Required. Must be a non-expired session obtained from a call to
+  // CreateSession. Only the name field needs to be set.
+  Session session = 1;
+
+  // Required. Number of new readers. Must be non-negative. If the increase
+  // makes the total number of readers too high (see reader_count in
+  // CreateSessionRequest), an error will be returned.
+  int32 num_new_readers = 2;
+}
+
+// Response message for ParallelReadService.CreateReaders.
+message CreateReadersResponse {
+  // Initial ReadLocations for the newly added readers.
+  repeated ReadLocation initial_read_locations = 1;
+}
+
+message DeleteReaderRequest {
+  // Required. Reader to be deleted. All ReadLocations that for this Reader
+  // will be invalidated.
+  Reader reader = 1;
+}
