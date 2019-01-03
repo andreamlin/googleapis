@@ -365,7 +365,6 @@ interfaces:
     field_name_patterns:
       resource: subscription
     timeout_millis: 60000
-    reroute_to_grpc_interface: google.iam.v1.IAMPolicy
     surface_treatments:
     - include_languages:
       - go
@@ -383,7 +382,6 @@ interfaces:
     field_name_patterns:
       resource: subscription
     timeout_millis: 60000
-    reroute_to_grpc_interface: google.iam.v1.IAMPolicy
     surface_treatments:
     - include_languages:
       - go
@@ -403,7 +401,6 @@ interfaces:
     field_name_patterns:
       resource: subscription
     timeout_millis: 60000
-    reroute_to_grpc_interface: google.iam.v1.IAMPolicy
     surface_treatments:
     - include_languages:
       - go
@@ -590,7 +587,6 @@ interfaces:
     field_name_patterns:
       resource: topic
     timeout_millis: 60000
-    reroute_to_grpc_interface: google.iam.v1.IAMPolicy
     surface_treatments:
     - include_languages:
       - go
@@ -608,7 +604,6 @@ interfaces:
     field_name_patterns:
       resource: topic
     timeout_millis: 60000
-    reroute_to_grpc_interface: google.iam.v1.IAMPolicy
     surface_treatments:
     - include_languages:
       - go
@@ -628,7 +623,6 @@ interfaces:
     field_name_patterns:
       resource: topic
     timeout_millis: 60000
-    reroute_to_grpc_interface: google.iam.v1.IAMPolicy
     surface_treatments:
     - include_languages:
       - go
@@ -701,3 +695,12 @@ resource_name_generation:
   field_entity_map:
     subscription: subscription
     snapshot: snapshot
+- message_name: google.iam.v1.GetIamPolicyRequest
+  field_entity_map:
+    resource: "*"
+- message_name: google.iam.v1.SetIamPolicyRequest
+  field_entity_map:
+    resource: "*"
+- message_name: google.iam.v1.TestIamPermissionsRequest
+  field_entity_map:
+    resource: "*"
