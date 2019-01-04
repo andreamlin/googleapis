@@ -113,14 +113,6 @@ service Publisher {
     option (google.api.http) = {
       post: "/v1/{resource=projects/*/topics/*}:setIamPolicy"
       body: "*"
-      additional_bindings {
-        post: "/v1/{resource=projects/*/subscriptions/*}:setIamPolicy"
-        body: "*"
-      }
-      additional_bindings {
-        post: "/v1/{resource=projects/*/snapshots/*}:setIamPolicy"
-        body: "*"
-      }
     };
   }
 
@@ -129,16 +121,8 @@ service Publisher {
   rpc GetIamPolicy(google.iam.v1.GetIamPolicyRequest)
     returns (google.iam.v1.Policy) {
     option (google.api.http) = {
-      post: "/v1/{resource=projects/*/subscriptions/*}:getIamPolicy"
-      body: "*"
-      additional_bindings {
-        post: "/v1/{resource=projects/*/topics/*}:getIamPolicy"
-        body: "*"
-      }
-      additional_bindings {
-        post: "/v1/{resource=projects/*/snapshots/*}:getIamPolicy"
-        body: "*"
-      }
+      get: "/v1/{resource=projects/*/topics/*}:getIamPolicy"
+      body: "";
     };
   }
 
@@ -148,16 +132,8 @@ service Publisher {
   rpc TestIamPermissions(google.iam.v1.TestIamPermissionsRequest)
     returns (google.iam.v1.TestIamPermissionsResponse) {
     option (google.api.http) = {
-      post: "/v1/{resource=projects/*/subscriptions/*}:testIamPermissions"
+      post: "/v1/{resource=projects/*/topics/*}:testIamPermissions"
       body: "*"
-      additional_bindings {
-        post: "/v1/{resource=projects/*/topics/*}:testIamPermissions"
-        body: "*"
-      }
-      additional_bindings {
-        post: "/v1/{resource=projects/*/snapshots/*}:testIamPermissions"
-        body: "*"
-      }
     };
   }
 
@@ -363,12 +339,8 @@ service Subscriber {
   rpc SetIamPolicy(google.iam.v1.SetIamPolicyRequest)
     returns (google.iam.v1.Policy) {
     option (google.api.http) = {
-      post: "/v1/{resource=projects/*/topics/*}:setIamPolicy"
+      post: "/v1/{resource=projects/*/subscriptions/*}:setIamPolicy"
       body: "*"
-      additional_bindings {
-        post: "/v1/{resource=projects/*/subscriptions/*}:setIamPolicy"
-        body: "*"
-      }
       additional_bindings {
         post: "/v1/{resource=projects/*/snapshots/*}:setIamPolicy"
         body: "*"
@@ -381,17 +353,12 @@ service Subscriber {
   rpc GetIamPolicy(google.iam.v1.GetIamPolicyRequest)
     returns (google.iam.v1.Policy) {
     option (google.api.http) = {
-      post: "/v1/{resource=projects/*/subscriptions/*}:getIamPolicy"
-      body: "*"
+      get: "/v1/{resource=projects/*/subscriptions/*}:getIamPolicy"
+      body: ""
       additional_bindings {
-        post: "/v1/{resource=projects/*/topics/*}:getIamPolicy"
-        body: "*"
-      }
-      additional_bindings {
-        post: "/v1/{resource=projects/*/snapshots/*}:getIamPolicy"
-        body: "*"
-      }
-    };
+        get: "/v1/{resource=projects/*/snapshots/*}:getIamPolicy"
+        body: ""
+      }};
   }
 
   // Returns permissions that a caller has on the specified resource.
@@ -402,10 +369,6 @@ service Subscriber {
     option (google.api.http) = {
       post: "/v1/{resource=projects/*/subscriptions/*}:testIamPermissions"
       body: "*"
-      additional_bindings {
-        post: "/v1/{resource=projects/*/topics/*}:testIamPermissions"
-        body: "*"
-      }
       additional_bindings {
         post: "/v1/{resource=projects/*/snapshots/*}:testIamPermissions"
         body: "*"
