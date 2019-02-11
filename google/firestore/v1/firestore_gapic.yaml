@@ -22,6 +22,7 @@ language_settings:
 license_header:
   copyright_file: copyright-google.txt
   license_file: license-header-apache-2.0.txt
+enable_string_format_functions_override: true
 interfaces:
 - name: google.firestore.v1.Firestore
   collections:
