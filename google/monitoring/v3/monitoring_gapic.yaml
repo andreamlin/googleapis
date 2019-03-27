@@ -644,9 +644,6 @@ interfaces:
     retry_codes_name: idempotent
     retry_params_name: default
     timeout_millis: 60000
-# Force string formatting functions to be generated for backwards compatibility. Remove once
-# the Java client has a major version rev.
-enable_string_format_functions_override: true
 resource_name_generation:
 - message_name: Group
   field_entity_map:
