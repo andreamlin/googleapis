@@ -3,19 +3,19 @@ config_schema_version: 1.0.0
 # The settings of generated code in a specific language.
 language_settings:
   java:
-    package_name: com.google.cloud.redis.v1
+    package_name: com.google.cloud.example.library.v1
   python:
-    package_name: google.cloud.redis_v1.gapic
+    package_name: google.cloud.example.library_v1.gapic
   go:
-    package_name: cloud.google.com/go/redis/apiv1
+    package_name: cloud.google.com/go/example/library/apiv1
   csharp:
-    package_name: Google.Cloud.Redis.V1
+    package_name: Google.Example.Library.V1
   ruby:
-    package_name: Google::Cloud::Redis::V1
+    package_name: Google::Cloud::Example::Library::V1
   php:
-    package_name: Google\Cloud\Redis\V1
+    package_name: Google\Cloud\Example\Library\V1
   nodejs:
-    package_name: redis.v1
+    package_name: library.v1
 # The configuration for the license header to put on generated files.
 license_header:
   # The file containing the copyright line(s).
@@ -24,8 +24,8 @@ license_header:
   license_file: license-header-apache-2.0.txt
 # A list of API interface configurations.
 interfaces:
-  # The fully qualified name of the API interface.
-- name: google.cloud.redis.v1.CloudRedis
+# The fully qualified name of the API interface.
+- name: google.example.library.v1.LibraryService
   # A list of resource collection configurations.
   # Consists of a name_pattern and an entity_name.
   # The name_pattern is a pattern to describe the names of the resources of this
@@ -37,10 +37,10 @@ interfaces:
   # The entity_name is the name to be used as a basis for generated methods and
   # classes.
   collections:
-  - name_pattern: projects/{project}/locations/{location}
-    entity_name: location
-  - name_pattern: projects/{project}/locations/{location}/instances/{instance}
-    entity_name: instance
+  - name_pattern: shelves/{shelf}
+    entity_name: shelf
+  - name_pattern: shelves/{shelf}/books/{book}
+    entity_name: book
   # Definition for retryable codes.
   retry_codes_def:
   - name: idempotent
@@ -114,149 +114,147 @@ interfaces:
   #   timeout_millis - Specifies the default timeout for a non-retrying call. If
   #   the call is retrying, refer to retry_params_name instead.
   methods:
-  - name: ListInstances
+  - name: CreateShelf
     flattening:
       groups:
       - parameters:
-        - parent
+        - shelf
     required_fields:
-    - parent
-    resource_name_treatment: STATIC_TYPES
+    - shelf
+    retry_codes_name: non_idempotent
+    retry_params_name: default
+    timeout_millis: 10000
+  - name: GetShelf
+    flattening:
+      groups:
+      - parameters:
+        - name
+    required_fields:
+    - name
+    retry_codes_name: idempotent
+    retry_params_name: default
+    field_name_patterns:
+      name: shelf
+    timeout_millis: 10000
+  - name: ListShelves
     page_streaming:
       request:
         page_size_field: page_size
         token_field: page_token
       response:
         token_field: next_page_token
-        resources_field: instances
-    retry_codes_name: non_idempotent
+        resources_field: shelves
+    retry_codes_name: idempotent
     retry_params_name: default
-    field_name_patterns:
-      parent: location
-    timeout_millis: 60000
-  - name: GetInstance
+    timeout_millis: 10000
+  - name: DeleteShelf
     flattening:
       groups:
       - parameters:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
-    retry_codes_name: non_idempotent
+    retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
-      name: instance
-    timeout_millis: 60000
-  - name: CreateInstance
+      name: shelf
+    timeout_millis: 10000
+  - name: MergeShelves
     flattening:
       groups:
       - parameters:
-        - parent
-        - instance_id
-        - instance
+        - name
+        - other_shelf_name
     required_fields:
-    - parent
-    - instance_id
-    - instance
-    resource_name_treatment: STATIC_TYPES
+    - name
+    - other_shelf_name
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
-      parent: location
-    timeout_millis: 60000
-    long_running:
-      return_type: google.cloud.redis.v1.Instance
-      metadata_type: google.cloud.redis.v1.OperationMetadata
-      initial_poll_delay_millis: 60000 # 1 minutes
-      poll_delay_multiplier: 1.5
-      max_poll_delay_millis: 360000 # 6 minutes
-      total_poll_timeout_millis: 1200000 # 20 minutes
-    sample_code_init_fields:
-      - instance_id="test_instance"
-      - instance.tier="BASIC"
-      - instance.memory_size_gb=1
-  - name: UpdateInstance
-    resource_name_treatment: STATIC_TYPES
+      name: shelf
+    timeout_millis: 10000
+  - name: CreateBook
     flattening:
       groups:
       - parameters:
-        - update_mask
-        - instance
+        - name
+        - book
     required_fields:
-    - update_mask
-    - instance
+    - name
+    - book
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
-      instance.name: instance
-    timeout_millis: 60000
-    long_running:
-      return_type: google.cloud.redis.v1.Instance
-      metadata_type: google.cloud.redis.v1.OperationMetadata
-      initial_poll_delay_millis: 60000 # 1 minutes
-      poll_delay_multiplier: 1.5
-      max_poll_delay_millis: 360000 # 6 minutes
-      total_poll_timeout_millis: 7200000 # 120 minutes
-    sample_code_init_fields:
-      - update_mask.paths[0]="display_name"
-      - update_mask.paths[1]="memory_size_gb"
-      - instance.display_name="UpdatedDisplayName"
-      - instance.memory_size_gb=4
-  - name: DeleteInstance
+      name: shelf
+    timeout_millis: 10000
+  - name: GetBook
     flattening:
       groups:
       - parameters:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
-    retry_codes_name: non_idempotent
+    retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
-      name: instance
-    timeout_millis: 60000
-    long_running:
-      return_type: google.protobuf.Empty
-      metadata_type: google.cloud.redis.v1.OperationMetadata
-      initial_poll_delay_millis: 60000 # 1 minutes
-      poll_delay_multiplier: 1.5
-      max_poll_delay_millis: 360000 # 6 minutes
-      total_poll_timeout_millis: 1200000 # 20 minutes
-  - name: FailoverInstance
+      name: book
+    timeout_millis: 10000
+  - name: ListBooks
     flattening:
       groups:
       - parameters:
         - name
-        - data_protection_mode
     required_fields:
     - name
-    - data_protection_mode
+    page_streaming:
+      request:
+        page_size_field: page_size
+        token_field: page_token
+      response:
+        token_field: next_page_token
+        resources_field: books
+    retry_codes_name: idempotent
+    retry_params_name: default
+    field_name_patterns:
+      name: shelf
+    timeout_millis: 10000
+  - name: DeleteBook
+    flattening:
+      groups:
+      - parameters:
+        - name
+    required_fields:
+    - name
+    retry_codes_name: idempotent
+    retry_params_name: default
+    field_name_patterns:
+      name: book
+    timeout_millis: 10000
+  - name: UpdateBook
+    flattening:
+      groups:
+      - parameters:
+        - name
+        - book
+    required_fields:
+    - name
+    - book
+    retry_codes_name: idempotent
+    retry_params_name: default
+    field_name_patterns:
+      book.name: book
+    timeout_millis: 10000
+  - name: MoveBook
+    flattening:
+      groups:
+      - parameters:
+        - name
+        - other_shelf_name
+    required_fields:
+    - name
+    - other_shelf_name
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
-      name: instance
-    resource_name_treatment: STATIC_TYPES
-    long_running:
-      return_type: google.cloud.redis.v1.Instance
-      metadata_type: google.cloud.redis.v1.OperationMetadata
-      initial_poll_delay_millis: 60000 # 1 minutes
-      poll_delay_multiplier: 1.5
-      max_poll_delay_millis: 360000 # 6 minutes
-      total_poll_timeout_millis: 1200000 # 20 minutes
-    timeout_millis: 60000
-resource_name_generation:
-- message_name: ListInstancesRequest
-  field_entity_map:
-    parent: location
-- message_name: GetInstanceRequest
-  field_entity_map:
-    name: instance
-- message_name: CreateInstanceRequest
-  field_entity_map:
-    parent: location
-- message_name: DeleteInstanceRequest
-  field_entity_map:
-    name: instance
-- message_name: FailoverInstanceRequest
-  field_entity_map:
-    name: instance
+      name: book
+    timeout_millis: 10000
