@@ -114,7 +114,6 @@ interfaces:
     required_fields:
     - name
     - topic
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -128,7 +127,6 @@ interfaces:
         - subscription
     required_fields:
     - subscription
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -151,7 +149,6 @@ interfaces:
         - project
     required_fields:
     - project
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -171,7 +168,6 @@ interfaces:
         - subscription
     required_fields:
     - subscription
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -199,7 +195,6 @@ interfaces:
     - subscription
     - ack_ids
     - ack_deadline_seconds
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -218,7 +213,6 @@ interfaces:
     required_fields:
     - subscription
     - ack_ids
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: messaging
     field_name_patterns:
@@ -238,7 +232,6 @@ interfaces:
     required_fields:
     - subscription
     - max_messages
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: messaging
     field_name_patterns:
@@ -255,7 +248,6 @@ interfaces:
     grpc_streaming:
       response:
         resources_field: received_messages
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: none
     retry_params_name: streaming_messaging
     field_name_patterns:
@@ -274,7 +266,6 @@ interfaces:
     required_fields:
     - subscription
     - push_config
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -287,7 +278,6 @@ interfaces:
         - project
     required_fields:
     - project
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -309,7 +299,6 @@ interfaces:
     required_fields:
     - name
     - subscription
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -333,7 +322,6 @@ interfaces:
         - snapshot
     required_fields:
     - snapshot
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -344,7 +332,6 @@ interfaces:
     # https://github.com/googleapis/toolkit/issues/1057
     required_fields:
     - subscription
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -457,7 +444,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -479,7 +465,6 @@ interfaces:
     required_fields:
     - topic
     - messages
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: publish
     retry_params_name: messaging
     batching:
@@ -510,7 +495,6 @@ interfaces:
         - topic
     required_fields:
     - topic
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -523,7 +507,6 @@ interfaces:
         - project
     required_fields:
     - project
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -543,7 +526,6 @@ interfaces:
         - topic
     required_fields:
     - topic
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -574,7 +556,6 @@ interfaces:
         - topic
     required_fields:
     - topic
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:

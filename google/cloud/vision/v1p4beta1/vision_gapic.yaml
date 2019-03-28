@@ -129,7 +129,6 @@ interfaces:
     - parent
     - product_set
     - product_set_id
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -142,7 +141,6 @@ interfaces:
         - parent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -162,7 +160,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -177,7 +174,6 @@ interfaces:
     required_fields:
     - product_set
     - update_mask
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -190,7 +186,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -207,7 +202,6 @@ interfaces:
     - parent
     - product
     - product_id
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -220,7 +214,6 @@ interfaces:
         - parent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -240,7 +233,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -256,7 +248,6 @@ interfaces:
     required_fields:
     - product
     - update_mask
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -269,7 +260,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -286,7 +276,6 @@ interfaces:
     - parent
     - reference_image
     - reference_image_id
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -299,7 +288,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -312,7 +300,6 @@ interfaces:
         - parent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -332,7 +319,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -347,7 +333,6 @@ interfaces:
     required_fields:
     - name
     - product
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -362,7 +347,6 @@ interfaces:
     required_fields:
     - name
     - product
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -375,7 +359,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -404,7 +387,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 45000
       total_poll_timeout_millis: 86400000
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:

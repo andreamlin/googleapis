@@ -121,7 +121,6 @@ interfaces:
     - output_config
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.cloud.asset.v1.ExportAssetsResponse
       metadata_type: google.cloud.asset.v1.ExportAssetsRequest
@@ -137,7 +136,6 @@ interfaces:
     - read_time_window
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 600000
 resource_name_generation:
 - message_name: ExportAssetsRequest

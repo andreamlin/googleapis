@@ -151,7 +151,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetDeviceRegistry
     flattening:
@@ -166,7 +165,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UpdateDeviceRegistry
     flattening:
@@ -183,7 +181,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       device_registry.name: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: DeleteDeviceRegistry
     flattening:
@@ -198,7 +195,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListDeviceRegistries
     flattening:
@@ -220,7 +216,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: CreateDevice
     flattening:
@@ -237,7 +232,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetDevice
     flattening:
@@ -252,7 +246,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UpdateDevice
     flattening:
@@ -269,7 +262,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       device.name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: DeleteDevice
     flattening:
@@ -284,7 +276,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListDevices
     flattening:
@@ -306,7 +297,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ModifyCloudToDeviceConfig
     flattening:
@@ -323,7 +313,6 @@ interfaces:
     retry_params_name: rate_limited_aware
     field_name_patterns:
       name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListDeviceConfigVersions
     flattening:
@@ -338,7 +327,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListDeviceStates
     flattening:
@@ -353,7 +341,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: SetIamPolicy
     flattening:
@@ -370,7 +357,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       resource: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetIamPolicy
     flattening:
@@ -385,7 +371,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       resource: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: TestIamPermissions
     flattening:
@@ -402,7 +387,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       resource: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: SendCommandToDevice
     flattening:
@@ -420,7 +404,6 @@ interfaces:
     retry_params_name: rate_limited_aware
     field_name_patterns:
       name: device
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: BindDeviceToGateway
     flattening:
@@ -439,7 +422,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UnbindDeviceFromGateway
     flattening:
@@ -458,7 +440,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: registry
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
 resource_name_generation:
 - message_name: google.iam.v1.SetIamPolicyRequest

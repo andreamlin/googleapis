@@ -121,7 +121,6 @@ interfaces:
   #   the call is retrying, refer to retry_params_name instead.
   methods:
   - name: ListJobs
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -141,7 +140,6 @@ interfaces:
       parent: location
     timeout_millis: 30000
   - name: GetJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -154,7 +152,6 @@ interfaces:
       name: job
     timeout_millis: 30000
   - name: CreateJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -169,7 +166,6 @@ interfaces:
       parent: location
     timeout_millis: 30000
   - name: UpdateJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -184,7 +180,6 @@ interfaces:
       job.name: job
     timeout_millis: 30000
   - name: DeleteJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -197,7 +192,6 @@ interfaces:
       name: job
     timeout_millis: 30000
   - name: PauseJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -210,7 +204,6 @@ interfaces:
       name: job
     timeout_millis: 30000
   - name: ResumeJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -223,7 +216,6 @@ interfaces:
       name: job
     timeout_millis: 30000
   - name: RunJob
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:

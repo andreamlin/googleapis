@@ -121,7 +121,6 @@ interfaces:
         - parent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -141,7 +140,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -158,7 +156,6 @@ interfaces:
     - parent
     - instance_id
     - instance
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -176,7 +173,6 @@ interfaces:
       - instance.tier="BASIC"
       - instance.memory_size_gb=1
   - name: UpdateInstance
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -209,7 +205,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -235,7 +230,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: instance
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.cloud.redis.v1.Instance
       metadata_type: google.cloud.redis.v1.OperationMetadata

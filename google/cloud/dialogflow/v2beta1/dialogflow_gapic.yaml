@@ -112,7 +112,6 @@ interfaces:
     field_name_patterns:
       parent: project
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: SearchAgents
     flattening:
       groups:
@@ -132,7 +131,6 @@ interfaces:
     field_name_patterns:
       parent: project
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: TrainAgent
     flattening:
       groups:
@@ -154,7 +152,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: ExportAgent
     flattening:
       groups:
@@ -176,7 +173,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: ImportAgent
     required_fields:
     - parent
@@ -194,7 +190,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: RestoreAgent
     required_fields:
     - parent
@@ -212,7 +207,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   # The fully qualified name of the API interface.
 - name: google.cloud.dialogflow.v2beta1.Contexts
   # A list of resource collection configurations.
@@ -312,7 +306,6 @@ interfaces:
     field_name_patterns:
       parent: session
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetContext
     flattening:
       groups:
@@ -325,7 +318,6 @@ interfaces:
     field_name_patterns:
       name: context
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: CreateContext
     flattening:
       groups:
@@ -340,7 +332,6 @@ interfaces:
     field_name_patterns:
       parent: session
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: UpdateContext
     flattening:
       groups:
@@ -353,7 +344,6 @@ interfaces:
     field_name_patterns:
       context.name: context
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteContext
     flattening:
       groups:
@@ -366,7 +356,6 @@ interfaces:
     field_name_patterns:
       name: context
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteAllContexts
     flattening:
       groups:
@@ -379,7 +368,6 @@ interfaces:
     field_name_patterns:
       parent: session
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   # The fully qualified name of the API interface.
 - name: google.cloud.dialogflow.v2beta1.EntityTypes
   # A list of resource collection configurations.
@@ -478,7 +466,6 @@ interfaces:
     field_name_patterns:
       parent: project_agent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetEntityType
     flattening:
       groups:
@@ -494,7 +481,6 @@ interfaces:
     field_name_patterns:
       name: entity_type
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: CreateEntityType
     flattening:
       groups:
@@ -513,7 +499,6 @@ interfaces:
     field_name_patterns:
       parent: project_agent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: UpdateEntityType
     flattening:
       groups:
@@ -529,7 +514,6 @@ interfaces:
     field_name_patterns:
       entity_type.name: entity_type
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteEntityType
     flattening:
       groups:
@@ -542,7 +526,6 @@ interfaces:
     field_name_patterns:
       name: entity_type
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchUpdateEntityTypes
     required_fields:
     - parent
@@ -560,7 +543,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchDeleteEntityTypes
     flattening:
       groups:
@@ -584,7 +566,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchCreateEntities
     flattening:
       groups:
@@ -612,7 +593,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchUpdateEntities
     flattening:
       groups:
@@ -640,7 +620,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchDeleteEntities
     flattening:
       groups:
@@ -668,7 +647,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   # The fully qualified name of the API interface.
 - name: google.cloud.dialogflow.v2beta1.Intents
   # A list of resource collection configurations.
@@ -767,7 +745,6 @@ interfaces:
     field_name_patterns:
       parent: project_agent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetIntent
     flattening:
       groups:
@@ -783,7 +760,6 @@ interfaces:
     field_name_patterns:
       name: intent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: CreateIntent
     flattening:
       groups:
@@ -802,7 +778,6 @@ interfaces:
     field_name_patterns:
       parent: project_agent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: UpdateIntent
     flattening:
       groups:
@@ -821,7 +796,6 @@ interfaces:
     field_name_patterns:
       intent.name: intent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteIntent
     flattening:
       groups:
@@ -834,7 +808,6 @@ interfaces:
     field_name_patterns:
       name: intent
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchUpdateIntents
     required_fields:
     - parent
@@ -853,7 +826,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchDeleteIntents
     flattening:
       groups:
@@ -877,7 +849,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   # The fully qualified name of the API interface.
 - name: google.cloud.dialogflow.v2beta1.SessionEntityTypes
   # A list of resource collection configurations.
@@ -977,7 +948,6 @@ interfaces:
     field_name_patterns:
       parent: session
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetSessionEntityType
     flattening:
       groups:
@@ -990,7 +960,6 @@ interfaces:
     field_name_patterns:
       name: session_entity_type
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: CreateSessionEntityType
     flattening:
       groups:
@@ -1005,7 +974,6 @@ interfaces:
     field_name_patterns:
       parent: session
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: UpdateSessionEntityType
     flattening:
       groups:
@@ -1018,7 +986,6 @@ interfaces:
     field_name_patterns:
       session_entity_type.name: session_entity_type
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteSessionEntityType
     flattening:
       groups:
@@ -1031,7 +998,6 @@ interfaces:
     field_name_patterns:
       name: session_entity_type
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   # The fully qualified name of the API interface.
 - name: google.cloud.dialogflow.v2beta1.Sessions
   # A list of resource collection configurations.
@@ -1122,7 +1088,6 @@ interfaces:
     field_name_patterns:
       session: session
     timeout_millis: 220000
-    resource_name_treatment: STATIC_TYPES
   - name: StreamingDetectIntent
     required_fields:
     - session
@@ -1239,7 +1204,6 @@ interfaces:
     field_name_patterns:
       parent: project
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetKnowledgeBase
     flattening:
       groups:
@@ -1252,7 +1216,6 @@ interfaces:
     field_name_patterns:
       name: knowledge_base
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: CreateKnowledgeBase
     flattening:
       groups:
@@ -1267,7 +1230,6 @@ interfaces:
     field_name_patterns:
       parent: project
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteKnowledgeBase
     flattening:
       groups:
@@ -1280,7 +1242,6 @@ interfaces:
     field_name_patterns:
       name: knowledge_base
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   # The fully qualified name of the API interface.
 - name: google.cloud.dialogflow.v2beta1.Documents
   # A list of resource collection configurations.
@@ -1390,7 +1351,6 @@ interfaces:
     field_name_patterns:
       parent: knowledge_base
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetDocument
     flattening:
       groups:
@@ -1403,7 +1363,6 @@ interfaces:
     field_name_patterns:
       name: document
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: CreateDocument
     flattening:
       groups:
@@ -1427,7 +1386,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteDocument
     flattening:
       groups:
@@ -1449,7 +1407,6 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
-    resource_name_treatment: STATIC_TYPES
 resource_name_generation:
 - message_name: GetAgentRequest
   field_entity_map:

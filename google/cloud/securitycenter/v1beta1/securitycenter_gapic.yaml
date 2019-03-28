@@ -139,7 +139,6 @@ interfaces:
     - source
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: organization
     timeout_millis: 60000
@@ -156,7 +155,6 @@ interfaces:
     - finding
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: source
     timeout_millis: 60000
@@ -169,7 +167,6 @@ interfaces:
     - resource
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       resource: source
     timeout_millis: 60000
@@ -182,7 +179,6 @@ interfaces:
     - name
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       name: organization_settings
     timeout_millis: 60000
@@ -195,7 +191,6 @@ interfaces:
     - name
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       name: source
     timeout_millis: 60000
@@ -212,7 +207,6 @@ interfaces:
         resources_field: group_by_results
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: organization
     timeout_millis: 60000
@@ -234,7 +228,6 @@ interfaces:
         resources_field: group_by_results
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: source
     timeout_millis: 60000
@@ -250,7 +243,6 @@ interfaces:
         resources_field: list_assets_results
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: organization
     timeout_millis: 60000
@@ -266,7 +258,6 @@ interfaces:
         resources_field: findings
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: source
     timeout_millis: 60000
@@ -286,7 +277,6 @@ interfaces:
         resources_field: sources
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: organization
     timeout_millis: 60000
@@ -299,7 +289,6 @@ interfaces:
     - parent
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: organization
     long_running:
@@ -323,7 +312,6 @@ interfaces:
     - start_time
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       name: finding
     timeout_millis: 60000
@@ -338,7 +326,6 @@ interfaces:
     - policy
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       resource: source
     timeout_millis: 60000
@@ -353,7 +340,6 @@ interfaces:
     - permissions
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       resource: source
     timeout_millis: 60000
@@ -366,7 +352,6 @@ interfaces:
     - finding
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       finding.name: finding
     timeout_millis: 60000
@@ -379,7 +364,6 @@ interfaces:
     - organization_settings
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       organization_settings.name: organization_settings
     timeout_millis: 60000
@@ -392,7 +376,6 @@ interfaces:
     - source
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       source.name: source
     timeout_millis: 60000
@@ -405,7 +388,6 @@ interfaces:
     - security_marks
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       security_marks.name: securitymarks_oneof
     timeout_millis: 60000

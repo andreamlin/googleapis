@@ -56,7 +56,6 @@ interfaces:
         - parent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -78,7 +77,6 @@ interfaces:
     required_fields:
     - parent
     - create_statement
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -98,7 +96,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -113,7 +110,6 @@ interfaces:
     required_fields:
     - database
     - statements
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -133,7 +129,6 @@ interfaces:
         - database
     required_fields:
     - database
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -146,7 +141,6 @@ interfaces:
         - database
     required_fields:
     - database
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:

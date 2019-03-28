@@ -532,7 +532,6 @@ interfaces:
     - template
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: region
     timeout_millis: 30000
@@ -546,7 +545,6 @@ interfaces:
     - name
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       name: workflow_template
     timeout_millis: 60000
@@ -562,7 +560,6 @@ interfaces:
     - name
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       name: workflow_template
     timeout_millis: 60000
@@ -626,7 +623,6 @@ interfaces:
         resources_field: templates
     retry_codes_name: idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       parent: region
     timeout_millis: 60000
@@ -639,7 +635,6 @@ interfaces:
     - name
     retry_codes_name: non_idempotent
     retry_params_name: default
-    resource_name_treatment: STATIC_TYPES
     field_name_patterns:
       name: workflow_template
     timeout_millis: 60000

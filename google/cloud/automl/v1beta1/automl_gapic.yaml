@@ -127,7 +127,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: model
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   # The fully qualified name of the API interface.
 - name: google.cloud.automl.v1beta1.AutoMl
@@ -236,7 +235,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: GetDataset
     flattening:
@@ -249,7 +247,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: dataset
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: ListDatasets
     flattening:
@@ -269,7 +266,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: DeleteDataset
     flattening:
@@ -282,7 +278,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: dataset
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
     long_running:
       return_type: google.protobuf.Empty
@@ -304,7 +299,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: dataset
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
     long_running:
       return_type: google.protobuf.Empty
@@ -326,7 +320,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: dataset
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
     long_running:
       return_type: google.protobuf.Empty
@@ -348,7 +341,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
     long_running:
       return_type: google.cloud.automl.v1beta1.Model
@@ -368,7 +360,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: model
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: ListModels
     flattening:
@@ -388,7 +379,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: DeleteModel
     flattening:
@@ -401,7 +391,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: model
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
     long_running:
       return_type: google.protobuf.Empty
@@ -421,7 +410,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: model
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: UndeployModel
     flattening:
@@ -434,7 +422,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: model
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: GetModelEvaluation
     flattening:
@@ -447,7 +434,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: model_evaluation
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
   - name: ListModelEvaluations
     flattening:
@@ -467,7 +453,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: model
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 5000
 resource_name_generation:
 - message_name: CreateDatasetRequest

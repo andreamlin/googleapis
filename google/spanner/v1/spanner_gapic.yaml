@@ -80,7 +80,6 @@ interfaces:
         - database
     required_fields:
     - database
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -93,7 +92,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -125,7 +123,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -135,7 +132,6 @@ interfaces:
     required_fields:
     - session
     - sql
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -145,7 +141,6 @@ interfaces:
     required_fields:
     - session
     - sql
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: streaming
     field_name_patterns:
@@ -157,7 +152,6 @@ interfaces:
     - transaction
     - statements
     - seqno
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -169,7 +163,6 @@ interfaces:
     - table
     - columns
     - key_set
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -181,7 +174,6 @@ interfaces:
     - table
     - columns
     - key_set
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: streaming
     field_name_patterns:
@@ -196,7 +188,6 @@ interfaces:
     required_fields:
     - session
     - options
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -216,7 +207,6 @@ interfaces:
     required_fields:
     - session
     - mutations
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: long_running
     retry_params_name: long_running
     field_name_patterns:
@@ -231,7 +221,6 @@ interfaces:
     required_fields:
     - session
     - transaction_id
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:

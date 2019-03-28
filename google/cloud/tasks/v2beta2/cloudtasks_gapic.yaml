@@ -122,7 +122,6 @@ interfaces:
   #   the call is retrying, refer to retry_params_name instead.
   methods:
   - name: ListQueues
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -144,7 +143,6 @@ interfaces:
       parent: location
     timeout_millis: 10000
   - name: GetQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -159,7 +157,6 @@ interfaces:
       name: queue
     timeout_millis: 10000
   - name: CreateQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -176,7 +173,6 @@ interfaces:
       parent: location
     timeout_millis: 10000
   - name: UpdateQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -192,7 +188,6 @@ interfaces:
       queue.name: queue
     timeout_millis: 10000
   - name: DeleteQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -207,7 +202,6 @@ interfaces:
       name: queue
     timeout_millis: 10000
   - name: PurgeQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -222,7 +216,6 @@ interfaces:
       name: queue
     timeout_millis: 10000
   - name: PauseQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -237,7 +230,6 @@ interfaces:
       name: queue
     timeout_millis: 10000
   - name: ResumeQueue
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -252,7 +244,6 @@ interfaces:
       name: queue
     timeout_millis: 10000
   - name: GetIamPolicy
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -267,7 +258,6 @@ interfaces:
       resource: queue
     timeout_millis: 10000
   - name: SetIamPolicy
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -284,7 +274,6 @@ interfaces:
       resource: queue
     timeout_millis: 10000
   - name: TestIamPermissions
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -301,7 +290,6 @@ interfaces:
       resource: queue
     timeout_millis: 10000
   - name: ListTasks
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -323,7 +311,6 @@ interfaces:
       parent: queue
     timeout_millis: 10000
   - name: GetTask
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -338,7 +325,6 @@ interfaces:
       name: task
     timeout_millis: 10000
   - name: CreateTask
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -355,7 +341,6 @@ interfaces:
       parent: queue
     timeout_millis: 10000
   - name: DeleteTask
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -370,7 +355,6 @@ interfaces:
       name: task
     timeout_millis: 10000
   - name: LeaseTasks
-    resource_name_treatment: STATIC_TYPES
     required_fields:
     - parent
     - lease_duration
@@ -382,7 +366,6 @@ interfaces:
       parent: queue
     timeout_millis: 10000
   - name: AcknowledgeTask
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -399,7 +382,6 @@ interfaces:
       name: task
     timeout_millis: 10000
   - name: RenewLease
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -418,7 +400,6 @@ interfaces:
       name: task
     timeout_millis: 10000
   - name: CancelLease
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -435,7 +416,6 @@ interfaces:
       name: task
     timeout_millis: 10000
   - name: RunTask
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:

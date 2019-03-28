@@ -73,7 +73,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     long_running:
       return_type: google.bigtable.admin.v2.Instance
@@ -91,7 +90,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -110,7 +108,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - parent
@@ -124,7 +121,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     # Should use PartialUpdateInstance instead
     surface_treatments:
@@ -145,7 +141,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       instance.name: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     long_running:
       return_type: google.bigtable.admin.v2.Instance
@@ -167,7 +162,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 150000
     header_request_params:
     - name
@@ -186,7 +180,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.bigtable.admin.v2.Cluster
       metadata_type: google.bigtable.admin.v2.CreateClusterMetadata
@@ -208,7 +201,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: cluster
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - name
@@ -223,7 +215,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - parent
@@ -235,7 +226,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: cluster
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.bigtable.admin.v2.Cluster
       metadata_type: google.bigtable.admin.v2.UpdateClusterMetadata
@@ -257,7 +247,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: cluster
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - name
@@ -276,7 +265,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - parent
@@ -291,7 +279,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: app_profile
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - name
@@ -312,7 +299,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - parent
@@ -329,7 +315,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       app_profile.name: app_profile
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     long_running:
       return_type: google.bigtable.admin.v2.AppProfile
@@ -352,7 +337,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: app_profile
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - name
@@ -447,7 +431,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 900000
     header_request_params:
     - parent
@@ -466,7 +449,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.bigtable.admin.v2.Table
       metadata_type: google.bigtable.admin.v2.CreateTableFromSnapshotMetadata
@@ -494,7 +476,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: instance
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - parent
@@ -509,7 +490,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - name
@@ -524,7 +504,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 120000
     header_request_params:
     - name
@@ -541,7 +520,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 900000
     header_request_params:
     - name
@@ -552,7 +530,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 900000
     header_request_params:
     - name
@@ -567,7 +544,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     header_request_params:
     - name
@@ -584,7 +560,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     header_request_params:
     - name
@@ -605,7 +580,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: table
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     long_running:
       return_type: google.bigtable.admin.v2.Snapshot
@@ -627,7 +601,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: snapshot
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     header_request_params:
     - name
@@ -649,7 +622,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: cluster
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     header_request_params:
     - parent
@@ -664,7 +636,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: snapshot
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     header_request_params:
     - name

@@ -67,7 +67,6 @@ interfaces:
     field_name_patterns:
       name: any_path
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: ListDocuments
     required_fields:
     - parent
@@ -123,7 +122,6 @@ interfaces:
     field_name_patterns:
       name: any_path
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: BatchGetDocuments
     required_fields:
     - database

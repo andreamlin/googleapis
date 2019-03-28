@@ -61,7 +61,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       group_name: group
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UpdateGroup
     flattening:
@@ -74,7 +73,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       group.name: group
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
 - name: google.devtools.clouderrorreporting.v1beta1.ReportErrorsService
   smoke_test:
@@ -122,7 +120,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       project_name: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
 - name: google.devtools.clouderrorreporting.v1beta1.ErrorStatsService
   collections:
@@ -168,7 +165,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       project_name: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListEvents
     flattening:
@@ -190,7 +186,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       project_name: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: DeleteEvents
     flattening:
@@ -203,7 +198,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       project_name: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
 resource_name_generation:
 - message_name: ErrorGroup

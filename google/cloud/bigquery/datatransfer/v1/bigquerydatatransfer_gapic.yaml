@@ -160,7 +160,6 @@ interfaces:
     field_name_patterns:
       name: data_source_oneof
     timeout_millis: 20000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - name
   - name: ListDataSources
@@ -182,7 +181,6 @@ interfaces:
     field_name_patterns:
       parent: parent_oneof
     timeout_millis: 20000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - parent
   - name: CreateTransferConfig
@@ -199,7 +197,6 @@ interfaces:
     field_name_patterns:
       parent: parent_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - parent
   - name: UpdateTransferConfig
@@ -216,7 +213,6 @@ interfaces:
     field_name_patterns:
       transfer_config.name: transfer_config_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - transfer_config.name
   - name: DeleteTransferConfig
@@ -231,7 +227,6 @@ interfaces:
     field_name_patterns:
       name: transfer_config_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - name
   - name: GetTransferConfig
@@ -246,7 +241,6 @@ interfaces:
     field_name_patterns:
       name: transfer_config_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - name
   - name: ListTransferConfigs
@@ -268,7 +262,6 @@ interfaces:
     field_name_patterns:
       parent: parent_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - parent
   - name: ScheduleTransferRuns
@@ -287,7 +280,6 @@ interfaces:
     field_name_patterns:
       parent: transfer_config_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - parent
   - name: GetTransferRun
@@ -302,7 +294,6 @@ interfaces:
     field_name_patterns:
       name: run_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - name
   - name: DeleteTransferRun
@@ -317,7 +308,6 @@ interfaces:
     field_name_patterns:
       name: run_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - name
   - name: ListTransferRuns
@@ -339,7 +329,6 @@ interfaces:
     field_name_patterns:
       parent: transfer_config_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - parent
   - name: ListTransferLogs
@@ -361,7 +350,6 @@ interfaces:
     field_name_patterns:
       parent: run_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - parent
   - name: CheckValidCreds
@@ -376,7 +364,6 @@ interfaces:
     field_name_patterns:
       name: data_source_oneof
     timeout_millis: 30000
-    resource_name_treatment: STATIC_TYPES
     header_request_params:
     - name
 resource_name_generation:

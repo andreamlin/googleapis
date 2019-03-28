@@ -131,7 +131,6 @@ interfaces:
   #   the call is retrying, refer to retry_params_name instead.
   methods:
   - name: CreateIncident
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -146,7 +145,6 @@ interfaces:
       parent: project
     timeout_millis: 60000
   - name: GetIncident
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -159,7 +157,6 @@ interfaces:
       name: incident
     timeout_millis: 60000
   - name: SearchIncidents
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -181,7 +178,6 @@ interfaces:
       parent: project
     timeout_millis: 60000
   - name: UpdateIncident
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -214,7 +210,6 @@ interfaces:
       name: incident
     timeout_millis: 60000
   - name: CreateAnnotation
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -229,7 +224,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: ListAnnotations
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -249,7 +243,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: CreateTag
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -264,7 +257,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: DeleteTag
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -277,7 +269,6 @@ interfaces:
       name: tag
     timeout_millis: 60000
   - name: ListTags
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -297,7 +288,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: CreateSignal
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -312,7 +302,6 @@ interfaces:
       parent: project
     timeout_millis: 60000
   - name: SearchSignals
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -333,7 +322,6 @@ interfaces:
       parent: project
     timeout_millis: 60000
   - name: GetSignal
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -346,7 +334,6 @@ interfaces:
       name: signal
     timeout_millis: 60000
   - name: UpdateSignal
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -360,7 +347,6 @@ interfaces:
       signal.name: signal
     timeout_millis: 60000
   - name: EscalateIncident
-    resource_name_treatment: STATIC_TYPES
     required_fields:
     - incident
     retry_codes_name: non_idempotent
@@ -369,7 +355,6 @@ interfaces:
       incident.name: incident
     timeout_millis: 60000
   - name: CreateArtifact
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -384,7 +369,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: ListArtifacts
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -404,7 +388,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: UpdateArtifact
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -418,7 +401,6 @@ interfaces:
       artifact.name: artifact
     timeout_millis: 60000
   - name: DeleteArtifact
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -431,7 +413,6 @@ interfaces:
       name: artifact
     timeout_millis: 60000
   - name: SendShiftHandoff
-    resource_name_treatment: STATIC_TYPES
     required_fields:
     - parent
     - recipients
@@ -442,7 +423,6 @@ interfaces:
       parent: project
     timeout_millis: 60000
   - name: CreateSubscription
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -457,7 +437,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: UpdateSubscription
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -471,7 +450,6 @@ interfaces:
       subscription.name: subscription
     timeout_millis: 60000
   - name: ListSubscriptions
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -491,7 +469,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: DeleteSubscription
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -504,7 +481,6 @@ interfaces:
       name: subscription
     timeout_millis: 60000
   - name: CreateIncidentRoleAssignment
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -519,7 +495,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: DeleteIncidentRoleAssignment
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -532,7 +507,6 @@ interfaces:
       name: role_assignment
     timeout_millis: 60000
   - name: ListIncidentRoleAssignments
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -552,7 +526,6 @@ interfaces:
       parent: incident
     timeout_millis: 60000
   - name: RequestIncidentRoleHandover
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -567,7 +540,6 @@ interfaces:
       name: role_assignment
     timeout_millis: 60000
   - name: ConfirmIncidentRoleHandover
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -582,7 +554,6 @@ interfaces:
       name: role_assignment
     timeout_millis: 60000
   - name: ForceIncidentRoleHandover
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:
@@ -597,7 +568,6 @@ interfaces:
       name: role_assignment
     timeout_millis: 60000
   - name: CancelIncidentRoleHandover
-    resource_name_treatment: STATIC_TYPES
     flattening:
       groups:
       - parameters:

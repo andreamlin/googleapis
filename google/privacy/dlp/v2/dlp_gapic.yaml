@@ -149,7 +149,6 @@ interfaces:
   - name: InspectContent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -158,7 +157,6 @@ interfaces:
   - name: RedactImage
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -167,7 +165,6 @@ interfaces:
   - name: DeidentifyContent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -176,7 +173,6 @@ interfaces:
   - name: ReidentifyContent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -189,7 +185,6 @@ interfaces:
   - name: CreateInspectTemplate
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -198,14 +193,12 @@ interfaces:
   - name: UpdateInspectTemplate
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
       name: inspect_template_oneof
     timeout_millis: 300000
   - name: GetInspectTemplate
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -214,7 +207,6 @@ interfaces:
   - name: ListInspectTemplates
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -230,7 +222,6 @@ interfaces:
   - name: DeleteInspectTemplate
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -239,7 +230,6 @@ interfaces:
   - name: CreateDeidentifyTemplate
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -248,7 +238,6 @@ interfaces:
   - name: UpdateDeidentifyTemplate
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -257,7 +246,6 @@ interfaces:
   - name: GetDeidentifyTemplate
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -266,7 +254,6 @@ interfaces:
   - name: ListDeidentifyTemplates
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -282,7 +269,6 @@ interfaces:
   - name: DeleteDeidentifyTemplate
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -291,7 +277,6 @@ interfaces:
   - name: CreateDlpJob
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -300,7 +285,6 @@ interfaces:
   - name: ListDlpJobs
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -316,7 +300,6 @@ interfaces:
   - name: GetDlpJob
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -325,7 +308,6 @@ interfaces:
   - name: DeleteDlpJob
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -334,7 +316,6 @@ interfaces:
   - name: CancelDlpJob
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -343,7 +324,6 @@ interfaces:
   - name: ListJobTriggers
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -359,7 +339,6 @@ interfaces:
   - name: GetJobTrigger
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -368,7 +347,6 @@ interfaces:
   - name: DeleteJobTrigger
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     timeout_millis: 300000
@@ -386,7 +364,6 @@ interfaces:
   - name: UpdateJobTrigger
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -395,7 +372,6 @@ interfaces:
   - name: CreateJobTrigger
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -405,7 +381,6 @@ interfaces:
   - name: CreateStoredInfoType
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -414,7 +389,6 @@ interfaces:
   - name: UpdateStoredInfoType
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -423,7 +397,6 @@ interfaces:
   - name: GetStoredInfoType
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:
@@ -432,7 +405,6 @@ interfaces:
   - name: ListStoredInfoTypes
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -448,7 +420,6 @@ interfaces:
   - name: DeleteStoredInfoType
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     field_name_patterns:

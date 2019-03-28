@@ -147,7 +147,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListCryptoKeys
     flattening:
@@ -169,7 +168,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: key_ring
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: ListCryptoKeyVersions
     flattening:
@@ -191,7 +189,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: crypto_key
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetKeyRing
     flattening:
@@ -206,7 +203,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: key_ring
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetCryptoKey
     flattening:
@@ -221,7 +217,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetCryptoKeyVersion
     flattening:
@@ -236,7 +231,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: CreateKeyRing
     flattening:
@@ -255,7 +249,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: location
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: CreateCryptoKey
     flattening:
@@ -274,7 +267,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: key_ring
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
     sample_code_init_fields:
     - crypto_key_id=my-app-key
@@ -296,7 +288,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: crypto_key
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UpdateCryptoKey
     flattening:
@@ -313,7 +304,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       crypto_key.name: crypto_key
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UpdateCryptoKeyVersion
     flattening:
@@ -330,7 +320,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       crypto_key_version.name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: Encrypt
     flattening:
@@ -347,7 +336,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_path
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: Decrypt
     flattening:
@@ -364,7 +352,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: UpdateCryptoKeyPrimaryVersion
     flattening:
@@ -381,7 +368,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: DestroyCryptoKeyVersion
     flattening:
@@ -396,7 +382,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: RestoreCryptoKeyVersion
     flattening:
@@ -411,7 +396,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: GetPublicKey
     flattening:
@@ -426,7 +410,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: AsymmetricDecrypt
     flattening:
@@ -443,7 +426,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: AsymmetricSign
     flattening:
@@ -460,7 +442,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: crypto_key_version
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
   - name: SetIamPolicy
     flattening:
@@ -475,7 +456,6 @@ interfaces:
     - resource
     field_name_patterns:
       resource: key_oneof
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     timeout_millis: 60000
@@ -495,7 +475,6 @@ interfaces:
     - resource
     field_name_patterns:
       resource: key_oneof
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: idempotent
     retry_params_name: default
     timeout_millis: 60000
@@ -517,7 +496,6 @@ interfaces:
     - resource
     field_name_patterns:
       resource: key_oneof
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     timeout_millis: 60000

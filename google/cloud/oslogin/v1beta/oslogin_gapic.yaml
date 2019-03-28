@@ -128,7 +128,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 10000
   - name: DeleteSshPublicKey
     flattening:
@@ -141,7 +140,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: fingerprint
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 10000
   - name: GetLoginProfile
     flattening:
@@ -154,7 +152,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: user
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 10000
   - name: GetSshPublicKey
     flattening:
@@ -167,7 +164,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: fingerprint
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 10000
   - name: ImportSshPublicKey
     flattening:
@@ -186,7 +182,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: user
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 10000
   - name: UpdateSshPublicKey
     flattening:
@@ -205,7 +200,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: fingerprint
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 10000
 resource_name_generation:
 - message_name: DeletePosixAccountRequest

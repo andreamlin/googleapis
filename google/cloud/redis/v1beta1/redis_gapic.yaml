@@ -121,7 +121,6 @@ interfaces:
         - parent
     required_fields:
     - parent
-    resource_name_treatment: STATIC_TYPES
     page_streaming:
       request:
         page_size_field: page_size
@@ -141,7 +140,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -158,7 +156,6 @@ interfaces:
     - parent
     - instance_id
     - instance
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:
@@ -189,7 +186,6 @@ interfaces:
     field_name_patterns:
       instance.name: instance
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.cloud.redis.v1beta1.Instance
       metadata_type: google.protobuf.Any
@@ -209,7 +205,6 @@ interfaces:
         - name
     required_fields:
     - name
-    resource_name_treatment: STATIC_TYPES
     retry_codes_name: non_idempotent
     retry_params_name: default
     field_name_patterns:

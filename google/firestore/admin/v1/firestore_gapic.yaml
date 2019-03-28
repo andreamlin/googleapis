@@ -93,7 +93,6 @@ interfaces:
     field_name_patterns:
       name: index
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: DeleteIndex
     flattening:
       groups:
@@ -106,7 +105,6 @@ interfaces:
     field_name_patterns:
       name: index
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: ImportDocuments
     flattening:
       groups:
@@ -119,7 +117,6 @@ interfaces:
     field_name_patterns:
       name: database
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: ExportDocuments
     flattening:
       groups:
@@ -132,7 +129,6 @@ interfaces:
     field_name_patterns:
       name: database
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: GetField
     flattening:
       groups:
@@ -145,7 +141,6 @@ interfaces:
     field_name_patterns:
       name: field
     timeout_millis: 60000
-    resource_name_treatment: STATIC_TYPES
   - name: ListFields
     flattening:
       groups:

@@ -140,7 +140,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: parent_oneof
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 30000
   - name: SearchFolders
     flattening:
@@ -168,7 +167,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: folder
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 30000
   - name: CreateFolder
     flattening:
@@ -183,7 +181,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: parent_oneof
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 30000
   - name: UpdateFolder
     flattening:
@@ -211,7 +208,6 @@ interfaces:
     field_name_patterns:
       name: folder
       destination_parent: parent_oneof
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 30000
   - name: DeleteFolder
     flattening:
@@ -227,7 +223,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: folder
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 30000
   - name: UndeleteFolder
     flattening:
@@ -240,7 +235,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       name: folder
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 30000
   - name: GetIamPolicy
     flattening:

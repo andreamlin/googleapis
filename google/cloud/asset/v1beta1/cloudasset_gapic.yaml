@@ -123,7 +123,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: project
-    resource_name_treatment: STATIC_TYPES
     long_running:
       return_type: google.cloud.asset.v1beta1.ExportAssetsResponse
       metadata_type: google.cloud.asset.v1beta1.ExportAssetsRequest
@@ -141,7 +140,6 @@ interfaces:
     retry_params_name: default
     field_name_patterns:
       parent: project
-    resource_name_treatment: STATIC_TYPES
     timeout_millis: 600000
 resource_name_generation:
 - message_name: ExportAssetsRequest
