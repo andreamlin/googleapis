@@ -46,6 +46,7 @@ option java_package = "com.google.ads.googleads.v1.common";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Common";
 option ruby_package = "Google::Ads::GoogleAds::V1::Common";
+
 // Proto file describing segment only fields.
 
 // Segment only fields.
@@ -95,6 +96,9 @@ message Segments {
 
   // External conversion source.
   google.ads.googleads.v1.enums.ExternalConversionSourceEnum.ExternalConversionSource external_conversion_source = 55;
+
+  // Resource name of the geo target constant that represents an airport.
+  google.protobuf.StringValue geo_target_airport = 65;
 
   // Resource name of the geo target constant that represents a city.
   google.protobuf.StringValue geo_target_city = 62;
@@ -189,7 +193,8 @@ message Segments {
   // Condition of the product.
   google.ads.googleads.v1.enums.ProductConditionEnum.ProductCondition product_condition = 32;
 
-  // Resource name of the geo target constant for the country of the product.
+  // Resource name of the geo target constant for the country of sale of the
+  // product.
   google.protobuf.StringValue product_country = 33;
 
   // Custom attribute 0 of the product.
@@ -247,6 +252,9 @@ message Segments {
 
   // Position of the ad.
   google.ads.googleads.v1.enums.SlotEnum.Slot slot = 23;
+
+  // Resource name of the ad group criterion that represents webpage criterion.
+  google.protobuf.StringValue webpage = 66;
 
   // Week as defined as Monday through Sunday, and represented by the date of
   // Monday. Formatted as yyyy-MM-dd.

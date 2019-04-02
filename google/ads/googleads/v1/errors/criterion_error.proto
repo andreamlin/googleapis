@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.errors";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
+
 // Proto file describing criterion errors.
 
 // Container for enum describing possible criterion errors.
@@ -143,6 +144,12 @@ message CriterionErrorEnum {
     // criterion types of Gender, AgeRange, UserList, Placement, MobileApp, and
     // MobileAppCategory in search campaigns and shopping campaigns.
     CANNOT_ADD_URLS_TO_CRITERION_TYPE_FOR_CAMPAIGN_TYPE = 33;
+
+    // Invalid custom affinity criterion.
+    INVALID_CUSTOM_AFFINITY = 96;
+
+    // Invalid custom intent criterion.
+    INVALID_CUSTOM_INTENT = 97;
 
     // IP address is not valid.
     INVALID_IP_ADDRESS = 34;

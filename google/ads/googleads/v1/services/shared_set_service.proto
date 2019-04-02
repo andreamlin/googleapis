@@ -31,6 +31,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
+
 // Proto file describing the Shared Set service.
 
 // Service to manage shared sets.

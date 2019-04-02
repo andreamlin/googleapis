@@ -17,12 +17,6 @@ language_settings:
   nodejs:
     package_name: dataproc.v1beta2
     domain_layer_location: google-cloud
-# The configuration for the license header to put on generated files.
-license_header:
-  # The file containing the copyright line(s).
-  copyright_file: copyright-google.txt
-  # The file containing the raw license header without any copyright line(s).
-  license_file: license-header-apache-2.0.txt
 # A list of API interface configurations.
 interfaces:
   # The fully qualified name of the API interface.
@@ -136,7 +130,7 @@ interfaces:
     long_running:
       return_type: google.cloud.dataproc.v1beta2.Cluster
       metadata_type: google.cloud.dataproc.v1beta2.ClusterOperationMetadata
-      implements_delete: true
+      implements_delete: false
       implements_cancel: false
       initial_poll_delay_millis: 1000
       poll_delay_multiplier: 2
@@ -163,7 +157,7 @@ interfaces:
     long_running:
       return_type: google.cloud.dataproc.v1beta2.Cluster
       metadata_type: google.cloud.dataproc.v1beta2.ClusterOperationMetadata
-      implements_delete: true
+      implements_delete: false
       implements_cancel: false
       initial_poll_delay_millis: 1000
       poll_delay_multiplier: 2
@@ -186,7 +180,7 @@ interfaces:
     long_running:
       return_type: google.protobuf.Empty
       metadata_type: google.cloud.dataproc.v1beta2.ClusterOperationMetadata
-      implements_delete: true
+      implements_delete: false
       implements_cancel: false
       initial_poll_delay_millis: 1000
       poll_delay_multiplier: 2
@@ -246,7 +240,7 @@ interfaces:
     long_running:
       return_type: google.protobuf.Empty
       metadata_type: google.cloud.dataproc.v1beta2.DiagnoseClusterResults
-      implements_delete: true
+      implements_delete: false
       implements_cancel: false
       initial_poll_delay_millis: 1000
       poll_delay_multiplier: 2
@@ -568,8 +562,8 @@ interfaces:
     long_running:
       return_type: google.protobuf.Empty
       metadata_type: google.cloud.dataproc.v1beta2.WorkflowMetadata
-      implements_delete: true
-      implements_cancel: true
+      implements_delete: false
+      implements_cancel: false
       initial_poll_delay_millis: 1000
       poll_delay_multiplier: 2
       max_poll_delay_millis: 10000
@@ -591,8 +585,8 @@ interfaces:
     long_running:
       return_type: google.protobuf.Empty
       metadata_type: google.cloud.dataproc.v1beta2.WorkflowMetadata
-      implements_delete: true
-      implements_cancel: true
+      implements_delete: false
+      implements_cancel: false
       initial_poll_delay_millis: 1000
       poll_delay_multiplier: 2
       max_poll_delay_millis: 10000

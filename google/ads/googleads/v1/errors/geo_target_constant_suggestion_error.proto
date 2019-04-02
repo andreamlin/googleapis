@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
 
-
 // Container for enum describing possible geo target constant suggestion errors.
 message GeoTargetConstantSuggestionErrorEnum {
   // Enum describing possible geo target constant suggestion errors.

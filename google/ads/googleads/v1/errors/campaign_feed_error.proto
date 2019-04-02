@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.errors";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
+
 // Proto file describing campaign feed errors.
 
 // Container for enum describing possible campaign feed errors.

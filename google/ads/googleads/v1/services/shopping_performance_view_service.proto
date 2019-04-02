@@ -28,6 +28,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
+
 // Proto file describing the ShoppingPerformanceView service.
 
 // Service to fetch Shopping performance views.
@@ -35,7 +36,7 @@ service ShoppingPerformanceViewService {
   // Returns the requested Shopping performance view in full detail.
   rpc GetShoppingPerformanceView(GetShoppingPerformanceViewRequest) returns (google.ads.googleads.v1.resources.ShoppingPerformanceView) {
     option (google.api.http) = {
-      get: "/v1/{resource_name=customers/*/shoppingPerformanceView/*}"
+      get: "/v1/{resource_name=customers/*/shoppingPerformanceView}"
     };
   }
 }

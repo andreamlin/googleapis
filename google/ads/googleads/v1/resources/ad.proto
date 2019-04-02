@@ -34,6 +34,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the ad type.
 
 // An ad.
@@ -129,5 +130,14 @@ message Ad {
 
     // Details pertaining to a legacy responsive display ad.
     google.ads.googleads.v1.common.LegacyResponsiveDisplayAdInfo legacy_responsive_display_ad = 28;
+
+    // Details pertaining to an app ad.
+    google.ads.googleads.v1.common.AppAdInfo app_ad = 29;
+
+    // Details pertaining to a legacy app install ad.
+    google.ads.googleads.v1.common.LegacyAppInstallAdInfo legacy_app_install_ad = 30;
+
+    // Details pertaining to a responsive display ad.
+    google.ads.googleads.v1.common.ResponsiveDisplayAdInfo responsive_display_ad = 31;
   }
 }

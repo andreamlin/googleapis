@@ -29,6 +29,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the mutate job resource.
 
 // A list of mutates being processed asynchronously. The mutates are uploaded
@@ -49,6 +50,13 @@ message MutateJob {
     // The fraction (between 0.0 and 1.0) of mutates that have been processed.
     // This is empty if the job hasn't started running yet.
     google.protobuf.DoubleValue estimated_completion_ratio = 3;
+
+    // The number of mutate operations in the mutate job.
+    google.protobuf.Int64Value operation_count = 4;
+
+    // The number of mutate operations executed by the mutate job.
+    // Present only if the job has started running.
+    google.protobuf.Int64Value executed_operation_count = 5;
   }
 
   // The resource name of the mutate job.

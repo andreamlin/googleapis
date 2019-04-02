@@ -19,9 +19,6 @@ language_settings:
     package_name: Google\Cloud\Bigtable\Admin\V2
   nodejs:
     package_name: admin.v2
-license_header:
-  copyright_file: copyright-google.txt
-  license_file: license-header-apache-2.0.txt
 interfaces:
 - name: google.bigtable.admin.v2.BigtableInstanceAdmin
   collections:
@@ -128,7 +125,7 @@ interfaces:
     timeout_millis: 60000
     # Should use PartialUpdateInstance instead
     surface_treatments:
-    - include_languages: [ java, csharp ]
+    - include_languages: [java, csharp]
       visibility: DISABLED
     header_request_params:
     - name
@@ -475,6 +472,10 @@ interfaces:
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
     timeout_millis: 60000
+    # Snapshots are Alpha-only and not supported in C#
+    surface_treatments:
+    - include_languages: [csharp]
+      visibility: DISABLED
     header_request_params:
     - parent
   - name: ListTables
@@ -614,6 +615,10 @@ interfaces:
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 5000
       total_poll_timeout_millis: 300000
+    # Snapshots are Alpha-only and not supported in C#
+    surface_treatments:
+    - include_languages: [csharp]
+      visibility: DISABLED
     header_request_params:
     - name
   - name: GetSnapshot
@@ -629,6 +634,10 @@ interfaces:
       name: snapshot
     resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
+    # Snapshots are Alpha-only and not supported in C#
+    surface_treatments:
+    - include_languages: [csharp]
+      visibility: DISABLED
     header_request_params:
     - name
   - name: ListSnapshots
@@ -651,6 +660,10 @@ interfaces:
       parent: cluster
     resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
+    # Snapshots are Alpha-only and not supported in C#
+    surface_treatments:
+    - include_languages: [csharp]
+      visibility: DISABLED
     header_request_params:
     - parent
   - name: DeleteSnapshot
@@ -666,6 +679,10 @@ interfaces:
       name: snapshot
     resource_name_treatment: STATIC_TYPES
     timeout_millis: 60000
+    # Snapshots are Alpha-only and not supported in C#
+    surface_treatments:
+    - include_languages: [csharp]
+      visibility: DISABLED
     header_request_params:
     - name
 

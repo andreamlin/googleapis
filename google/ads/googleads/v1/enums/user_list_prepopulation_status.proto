@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // Indicates status of prepopulation based on the rule.
 message UserListPrepopulationStatusEnum {
   // Enum describing possible user list prepopulation status.

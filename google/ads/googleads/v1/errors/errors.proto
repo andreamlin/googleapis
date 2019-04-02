@@ -30,6 +30,7 @@ import "google/ads/googleads/v1/errors/ad_group_feed_error.proto";
 import "google/ads/googleads/v1/errors/ad_parameter_error.proto";
 import "google/ads/googleads/v1/errors/ad_sharing_error.proto";
 import "google/ads/googleads/v1/errors/adx_error.proto";
+import "google/ads/googleads/v1/errors/asset_error.proto";
 import "google/ads/googleads/v1/errors/authentication_error.proto";
 import "google/ads/googleads/v1/errors/authorization_error.proto";
 import "google/ads/googleads/v1/errors/bidding_error.proto";
@@ -44,6 +45,7 @@ import "google/ads/googleads/v1/errors/change_status_error.proto";
 import "google/ads/googleads/v1/errors/collection_size_error.proto";
 import "google/ads/googleads/v1/errors/context_error.proto";
 import "google/ads/googleads/v1/errors/conversion_action_error.proto";
+import "google/ads/googleads/v1/errors/conversion_adjustment_upload_error.proto";
 import "google/ads/googleads/v1/errors/conversion_upload_error.proto";
 import "google/ads/googleads/v1/errors/country_code_error.proto";
 import "google/ads/googleads/v1/errors/criterion_error.proto";
@@ -123,6 +125,7 @@ option java_package = "com.google.ads.googleads.v1.errors";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
+
 // Proto file describing the common error protos
 
 // Describes how a GoogleAds API call failed. It's returned inside
@@ -214,6 +217,9 @@ message ErrorCode {
 
     // The reasons for the adx error
     AdxErrorEnum.AdxError adx_error = 25;
+
+    // The reasons for the asset error
+    AssetErrorEnum.AssetError asset_error = 107;
 
     // The reasons for the bidding errors
     BiddingErrorEnum.BiddingError bidding_error = 26;
@@ -328,6 +334,9 @@ message ErrorCode {
 
     // The reasons for the conversion action error
     ConversionActionErrorEnum.ConversionActionError conversion_action_error = 65;
+
+    // The reasons for the conversion adjustment upload error
+    ConversionAdjustmentUploadErrorEnum.ConversionAdjustmentUploadError conversion_adjustment_upload_error = 115;
 
     // The reasons for the conversion upload error
     ConversionUploadErrorEnum.ConversionUploadError conversion_upload_error = 111;

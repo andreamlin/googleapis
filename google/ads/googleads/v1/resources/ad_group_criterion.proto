@@ -19,6 +19,7 @@ package google.ads.googleads.v1.resources;
 
 import "google/ads/googleads/v1/common/criteria.proto";
 import "google/ads/googleads/v1/common/custom_parameter.proto";
+import "google/ads/googleads/v1/enums/ad_group_criterion_approval_status.proto";
 import "google/ads/googleads/v1/enums/ad_group_criterion_status.proto";
 import "google/ads/googleads/v1/enums/bidding_source.proto";
 import "google/ads/googleads/v1/enums/criterion_system_serving_status.proto";
@@ -35,6 +36,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the ad group criterion resource.
 
 // An ad group criterion.
@@ -112,6 +114,9 @@ message AdGroupCriterion {
   // Serving status of the criterion.
   google.ads.googleads.v1.enums.CriterionSystemServingStatusEnum.CriterionSystemServingStatus system_serving_status = 52;
 
+  // Approval status of the criterion.
+  google.ads.googleads.v1.enums.AdGroupCriterionApprovalStatusEnum.AdGroupCriterionApprovalStatus approval_status = 53;
+
   // The modifier for the bid when the criterion matches. The modifier must be
   // in the range: 0.1 - 10.0. Most targetable criteria types support modifiers.
   google.protobuf.DoubleValue bid_modifier = 44;
@@ -186,6 +191,9 @@ message AdGroupCriterion {
 
     // Mobile app category.
     google.ads.googleads.v1.common.MobileAppCategoryInfo mobile_app_category = 29;
+
+    // Mobile application.
+    google.ads.googleads.v1.common.MobileApplicationInfo mobile_application = 30;
 
     // Listing group.
     google.ads.googleads.v1.common.ListingGroupInfo listing_group = 32;

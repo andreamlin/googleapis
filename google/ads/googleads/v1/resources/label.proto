@@ -31,7 +31,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
 
-
 // A label.
 message Label {
   // Name of the resource.

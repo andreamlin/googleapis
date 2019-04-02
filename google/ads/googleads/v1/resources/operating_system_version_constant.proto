@@ -29,6 +29,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the operating system version constant resource.
 
 // A mobile operating system version or a range of versions, depending on

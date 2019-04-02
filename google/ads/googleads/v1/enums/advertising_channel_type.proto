@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.enums";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+
 // Proto file describing advertising channel types
 
 // The channel type a campaign may target to serve on.
@@ -54,6 +55,10 @@ message AdvertisingChannelTypeEnum {
 
     // Video campaigns.
     VIDEO = 6;
+
+    // Universal App Campaigns, including universal app install and universal
+    // app reengagement campaigns, that run across multiple channels.
+    MULTI_CHANNEL = 7;
   }
 
 

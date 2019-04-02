@@ -30,6 +30,7 @@ option java_package = "com.google.ads.googleads.v1.common";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Common";
 option ruby_package = "Google::Ads::GoogleAds::V1::Common";
+
 // Proto file describing policy information.
 
 // Key of the violation. The key is used for referring to a violation
@@ -59,6 +60,17 @@ message PolicyValidationParameter {
   // policies, re-review of the resource, or a change in advertiser
   // certificates.
   repeated google.protobuf.StringValue ignorable_policy_topics = 1;
+
+  // The list of policy violation keys that should not cause a
+  // PolicyViolationError to be reported. Not all policy violations are
+  // exemptable, please refer to the is_exemptible field in the returned
+  // PolicyViolationError.
+  //
+  // Resources violating these polices will be saved, but will not be eligible
+  // to serve. They may begin serving at a later time due to a change in
+  // policies, re-review of the resource, or a change in advertiser
+  // certificates.
+  repeated PolicyViolationKey exempt_policy_violation_keys = 2;
 }
 
 // Policy finding attached to a resource (e.g. alcohol policy associated with

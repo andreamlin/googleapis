@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.errors";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
+
 // Proto file describing bidding errors.
 
 // Container for enum describing possible bidding errors.
@@ -106,6 +107,9 @@ message BiddingErrorEnum {
 
     // The field is not compatible with payment mode.
     NOT_COMPATIBLE_WITH_PAYMENT_MODE = 34;
+
+    // Bidding strategy is incompatible with the budget type.
+    NOT_COMPATIBLE_WITH_BUDGET_TYPE = 35;
   }
 
 

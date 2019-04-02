@@ -20,6 +20,7 @@ package google.ads.googleads.v1.resources;
 import "google/ads/googleads/v1/enums/budget_delivery_method.proto";
 import "google/ads/googleads/v1/enums/budget_period.proto";
 import "google/ads/googleads/v1/enums/budget_status.proto";
+import "google/ads/googleads/v1/enums/budget_type.proto";
 import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
 
@@ -31,6 +32,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the Budget resource.
 
 // A campaign budget.
@@ -138,4 +140,7 @@ message CampaignBudget {
   //
   // This field is read-only.
   google.protobuf.Int64Value recommended_budget_estimated_change_weekly_views = 17;
+
+  // The type of the campaign budget.
+  google.ads.googleads.v1.enums.BudgetTypeEnum.BudgetType type = 18;
 }

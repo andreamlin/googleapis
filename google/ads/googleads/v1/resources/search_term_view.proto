@@ -29,6 +29,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the SearchTermView resource.
 
 // A search term view with metrics aggregated by search term at the ad group
@@ -37,7 +38,7 @@ message SearchTermView {
   // The resource name of the search term view.
   // Search term view resource names have the form:
   //
-  // `customers/{customer_id}/searchTermViews/{campaign_id}~{ad_group_id}_
+  // `customers/{customer_id}/searchTermViews/{campaign_id}~{ad_group_id}~
   // {URL-base64 search term}`
   string resource_name = 1;
 

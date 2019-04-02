@@ -32,7 +32,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
 
-
 // Service to manage labels.
 service LabelService {
   // Returns the requested label in full detail.

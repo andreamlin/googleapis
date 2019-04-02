@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // Indicates what type of data are the user list's members matched from.
 message CustomerMatchUploadKeyTypeEnum {
   // Enum describing possible customer match upload key types.

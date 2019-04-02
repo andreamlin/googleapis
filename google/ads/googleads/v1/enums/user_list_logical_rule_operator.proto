@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // The logical operator of the rule.
 message UserListLogicalRuleOperatorEnum {
   // Enum describing possible user list logical rule operators.

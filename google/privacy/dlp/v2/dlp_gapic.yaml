@@ -17,9 +17,6 @@ language_settings:
   nodejs:
     package_name: dlp.v2
     domain_layer_location: google-cloud
-license_header:
-  copyright_file: copyright-google.txt
-  license_file: license-header-apache-2.0.txt
 collection_oneofs:
 - oneof_name: deidentify_template_oneof
   collection_names:
@@ -372,6 +369,17 @@ interfaces:
     retry_codes_name: idempotent
     retry_params_name: default
     timeout_millis: 300000
+  - name: ActivateJobTrigger
+    surface_treatments:
+    - include_languages:
+      - go
+      - java
+      - csharp
+      - ruby
+      - nodejs
+      - python
+      - php
+      visibility: DISABLED
   - name: UpdateJobTrigger
     required_fields:
     - name

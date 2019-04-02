@@ -30,6 +30,7 @@ option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
 option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
+
 // Proto file describing the SharedCriterion resource.
 
 // A criterion belonging to a shared set.
@@ -69,5 +70,8 @@ message SharedCriterion {
 
     // Mobile App Category.
     google.ads.googleads.v1.common.MobileAppCategoryInfo mobile_app_category = 8;
+
+    // Mobile application.
+    google.ads.googleads.v1.common.MobileApplicationInfo mobile_application = 9;
   }
 }

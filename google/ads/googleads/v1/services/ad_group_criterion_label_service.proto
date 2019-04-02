@@ -30,6 +30,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
+
 // Proto file describing the Ad Group Criterion Label service.
 
 // Service to manage labels on ad group criteria.
@@ -90,7 +91,7 @@ message AdGroupCriterionLabelOperation {
     // being removed, in this format:
     //
     //
-    // `customers/{customer_id}/adGroupCriterionLabels/{ad_group_id}_{criterion_id}_{label_id}`
+    // `customers/{customer_id}/adGroupCriterionLabels/{ad_group_id}~{criterion_id}~{label_id}`
     string remove = 2;
   }
 }

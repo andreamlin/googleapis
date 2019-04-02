@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // Level of a product bidding category.
 message ProductBiddingCategoryLevelEnum {
   // Enum describing the level of the product bidding category.

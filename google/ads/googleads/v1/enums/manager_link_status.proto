@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // Container for enum describing possible status of a manager and client link.
 message ManagerLinkStatusEnum {
   // Possible statuses of a link.

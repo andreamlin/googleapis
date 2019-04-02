@@ -51,6 +51,7 @@ option java_package = "com.google.ads.googleads.v1.common";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Common";
 option ruby_package = "Google::Ads::GoogleAds::V1::Common";
+
 // Proto file describing criteria types.
 
 // A keyword criterion.
@@ -176,6 +177,9 @@ message ListingDimensionInfo {
 
     // Type of a product offer.
     ProductTypeInfo product_type = 12;
+
+    // Unknown dimension. Set when no other listing dimension is set.
+    UnknownListingDimensionInfo unknown_listing_dimension = 14;
   }
 }
 
@@ -271,6 +275,11 @@ message ProductTypeInfo {
 
   // Level of the type.
   google.ads.googleads.v1.enums.ProductTypeLevelEnum.ProductTypeLevel level = 2;
+}
+
+// Unknown listing dimension.
+message UnknownListingDimensionInfo {
+
 }
 
 // Criterion for hotel date selection (default dates vs. user selected).

@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.enums";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+
 // Proto file describing the ad type.
 
 // Container for enum describing possible types of an ad.
@@ -76,6 +77,15 @@ message AdTypeEnum {
 
     // The ad is a legacy responsive display ad.
     LEGACY_RESPONSIVE_DISPLAY_AD = 16;
+
+    // The ad is an app ad.
+    APP_AD = 17;
+
+    // The ad is a legacy app install ad.
+    LEGACY_APP_INSTALL_AD = 18;
+
+    // The ad is a responsive display ad.
+    RESPONSIVE_DISPLAY_AD = 19;
   }
 
 

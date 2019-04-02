@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.enums";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+
 // Proto file describing Recommendation types.
 
 // Container for enum describing types of recommendations.
@@ -69,6 +70,14 @@ message RecommendationTypeEnum {
     // Recommendation to start using the "Optimize" ad rotation setting for the
     // given ad group.
     OPTIMIZE_AD_ROTATION = 10;
+
+    // Recommendation to change an existing keyword from one match type to a
+    // broader match type.
+    KEYWORD_MATCH_TYPE = 14;
+
+    // Recommendation to move unused budget from one budget to a constrained
+    // budget.
+    MOVE_UNUSED_BUDGET = 15;
   }
 
 

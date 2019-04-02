@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.errors";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
+
 // Proto file describing authorization errors.
 
 // Container for enum describing possible authorization errors.
@@ -68,6 +69,10 @@ message AuthorizationErrorEnum {
     // The developer must sign the terms of service. They can be found here:
     // ads.google.com/aw/apicenter
     MISSING_TOS = 9;
+
+    // The developer token is not approved. Non-approved developer tokens can
+    // only be used with test accounts.
+    DEVELOPER_TOKEN_NOT_APPROVED = 10;
   }
 
 

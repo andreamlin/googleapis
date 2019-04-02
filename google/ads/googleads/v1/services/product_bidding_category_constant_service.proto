@@ -28,6 +28,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+
 // Proto file describing the Product Bidding Category constant service
 
 // Service to fetch Product Bidding Categories.

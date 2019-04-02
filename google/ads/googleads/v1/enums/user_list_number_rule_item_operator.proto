@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // Supported rule operator for number type.
 message UserListNumberRuleItemOperatorEnum {
   // Enum describing possible user list number rule item operators.

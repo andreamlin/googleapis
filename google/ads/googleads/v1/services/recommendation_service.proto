@@ -32,6 +32,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
+
 // Proto file describing the Recommendation service.
 
 // Service to manage recommendations.
@@ -123,6 +124,13 @@ message ApplyRecommendationOperation {
     google.protobuf.Int64Value new_campaign_budget_amount_micros = 2;
   }
 
+  // Parameters to use when applying move unused budget recommendation.
+  message MoveUnusedBudgetParameters {
+    // Budget amount to move from excess budget to constrained budget. This is
+    // a required field.
+    google.protobuf.Int64Value budget_micros_to_move = 1;
+  }
+
   // The resource name of the recommendation to apply.
   string resource_name = 1;
 
@@ -141,6 +149,9 @@ message ApplyRecommendationOperation {
     // Optional parameters to use when applying target CPA opt-in
     // recommendation.
     TargetCpaOptInParameters target_cpa_opt_in = 5;
+
+    // Parameters to use when applying move unused budget recommendation.
+    MoveUnusedBudgetParameters move_unused_budget = 9;
   }
 }
 

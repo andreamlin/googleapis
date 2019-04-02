@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.errors";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Errors";
 option ruby_package = "Google::Ads::GoogleAds::V1::Errors";
+
 // Proto file describing policy validation parameter errors.
 
 // Container for enum describing possible policy validation parameter errors.
@@ -41,6 +42,13 @@ message PolicyValidationParameterErrorEnum {
 
     // Ignorable policy topics are not supported for the ad type.
     UNSUPPORTED_AD_TYPE_FOR_IGNORABLE_POLICY_TOPICS = 2;
+
+    // Exempt policy violation keys are not supported for the ad type.
+    UNSUPPORTED_AD_TYPE_FOR_EXEMPT_POLICY_VIOLATION_KEYS = 3;
+
+    // Cannot set ignorable policy topics and exempt policy violation keys in
+    // the same policy violation parameter.
+    CANNOT_SET_BOTH_IGNORABLE_POLICY_TOPICS_AND_EXEMPT_POLICY_VIOLATION_KEYS = 4;
   }
 
 

@@ -33,6 +33,7 @@ import "google/ads/googleads/v1/resources/ad_group_feed.proto";
 import "google/ads/googleads/v1/resources/ad_group_label.proto";
 import "google/ads/googleads/v1/resources/ad_schedule_view.proto";
 import "google/ads/googleads/v1/resources/age_range_view.proto";
+import "google/ads/googleads/v1/resources/asset.proto";
 import "google/ads/googleads/v1/resources/bidding_strategy.proto";
 import "google/ads/googleads/v1/resources/billing_setup.proto";
 import "google/ads/googleads/v1/resources/campaign.proto";
@@ -111,6 +112,7 @@ import "google/ads/googleads/v1/services/ad_group_feed_service.proto";
 import "google/ads/googleads/v1/services/ad_group_label_service.proto";
 import "google/ads/googleads/v1/services/ad_group_service.proto";
 import "google/ads/googleads/v1/services/ad_parameter_service.proto";
+import "google/ads/googleads/v1/services/asset_service.proto";
 import "google/ads/googleads/v1/services/bidding_strategy_service.proto";
 import "google/ads/googleads/v1/services/campaign_bid_modifier_service.proto";
 import "google/ads/googleads/v1/services/campaign_budget_service.proto";
@@ -149,6 +151,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
+
 // Proto file describing the GoogleAdsService.
 
 // Service to fetch data and metrics across resources.
@@ -258,6 +261,9 @@ message GoogleAdsRow {
 
   // The domain category referenced in the query.
   google.ads.googleads.v1.resources.DomainCategory domain_category = 91;
+
+  // The asset referenced in the query.
+  google.ads.googleads.v1.resources.Asset asset = 105;
 
   // The bidding strategy referenced in the query.
   google.ads.googleads.v1.resources.BiddingStrategy bidding_strategy = 18;
@@ -532,6 +538,9 @@ message MutateOperation {
     // An ad parameter mutate operation.
     AdParameterOperation ad_parameter_operation = 22;
 
+    // An asset mutate operation.
+    AssetOperation asset_operation = 23;
+
     // A bidding strategy mutate operation.
     BiddingStrategyOperation bidding_strategy_operation = 6;
 
@@ -645,6 +654,9 @@ message MutateOperationResponse {
 
     // The result for the ad parameter mutate.
     MutateAdParameterResult ad_parameter_result = 22;
+
+    // The result for the asset mutate.
+    MutateAssetResult asset_result = 23;
 
     // The result for the bidding strategy mutate.
     MutateBiddingStrategyResult bidding_strategy_result = 6;

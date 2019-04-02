@@ -30,7 +30,18 @@ option java_package = "com.google.ads.googleads.v1.common";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Common";
 option ruby_package = "Google::Ads::GoogleAds::V1::Common";
+
 // Proto file describing bidding schemes.
+
+// Commission is an automatic bidding strategy in which the advertiser pays a
+// certain portion of the conversion value.
+message Commission {
+  // Commission rate defines the portion of the conversion value that the
+  // advertiser will be billed. A commission rate of x should be passed into
+  // this field as (x * 1,000,000). For example, 106,000 represents a commission
+  // rate of 0.106 (10.6%).
+  google.protobuf.Int64Value commission_rate_micros = 1;
+}
 
 // An automated bidding strategy that raises bids for clicks
 // that seem more likely to lead to a conversion and lowers

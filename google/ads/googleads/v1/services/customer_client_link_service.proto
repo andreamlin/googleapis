@@ -31,7 +31,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
 
-
 // Service to manage customer client links.
 service CustomerClientLinkService {
   // Returns the requested CustomerClientLink in full detail.

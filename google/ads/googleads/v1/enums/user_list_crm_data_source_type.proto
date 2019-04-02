@@ -28,7 +28,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
 
-
 // Indicates source of Crm upload data.
 message UserListCrmDataSourceTypeEnum {
   // Enum describing possible user list crm data source type.

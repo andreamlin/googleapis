@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.enums";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+
 // Proto file describing user list access status.
 
 // Indicates if this client still has access to the list.

@@ -29,7 +29,6 @@ option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Common";
 option ruby_package = "Google::Ads::GoogleAds::V1::Common";
 
-
 // A type of label displaying text on a colored background.
 message TextLabel {
   // Background color of the label in RGB format. This string must match the

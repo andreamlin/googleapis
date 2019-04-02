@@ -31,6 +31,7 @@ option java_package = "com.google.ads.googleads.v1.services";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Services";
 option ruby_package = "Google::Ads::GoogleAds::V1::Services";
+
 // Proto file describing the MutateJobService.
 
 // Service to manage mutate jobs.
@@ -170,7 +171,7 @@ message ListMutateJobResultsResponse {
 
 // MutateJob result.
 message MutateJobResult {
-  // Index of the Simply operation.
+  // Index of the mutate operation.
   int64 operation_index = 1;
 
   // Response for the mutate.

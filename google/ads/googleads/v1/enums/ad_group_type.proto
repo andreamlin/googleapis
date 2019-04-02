@@ -27,6 +27,7 @@ option java_package = "com.google.ads.googleads.v1.enums";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Enums";
 option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+
 // Proto file describing ad group types.
 
 // Defines types of an ad group, specific to a particular campaign channel
@@ -72,6 +73,9 @@ message AdGroupTypeEnum {
 
     // Outstream video ads.
     VIDEO_OUTSTREAM = 12;
+
+    // Ad group type for Dynamic Search Ads ad groups.
+    SEARCH_DYNAMIC_ADS = 13;
   }
 
 
