@@ -18,6 +18,8 @@ syntax = "proto3";
 package google.cloud.language.v1;
 
 import "google/api/annotations.proto";
+import "google/api/client.proto";
+import "google/api/field_behavior.proto";
 
 option go_package = "google.golang.org/genproto/googleapis/cloud/language/v1;language";
 option java_multiple_files = true;
@@ -34,6 +36,8 @@ service LanguageService {
       post: "/v1/documents:analyzeSentiment"
       body: "*"
     };
+
+    option (google.api.method_signature) = "document";
   }
 
   // Finds named entities (currently proper names and common nouns) in the text
@@ -45,6 +49,8 @@ service LanguageService {
       post: "/v1/documents:analyzeEntities"
       body: "*"
     };
+
+    option (google.api.method_signature) = "document,encoding_type";
   }
 
   // Finds entities, similar to
@@ -57,6 +63,7 @@ service LanguageService {
       post: "/v1/documents:analyzeEntitySentiment"
       body: "*"
     };
+    option (google.api.method_signature) = "document";
   }
 
   // Analyzes the syntax of the text and provides sentence boundaries and
@@ -67,6 +74,7 @@ service LanguageService {
       post: "/v1/documents:analyzeSyntax"
       body: "*"
     };
+    option (google.api.method_signature) = "document,encoding_type";
   }
 
   // Classifies a document into categories.
@@ -75,6 +83,7 @@ service LanguageService {
       post: "/v1/documents:classifyText"
       body: "*"
     };
+    option (google.api.method_signature) = "document";
   }
 
   // A convenience method that provides all the features that analyzeSentiment,
@@ -84,6 +93,7 @@ service LanguageService {
       post: "/v1/documents:annotateText"
       body: "*"
     };
+    option (google.api.method_signature) = "document,features,encoding_type";
   }
 }
 
@@ -924,7 +934,7 @@ message ClassificationCategory {
 // The sentiment analysis request message.
 message AnalyzeSentimentRequest {
   // Input document.
-  Document document = 1;
+  Document document = 1 [(google.api.field_behavior) = REQUIRED];
 
   // The encoding type used by the API to calculate sentence offsets.
   EncodingType encoding_type = 2;
@@ -948,7 +958,7 @@ message AnalyzeSentimentResponse {
 // The entity-level sentiment analysis request message.
 message AnalyzeEntitySentimentRequest {
   // Input document.
-  Document document = 1;
+  Document document = 1 [(google.api.field_behavior) = REQUIRED];
 
   // The encoding type used by the API to calculate offsets.
   EncodingType encoding_type = 2;
@@ -969,7 +979,7 @@ message AnalyzeEntitySentimentResponse {
 // The entity analysis request message.
 message AnalyzeEntitiesRequest {
   // Input document.
-  Document document = 1;
+  Document document = 1 [(google.api.field_behavior) = REQUIRED];
 
   // The encoding type used by the API to calculate offsets.
   EncodingType encoding_type = 2;
@@ -990,7 +1000,7 @@ message AnalyzeEntitiesResponse {
 // The syntax analysis request message.
 message AnalyzeSyntaxRequest {
   // Input document.
-  Document document = 1;
+  Document document = 1 [(google.api.field_behavior) = REQUIRED];
 
   // The encoding type used by the API to calculate offsets.
   EncodingType encoding_type = 2;
@@ -1014,7 +1024,7 @@ message AnalyzeSyntaxResponse {
 // The document classification request message.
 message ClassifyTextRequest {
   // Input document.
-  Document document = 1;
+  Document document = 1 [(google.api.field_behavior) = REQUIRED];
 }
 
 // The document classification response message.
@@ -1046,10 +1056,10 @@ message AnnotateTextRequest {
   }
 
   // Input document.
-  Document document = 1;
+  Document document = 1 [(google.api.field_behavior) = REQUIRED];
 
   // The enabled features.
-  Features features = 2;
+  Features features = 2 [(google.api.field_behavior) = REQUIRED];
 
   // The encoding type used by the API to calculate offsets.
   EncodingType encoding_type = 3;

@@ -1,5 +1,5 @@
 type: com.google.api.codegen.ConfigProto
-config_schema_version: 1.0.0
+config_schema_version: 2.0.0
 # The settings of generated code in a specific language.
 language_settings:
   java:
@@ -31,15 +31,6 @@ interfaces:
   # methods. If empty, no name methods are generated.
   # The entity_name is the name to be used as a basis for generated methods and
   # classes.
-  collections: []
-  # Definition for retryable codes.
-  retry_codes_def:
-  - name: idempotent
-    retry_codes:
-    - DEADLINE_EXCEEDED
-    - UNAVAILABLE
-  - name: non_idempotent
-    retry_codes: []
   # Definition for retry/backoff parameters.
   retry_params_def:
   - name: default
@@ -106,69 +97,15 @@ interfaces:
   #   the call is retrying, refer to retry_params_name instead.
   methods:
   - name: AnalyzeSentiment
-    flattening:
-      groups:
-      - parameters:
-        - document
-    required_fields:
-    - document
-    retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: AnalyzeEntities
-    flattening:
-      groups:
-      - parameters:
-        - document
-        - encoding_type
-    required_fields:
-    - document
-    retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: AnalyzeEntitySentiment
-    flattening:
-      groups:
-      - parameters:
-        - document
-        - encoding_type
-    required_fields:
-    - document
-    retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: AnalyzeSyntax
-    flattening:
-      groups:
-      - parameters:
-        - document
-        - encoding_type
-    required_fields:
-    - document
-    retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: ClassifyText
-    flattening:
-      groups:
-      - parameters:
-        - document
-    required_fields:
-    - document
-    retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: AnnotateText
-    flattening:
-      groups:
-      - parameters:
-        - document
-        - features
-        - encoding_type
-    required_fields:
-    - document
-    - features
-    retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
     
