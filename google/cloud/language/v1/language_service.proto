@@ -63,7 +63,7 @@ service LanguageService {
       post: "/v1/documents:analyzeEntitySentiment"
       body: "*"
     };
-    option (google.api.method_signature) = "document";
+    option (google.api.method_signature) = "document,encoding_type";
   }
 
   // Analyzes the syntax of the text and provides sentence boundaries and

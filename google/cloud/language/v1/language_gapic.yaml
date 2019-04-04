@@ -31,6 +31,14 @@ interfaces:
   # methods. If empty, no name methods are generated.
   # The entity_name is the name to be used as a basis for generated methods and
   # classes.
+  # Definition for retryable codes.
+  retry_codes_def:
+  - name: idempotent
+    retry_codes:
+    - DEADLINE_EXCEEDED
+    - UNAVAILABLE
+  - name: non_idempotent
+    retry_codes: []
   # Definition for retry/backoff parameters.
   retry_params_def:
   - name: default
@@ -97,15 +105,21 @@ interfaces:
   #   the call is retrying, refer to retry_params_name instead.
   methods:
   - name: AnalyzeSentiment
+    retry_codes_name: idempotent
     retry_params_name: default
   - name: AnalyzeEntities
+    retry_codes_name: idempotent
     retry_params_name: default
   - name: AnalyzeEntitySentiment
+    retry_codes_name: idempotent
     retry_params_name: default
   - name: AnalyzeSyntax
+    retry_codes_name: idempotent
     retry_params_name: default
   - name: ClassifyText
+    retry_codes_name: idempotent
     retry_params_name: default
   - name: AnnotateText
+    retry_codes_name: idempotent
     retry_params_name: default
     
