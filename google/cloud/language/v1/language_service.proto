@@ -39,7 +39,7 @@ service LanguageService {
       post: "/v1/documents:analyzeSentiment"
       body: "*"
     };
-
+    option (google.api.method_signature) = "document,encoding_type";
     option (google.api.method_signature) = "document";
   }
 
@@ -52,6 +52,7 @@ service LanguageService {
       body: "*"
     };
     option (google.api.method_signature) = "document,encoding_type";
+    option (google.api.method_signature) = "document";
   }
 
   // Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
