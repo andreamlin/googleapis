@@ -136,6 +136,7 @@ interfaces:
     - dataset_id
     page_streaming:
       request:
+        page_size_field: max_results
         token_field: page_token
       response:
         token_field: next_page_token
