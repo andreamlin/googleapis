@@ -18,6 +18,9 @@ syntax = "proto3";
 package google.cloud.vision.v1;
 
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/api/client.proto";
+import "google/api/resource.proto";
 import "google/cloud/vision/v1/geometry.proto";
 import "google/cloud/vision/v1/product_search.proto";
 import "google/cloud/vision/v1/text_annotation.proto";
@@ -47,6 +50,7 @@ service ImageAnnotator {
       post: "/v1/images:annotate"
       body: "*"
     };
+    option (google.api.method_signature) = "requests";
   }
 
   // Run asynchronous image detection and annotation for a list of generic
@@ -61,6 +65,7 @@ service ImageAnnotator {
       post: "/v1/files:asyncBatchAnnotate"
       body: "*"
     };
+    option (google.api.method_signature) = "requests";
   }
 }
 
@@ -653,7 +658,9 @@ message AnnotateFileResponse {
 // Multiple image annotation requests are batched into a single service call.
 message BatchAnnotateImagesRequest {
   // Individual image annotation requests for this batch.
-  repeated AnnotateImageRequest requests = 1;
+  repeated AnnotateImageRequest requests = 1 [
+    (google.api.field_behavior) = REQUIRED
+  ];
 }
 
 // Response to a batch image annotation request.
@@ -687,7 +694,9 @@ message AsyncAnnotateFileResponse {
 // call.
 message AsyncBatchAnnotateFilesRequest {
   // Individual async file annotation requests for this batch.
-  repeated AsyncAnnotateFileRequest requests = 1;
+  repeated AsyncAnnotateFileRequest requests = 1 [
+    (google.api.field_behavior) = REQUIRED
+  ];
 }
 
 // Response to an async batch file annotation request.
