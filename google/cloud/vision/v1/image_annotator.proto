@@ -66,6 +66,10 @@ service ImageAnnotator {
       body: "*"
     };
     option (google.api.method_signature) = "requests";
+    option (google.longrunning.operation_info) = {
+      response_type : "google.cloud.vision.v1.AsyncBatchAnnotateFilesResponse"
+      metadata_type : "google.cloud.vision.v1.OperationMetadata"
+    };
   }
 }
 

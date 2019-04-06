@@ -26,6 +26,7 @@ interfaces:
     init_fields:
     - requests[0].image.source.gcs_image_uri="gs://gapic-toolkit/President_Barack_Obama.jpg"
     - requests[0].features[0].type=FACE_DETECTION
+  collections: []
   retry_codes_def:
   - name: idempotent
     retry_codes:
@@ -46,20 +47,15 @@ interfaces:
   - name: BatchAnnotateImages
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: AsyncBatchAnnotateFiles
     long_running:
-      return_type: google.cloud.vision.v1.AsyncBatchAnnotateFilesResponse
-      metadata_type: google.cloud.vision.v1.OperationMetadata
       initial_poll_delay_millis: 20000
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 45000
       total_poll_timeout_millis: 86400000
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
 - name: google.cloud.vision.v1.ProductSearch
-  collections:
   retry_codes_def:
   - name: idempotent
     retry_codes:
@@ -80,71 +76,54 @@ interfaces:
   - name: CreateProduct
     retry_codes_name: non_idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: ListProducts
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: GetProduct
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: UpdateProduct
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: DeleteProduct
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: ListReferenceImages
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: GetReferenceImage
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: DeleteReferenceImage
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: CreateReferenceImage
     retry_codes_name: non_idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: CreateProductSet
     retry_codes_name: non_idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: ListProductSets
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: GetProductSet
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: UpdateProductSet
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: DeleteProductSet
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: AddProductToProductSet
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: RemoveProductFromProductSet
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: ListProductsInProductSet
     retry_codes_name: idempotent
     retry_params_name: default
-    timeout_millis: 60000
   - name: ImportProductSets
     long_running:
       initial_poll_delay_millis: 20000
@@ -153,6 +132,5 @@ interfaces:
       total_poll_timeout_millis: 86400000
     retry_codes_name: non_idempotent
     retry_params_name: default
-    timeout_millis: 60000
 # Force string formatting functions to be generated.
 enable_string_format_functions_override: true
