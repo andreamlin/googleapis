@@ -18,6 +18,7 @@ syntax = "proto3";
 package google.cloud.vision.v1;
 
 import "google/api/annotations.proto";
+import "google/api/resource.proto";
 import "google/cloud/vision/v1/geometry.proto";
 import "google/cloud/vision/v1/product_search_service.proto";
 import "google/protobuf/timestamp.proto";
@@ -40,7 +41,9 @@ message ProductSearchParams {
   //
   // Format is:
   // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
-  string product_set = 6;
+  string product_set = 6 [
+    (google.api.resource_reference) = "ProductSet"
+  ];
 
   // The list of product categories to search in. Currently, we only consider
   // the first category, and either "homegoods", "apparel", or "toys" should be
