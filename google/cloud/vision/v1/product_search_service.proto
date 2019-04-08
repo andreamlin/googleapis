@@ -564,11 +564,14 @@ message CreateProductSetRequest {
   //
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
+    (google.api.field_behavior) = REQUIRED,
     (google.api.resource_reference) = "Location"
   ];
 
   // The ProductSet to create.
-  ProductSet product_set = 2;
+  ProductSet product_set = 2 [
+    (google.api.field_behavior) = REQUIRED
+  ];
 
   // A user-supplied resource id for this ProductSet. If set, the server will
   // attempt to use this value as the resource id. If it is already in use, an
