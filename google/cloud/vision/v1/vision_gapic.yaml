@@ -26,7 +26,6 @@ interfaces:
     init_fields:
     - requests[0].image.source.gcs_image_uri="gs://gapic-toolkit/President_Barack_Obama.jpg"
     - requests[0].features[0].type=FACE_DETECTION
-  collections: []
   retry_codes_def:
   - name: idempotent
     retry_codes:
@@ -74,7 +73,6 @@ interfaces:
     total_timeout_millis: 600000
   methods:
   - name: CreateProduct
-    retry_codes_name: non_idempotent
     retry_params_name: default
   - name: ListProducts
     retry_codes_name: idempotent
@@ -98,10 +96,8 @@ interfaces:
     retry_codes_name: idempotent
     retry_params_name: default
   - name: CreateReferenceImage
-    retry_codes_name: non_idempotent
     retry_params_name: default
   - name: CreateProductSet
-    retry_codes_name: non_idempotent
     retry_params_name: default
   - name: ListProductSets
     retry_codes_name: idempotent
