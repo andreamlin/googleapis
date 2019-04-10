@@ -519,9 +519,6 @@ resource_name_generation:
 - message_name: LogEntry
   field_entity_map:
     log_name: log_oneof
-- message_name: LogSink
-  field_entity_map:
-    destination: "*"
 - message_name: ListSinksRequest
   field_entity_map:
     parent: parent_oneof
