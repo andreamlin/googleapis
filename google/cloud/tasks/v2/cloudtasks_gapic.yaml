@@ -424,12 +424,3 @@ resource_name_generation:
 - message_name: RunTaskRequest
   field_entity_map:
     name: task
-- message_name: google.iam.v1.GetIamPolicyRequest
-  field_entity_map:
-    resource: "*"
-- message_name: google.iam.v1.SetIamPolicyRequest
-  field_entity_map:
-    resource: "*"
-- message_name: google.iam.v1.TestIamPermissionsRequest
-  field_entity_map:
-    resource: "*"
