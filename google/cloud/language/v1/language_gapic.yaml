@@ -122,4 +122,3 @@ interfaces:
   - name: AnnotateText
     retry_codes_name: idempotent
     retry_params_name: default
-    
