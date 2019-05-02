@@ -35,11 +35,6 @@ option java_outer_classname = "ProductSearchServiceProto";
 option java_package = "com.google.cloud.vision.v1";
 option objc_class_prefix = "GCVN";
 
-option (google.api.resource_definition) = {
-  pattern : "projects/{project}/locations/{location}"
-  symbol  : "Location"
-};
-
 // Manages Products and ProductSets of reference images for use in product
 // search. It uses the following resource model:
 //
@@ -356,6 +351,11 @@ service ProductSearch {
 
 // A Product contains ReferenceImages.
 message Product {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/locations/{location}/products/{product}",
+    type: "vision.googleapis.com/Product"
+  };
+
   // A product label represented as a key-value pair.
   message KeyValue {
     // The key of the label attached to the product. Cannot be empty and cannot
@@ -373,9 +373,7 @@ message Product {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
   //
   // This field is ignored when creating a product.
-  string name = 1 [
-    (google.api.resource).pattern = "projects/{project}/locations/{location}/products/{product}"
-  ];
+  string name = 1;
 
   // The user-provided name for this Product. Must not be empty. Must be at most
   // 4096 characters long.
@@ -407,15 +405,18 @@ message Product {
 // million reference images. If the limit is exceeded, periodic indexing will
 // fail.
 message ProductSet {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/locations/{location}/productSets/{product_set}",
+    type: "vision.googleapis.com/ProductSet"
+  };
+
   // The resource name of the ProductSet.
   //
   // Format is:
   // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
   //
   // This field is ignored when creating a ProductSet.
-  string name = 1 [
-    (google.api.resource).pattern = "projects/{project}/locations/{location}/productSets/{product_set}"
-  ];
+  string name = 1;
 
   // The user-provided name for this ProductSet. Must not be empty. Must be at
   // most 4096 characters long.
@@ -438,6 +439,10 @@ message ProductSet {
 // A `ReferenceImage` represents a product image and its associated metadata,
 // such as bounding boxes.
 message ReferenceImage {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}",
+    type: "vision.googleapis.com/ReferenceImage"
+  };
   // The resource name of the reference image.
   //
   // Format is:
@@ -445,9 +450,7 @@ message ReferenceImage {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
   //
   // This field is ignored when creating a reference image.
-  string name = 1 [
-    (google.api.resource).pattern = "projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}"
-  ];
+  string name = 1;
 
   // The Google Cloud Storage URI of the reference image.
   //
@@ -475,7 +478,7 @@ message CreateProductRequest {
   // `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Location"
+    (google.api.resource_reference).child_type = "Location"
   ];
 
   // The product to create.
@@ -498,7 +501,7 @@ message ListProductsRequest {
   // `projects/PROJECT_ID/locations/LOC_ID`
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Location"
+    (google.api.resource_reference).child_type = "Location"
   ];
 
   // The maximum number of items to return. Default 10, maximum 100.
@@ -526,7 +529,7 @@ message GetProductRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Product"
+    (google.api.resource_reference).type = "vision.googleapis.com/Product"
   ];
 }
 
@@ -554,7 +557,7 @@ message DeleteProductRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Product"
+    (google.api.resource_reference).type = "vision.googleapis.com/Product"
   ];
 }
 
@@ -565,7 +568,7 @@ message CreateProductSetRequest {
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Location"
+    (google.api.resource_reference).child_type = "Location"
   ];
 
   // The ProductSet to create.
@@ -587,7 +590,7 @@ message ListProductSetsRequest {
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Location"
+    (google.api.resource_reference).child_type = "Location"
   ];
 
   // The maximum number of items to return. Default 10, maximum 100.
@@ -615,7 +618,7 @@ message GetProductSetRequest {
   // `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ProductSet"
+    (google.api.resource_reference).type = "vision.googleapis.com/ProductSet"
   ];
 }
 
@@ -641,7 +644,7 @@ message DeleteProductSetRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ProductSet"
+    (google.api.resource_reference).type = "vision.googleapis.com/ProductSet"
   ];
 }
 
@@ -653,7 +656,7 @@ message CreateReferenceImageRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Product"
+    (google.api.resource_reference).type = "vision.googleapis.com/Product"
   ];
 
   // The reference image to create.
@@ -677,7 +680,7 @@ message ListReferenceImagesRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Product"
+    (google.api.resource_reference).type = "vision.googleapis.com/Product"
   ];
 
   // The maximum number of items to return. Default 10, maximum 100.
@@ -711,7 +714,7 @@ message GetReferenceImageRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ReferenceImage"
+    (google.api.resource_reference).type = "ReferenceImage"
   ];
 }
 
@@ -724,7 +727,7 @@ message DeleteReferenceImageRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ReferenceImage"
+    (google.api.resource_reference).type = "ReferenceImage"
   ];
 }
 
@@ -736,7 +739,7 @@ message AddProductToProductSetRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ProductSet"
+    (google.api.resource_reference).type = "vision.googleapis.com/ProductSet"
   ];
 
   // The resource name for the Product to be added to this ProductSet.
@@ -745,7 +748,7 @@ message AddProductToProductSetRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
   string product = 2 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Product"
+    (google.api.resource_reference).type = "vision.googleapis.com/Product"
   ];
 }
 
@@ -757,7 +760,7 @@ message RemoveProductFromProductSetRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ProductSet"
+    (google.api.resource_reference).type = "vision.googleapis.com/ProductSet"
   ];
 
   // The resource name for the Product to be removed from this ProductSet.
@@ -766,7 +769,7 @@ message RemoveProductFromProductSetRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
   string product = 2 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Product"
+    (google.api.resource_reference).type = "vision.googleapis.com/Product"
   ];
 }
 
@@ -778,7 +781,7 @@ message ListProductsInProductSetRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "ProductSet"
+    (google.api.resource_reference).type = "vision.googleapis.com/ProductSet"
   ];
 
   // The maximum number of items to return. Default 10, maximum 100.
@@ -884,7 +887,7 @@ message ImportProductSetsRequest {
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference) = "Location"
+    (google.api.resource_reference).type = "Location"
   ];
 
   // The input content for the list of requests.
