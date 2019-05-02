@@ -478,7 +478,7 @@ message CreateProductRequest {
   // `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).child_type = "Location"
+    (google.api.resource_reference).child_type = "vision.googleapis.com/Product"
   ];
 
   // The product to create.
@@ -501,7 +501,7 @@ message ListProductsRequest {
   // `projects/PROJECT_ID/locations/LOC_ID`
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).child_type = "Location"
+    (google.api.resource_reference).child_type = "vision.googleapis.com/Product"
   ];
 
   // The maximum number of items to return. Default 10, maximum 100.
@@ -568,7 +568,7 @@ message CreateProductSetRequest {
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).child_type = "Location"
+    (google.api.resource_reference).child_type = "vision.googleapis.com/Product"
   ];
 
   // The ProductSet to create.
@@ -590,7 +590,7 @@ message ListProductSetsRequest {
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).child_type = "Location"
+    (google.api.resource_reference).child_type = "vision.googleapis.com/Product"
   ];
 
   // The maximum number of items to return. Default 10, maximum 100.
@@ -714,7 +714,7 @@ message GetReferenceImageRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).type = "ReferenceImage"
+    (google.api.resource_reference).type = "vision.googleapis.com/ReferenceImage"
   ];
 }
 
@@ -727,7 +727,7 @@ message DeleteReferenceImageRequest {
   // `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
   string name = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).type = "ReferenceImage"
+    (google.api.resource_reference).type = "vision.googleapis.com/ReferenceImage"
   ];
 }
 
@@ -887,7 +887,7 @@ message ImportProductSetsRequest {
   // Format is `projects/PROJECT_ID/locations/LOC_ID`.
   string parent = 1 [
     (google.api.field_behavior) = REQUIRED,
-    (google.api.resource_reference).type = "Location"
+    (google.api.resource_reference).child_type = "vision.googleapis.com/ProductSet"
   ];
 
   // The input content for the list of requests.
