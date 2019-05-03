@@ -46,14 +46,26 @@ interfaces:
   - name: BatchAnnotateImages
     retry_codes_name: idempotent
     retry_params_name: default
-  - name: AsyncBatchAnnotateFiles
+    timeout_millis: 60000
+  - name: BatchAnnotateFiles
+    retry_codes_name: idempotent
+    retry_params_name: default
+  - name: AsyncBatchAnnotateImages
+    retry_codes_name: idempotent
+    retry_params_name: default
     long_running:
       initial_poll_delay_millis: 20000
       poll_delay_multiplier: 1.5
       max_poll_delay_millis: 45000
       total_poll_timeout_millis: 86400000
+  - name: AsyncBatchAnnotateFiles
     retry_codes_name: idempotent
     retry_params_name: default
+    long_running:
+      initial_poll_delay_millis: 20000
+      poll_delay_multiplier: 1.5
+      max_poll_delay_millis: 45000
+      total_poll_timeout_millis: 86400000
 - name: google.cloud.vision.v1.ProductSearch
   retry_codes_def:
   - name: idempotent
@@ -72,54 +84,31 @@ interfaces:
     max_rpc_timeout_millis: 60000
     total_timeout_millis: 600000
   methods:
-  - name: CreateProduct
-    retry_params_name: default
-  - name: ListProducts
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: GetProduct
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: UpdateProduct
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: DeleteProduct
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: ListReferenceImages
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: GetReferenceImage
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: DeleteReferenceImage
-    retry_codes_name: idempotent
-    retry_params_name: default
-  - name: CreateReferenceImage
-    retry_params_name: default
   - name: CreateProductSet
-    retry_params_name: default
   - name: ListProductSets
-    retry_codes_name: idempotent
-    retry_params_name: default
   - name: GetProductSet
-    retry_codes_name: idempotent
-    retry_params_name: default
   - name: UpdateProductSet
     retry_codes_name: idempotent
-    retry_params_name: default
   - name: DeleteProductSet
     retry_codes_name: idempotent
-    retry_params_name: default
+  - name: CreateProduct
+  - name: ListProducts
+  - name: GetProduct
+  - name: UpdateProduct
+    retry_codes_name: idempotent
+  - name: DeleteProduct
+    retry_codes_name: idempotent
+  - name: CreateReferenceImage
+  - name: DeleteReferenceImage
+    retry_codes_name: idempotent
+  - name: ListReferenceImages
+  - name: GetReferenceImage
   - name: AddProductToProductSet
     retry_codes_name: idempotent
-    retry_params_name: default
   - name: RemoveProductFromProductSet
     retry_codes_name: idempotent
-    retry_params_name: default
   - name: ListProductsInProductSet
     retry_codes_name: idempotent
-    retry_params_name: default
   - name: ImportProductSets
     long_running:
       initial_poll_delay_millis: 20000
