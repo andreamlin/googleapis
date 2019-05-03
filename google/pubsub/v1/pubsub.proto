@@ -466,7 +466,8 @@ message PublishResponse {
 message ListTopicsRequest {
   // The name of the project in which to list topics.
   // Format is `projects/{project-id}`.
-  string project = 1;
+  string project = 1 [
+    (google.api.resource_reference).child_type = "vision.googleapis.com/Topic"];
 
   // Maximum number of topics to return.
   int32 page_size = 2;
