@@ -18,6 +18,7 @@ syntax = "proto3";
 package google.pubsub.v1;
 
 import "google/api/annotations.proto";
+import "google/api/resource.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/field_mask.proto";
@@ -359,6 +360,12 @@ message MessageStoragePolicy {
 
 // A topic resource.
 message Topic {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/topics/{topic}"
+    pattern: "_deleted-topic_"
+    type: "pubsub.googleapis.com/Topic"
+  };
+
   // The name of the topic. It must have the format
   // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
   // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
@@ -547,6 +554,11 @@ message DeleteTopicRequest {
 
 // A subscription resource.
 message Subscription {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/subscriptions/{subscription}"
+    type: "pubsub.googleapis.com/Subscription"
+  };
+
   // The name of the subscription. It must have the format
   // `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
   // start with a letter, and contain only letters (`[A-Za-z]`), numbers
@@ -559,7 +571,9 @@ message Subscription {
   // Format is `projects/{project}/topics/{topic}`.
   // The value of this field will be `_deleted-topic_` if the topic has been
   // deleted.
-  string topic = 2;
+  string topic = 2 [
+    (google.api.resource_reference).type = "pubsub.googleapis.com/Topic"
+  ];
 
   // If push delivery is used with this subscription, this field is
   // used to configure it. An empty `pushConfig` signifies that the subscriber
