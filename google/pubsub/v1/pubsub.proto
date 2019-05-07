@@ -467,7 +467,7 @@ message ListTopicsRequest {
   // The name of the project in which to list topics.
   // Format is `projects/{project-id}`.
   string project = 1 [
-    (google.api.resource_reference).child_type = "vision.googleapis.com/Topic"];
+    (google.api.resource_reference).child_type = "pubsub.googleapis.com/Topic"];
 
   // Maximum number of topics to return.
   int32 page_size = 2;
@@ -924,7 +924,9 @@ message CreateSnapshotRequest {
   // <a href="https://cloud.google.com/pubsub/docs/admin#resource_names">
   // resource name rules</a>.
   // Format is `projects/{project}/snapshots/{snap}`.
-  string name = 1;
+  string name = 1 [
+                  (google.api.resource_reference).type = "pubsub.googleapis.com/Snapshot"
+                  ];
 
   // The subscription whose backlog the snapshot retains.
   // Specifically, the created snapshot is guaranteed to retain:
@@ -965,6 +967,11 @@ message UpdateSnapshotRequest {
 // changed in backward-incompatible ways and is not recommended for production
 // use. It is not subject to any SLA or deprecation policy.
 message Snapshot {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/snapshots/{snapshot}"
+    type: "pubsub.googleapis.com/Snapshot"
+  };
+
   // The name of the snapshot.
   string name = 1;
 
