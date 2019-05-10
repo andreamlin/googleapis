@@ -77,4 +77,8 @@ message MutateJob {
 
   // Status of this mutate job.
   google.ads.googleads.v1.enums.MutateJobStatusEnum.MutateJobStatus status = 5;
+
+  // The resource name of the long-running operation that can be used to poll
+  // for completion. Only set when the mutate job status is RUNNING or DONE.
+  google.protobuf.StringValue long_running_operation = 6;
 }

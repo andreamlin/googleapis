@@ -72,7 +72,8 @@ message UploadClickConversionsResponse {
   google.rpc.Status partial_failure_error = 1;
 
   // Returned for successfully processed conversions. Proto will be empty for
-  // rows that received an error.
+  // rows that received an error. Results are not returned when validate_only is
+  // true.
   repeated ClickConversionResult results = 2;
 }
 
@@ -99,7 +100,8 @@ message UploadCallConversionsResponse {
   google.rpc.Status partial_failure_error = 1;
 
   // Returned for successfully processed conversions. Proto will be empty for
-  // rows that received an error.
+  // rows that received an error. Results are not returned when validate_only is
+  // true.
   repeated CallConversionResult results = 2;
 }
 

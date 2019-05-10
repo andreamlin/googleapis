@@ -74,3 +74,9 @@ message ImageDimension {
   // A URL that returns the image with this height and width.
   google.protobuf.StringValue url = 3;
 }
+
+// A Text asset.
+message TextAsset {
+  // Text content of the text asset.
+  google.protobuf.StringValue text = 1;
+}

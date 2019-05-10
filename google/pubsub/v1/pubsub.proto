@@ -91,10 +91,7 @@ service Publisher {
   // operations, which allow
   // you to manage message acknowledgments in bulk. That is, you can set the
   // acknowledgment state of messages in an existing subscription to the state
-  // captured by a snapshot.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
+  // captured by a snapshot.
   rpc ListTopicSnapshots(ListTopicSnapshotsRequest)
       returns (ListTopicSnapshotsResponse) {
     option (google.api.http) = {
@@ -112,6 +109,214 @@ service Publisher {
       delete: "/v1/{topic=projects/*/topics/*}"
     };
   }
+}
+
+message MessageStoragePolicy {
+  // The list of GCP region IDs where messages that are published to the topic
+  // may be persisted in storage. Messages published by publishers running in
+  // non-allowed GCP regions (or running outside of GCP altogether) will be
+  // routed for storage in one of the allowed regions. An empty list indicates a
+  // misconfiguration at the project or organization level, which will result in
+  // all Publish operations failing.
+  repeated string allowed_persistence_regions = 1;
+}
+
+// A topic resource.
+message Topic {
+  option (google.api.resource) = {
+    pattern: "projects/{project}/topics/{topic}"
+    pattern: "_deleted-topic_"
+    type: "pubsub.googleapis.com/Topic"
+  };
+
+  // The name of the topic. It must have the format
+  // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
+  // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
+  // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
+  // signs (`%`). It must be between 3 and 255 characters in length, and it
+  // must not start with `"goog"`.
+  string name = 1;
+
+  // See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
+  // managing labels</a>.
+  map<string, string> labels = 2;
+
+  // Policy constraining how messages published to the topic may be stored. It
+  // is determined when the topic is created based on the policy configured at
+  // the project level. It must not be set by the caller in the request to
+  // CreateTopic or to UpdateTopic. This field will be populated in the
+  // responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
+  // response, then no constraints are in effect.
+  MessageStoragePolicy message_storage_policy = 3;
+
+  // The resource name of the Cloud KMS CryptoKey to be used to protect access
+  // to messages published on this topic.
+  //
+  // The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`.
+  // <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+  // API might be changed in backward-incompatible ways and is not recommended
+  // for production use. It is not subject to any SLA or deprecation policy.
+  string kms_key_name = 5;
+}
+
+// A message that is published by publishers and consumed by subscribers. The
+// message must contain either a non-empty data field or at least one attribute.
+// Note that client libraries represent this object differently
+// depending on the language. See the corresponding
+// <a href="https://cloud.google.com/pubsub/docs/reference/libraries">client
+// library documentation</a> for more information. See
+// <a href="https://cloud.google.com/pubsub/quotas">Quotas and limits</a>
+// for more information about message limits.
+message PubsubMessage {
+  // The message data field. If this field is empty, the message must contain
+  // at least one attribute.
+  bytes data = 1;
+
+  // Optional attributes for this message.
+  map<string, string> attributes = 2;
+
+  // ID of this message, assigned by the server when the message is published.
+  // Guaranteed to be unique within the topic. This value may be read by a
+  // subscriber that receives a `PubsubMessage` via a `Pull` call or a push
+  // delivery. It must not be populated by the publisher in a `Publish` call.
+  string message_id = 3;
+
+  // The time at which the message was published, populated by the server when
+  // it receives the `Publish` call. It must not be populated by the
+  // publisher in a `Publish` call.
+  google.protobuf.Timestamp publish_time = 4;
+
+  // Identifies related messages for which publish order should be respected.
+  // If a `Subscription` has `enable_message_ordering` set to `true`, messages
+  // published with the same `ordering_key` value will be delivered to
+  // subscribers in the order in which they are received by the Pub/Sub system.
+  // <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
+  // API might be changed in backward-incompatible ways and is not recommended
+  // for production use. It is not subject to any SLA or deprecation policy.
+  string ordering_key = 5;
+}
+
+// Request for the GetTopic method.
+message GetTopicRequest {
+  // The name of the topic to get.
+  // Format is `projects/{project}/topics/{topic}`.
+  string topic = 1;
+}
+
+// Request for the UpdateTopic method.
+message UpdateTopicRequest {
+  // The updated topic object.
+  Topic topic = 1;
+
+  // Indicates which fields in the provided topic to update. Must be specified
+  // and non-empty. Note that if `update_mask` contains
+  // "message_storage_policy" then the new value will be determined based on the
+  // policy configured at the project or organization level. The
+  // `message_storage_policy` must not be set in the `topic` provided above.
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+// Request for the Publish method.
+message PublishRequest {
+  // The messages in the request will be published on this topic.
+  // Format is `projects/{project}/topics/{topic}`.
+  string topic = 1;
+
+  // The messages to publish.
+  repeated PubsubMessage messages = 2;
+}
+
+// Response for the `Publish` method.
+message PublishResponse {
+  // The server-assigned ID of each published message, in the same order as
+  // the messages in the request. IDs are guaranteed to be unique within
+  // the topic.
+  repeated string message_ids = 1;
+}
+
+// Request for the `ListTopics` method.
+message ListTopicsRequest {
+  // The name of the project in which to list topics.
+  // Format is `projects/{project-id}`.
+  string project = 1 [
+     (google.api.resource_reference).child_type = "pubsub.googleapis.com/Topic"];
+
+  // Maximum number of topics to return.
+  int32 page_size = 2;
+
+  // The value returned by the last `ListTopicsResponse`; indicates that this is
+  // a continuation of a prior `ListTopics` call, and that the system should
+  // return the next page of data.
+  string page_token = 3;
+}
+
+// Response for the `ListTopics` method.
+message ListTopicsResponse {
+  // The resulting topics.
+  repeated Topic topics = 1;
+
+  // If not empty, indicates that there may be more topics that match the
+  // request; this value should be passed in a new `ListTopicsRequest`.
+  string next_page_token = 2;
+}
+
+// Request for the `ListTopicSubscriptions` method.
+message ListTopicSubscriptionsRequest {
+  // The name of the topic that subscriptions are attached to.
+  // Format is `projects/{project}/topics/{topic}`.
+  string topic = 1;
+
+  // Maximum number of subscription names to return.
+  int32 page_size = 2;
+
+  // The value returned by the last `ListTopicSubscriptionsResponse`; indicates
+  // that this is a continuation of a prior `ListTopicSubscriptions` call, and
+  // that the system should return the next page of data.
+  string page_token = 3;
+}
+
+// Response for the `ListTopicSubscriptions` method.
+message ListTopicSubscriptionsResponse {
+  // The names of the subscriptions that match the request.
+  repeated string subscriptions = 1;
+
+  // If not empty, indicates that there may be more subscriptions that match
+  // the request; this value should be passed in a new
+  // `ListTopicSubscriptionsRequest` to get more subscriptions.
+  string next_page_token = 2;
+}
+
+// Request for the `ListTopicSnapshots` method.
+message ListTopicSnapshotsRequest {
+  // The name of the topic that snapshots are attached to.
+  // Format is `projects/{project}/topics/{topic}`.
+  string topic = 1;
+
+  // Maximum number of snapshot names to return.
+  int32 page_size = 2;
+
+  // The value returned by the last `ListTopicSnapshotsResponse`; indicates
+  // that this is a continuation of a prior `ListTopicSnapshots` call, and
+  // that the system should return the next page of data.
+  string page_token = 3;
+}
+
+// Response for the `ListTopicSnapshots` method.
+message ListTopicSnapshotsResponse {
+  // The names of the snapshots that match the request.
+  repeated string snapshots = 1;
+
+  // If not empty, indicates that there may be more snapshots that match
+  // the request; this value should be passed in a new
+  // `ListTopicSnapshotsRequest` to get more snapshots.
+  string next_page_token = 2;
+}
+
+// Request for the `DeleteTopic` method.
+message DeleteTopicRequest {
+  // Name of the topic to delete.
+  // Format is `projects/{project}/topics/{topic}`.
+  string topic = 1;
 }
 
 // The service that an application uses to manipulate subscriptions and to
@@ -239,10 +444,7 @@ service Subscriber {
   // <a href="https://cloud.google.com/pubsub/docs/replay-overview">Seek</a>
   // operations, which allow you to manage message acknowledgments in bulk. That
   // is, you can set the acknowledgment state of messages in an existing
-  // subscription to the state captured by a snapshot.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
+  // subscription to the state captured by a snapshot.
   rpc GetSnapshot(GetSnapshotRequest) returns (Snapshot) {
     option (google.api.http) = {
       get: "/v1/{snapshot=projects/*/snapshots/*}"
@@ -254,10 +456,7 @@ service Subscriber {
   // operations, which allow
   // you to manage message acknowledgments in bulk. That is, you can set the
   // acknowledgment state of messages in an existing subscription to the state
-  // captured by a snapshot.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
+  // captured by a snapshot.
   rpc ListSnapshots(ListSnapshotsRequest) returns (ListSnapshotsResponse) {
     option (google.api.http) = {
       get: "/v1/{project=projects/*}/snapshots"
@@ -270,11 +469,7 @@ service Subscriber {
   // you to manage message acknowledgments in bulk. That is, you can set the
   // acknowledgment state of messages in an existing subscription to the state
   // captured by a snapshot.
-  // <br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.<br><br>
-  // If the snapshot already exists, returns `ALREADY_EXISTS`.
+  // <br><br>If the snapshot already exists, returns `ALREADY_EXISTS`.
   // If the requested subscription doesn't exist, returns `NOT_FOUND`.
   // If the backlog in the subscription is too old -- and the resulting snapshot
   // would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned.
@@ -298,11 +493,7 @@ service Subscriber {
   // operations, which allow
   // you to manage message acknowledgments in bulk. That is, you can set the
   // acknowledgment state of messages in an existing subscription to the state
-  // captured by a snapshot.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
-  // Note that certain properties of a snapshot are not modifiable.
+  // captured by a snapshot.
   rpc UpdateSnapshot(UpdateSnapshotRequest) returns (Snapshot) {
     option (google.api.http) = {
       patch: "/v1/{snapshot.name=projects/*/snapshots/*}"
@@ -316,9 +507,6 @@ service Subscriber {
   // you to manage message acknowledgments in bulk. That is, you can set the
   // acknowledgment state of messages in an existing subscription to the state
   // captured by a snapshot.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
   // When the snapshot is deleted, all messages retained in the snapshot
   // are immediately dropped. After a snapshot is deleted, a new one may be
   // created with the same name, but the new one has no association with the old
@@ -336,221 +524,13 @@ service Subscriber {
   // you to manage message acknowledgments in bulk. That is, you can set the
   // acknowledgment state of messages in an existing subscription to the state
   // captured by a snapshot. Note that both the subscription and the snapshot
-  // must be on the same topic.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
+  // must be on the same topic.
   rpc Seek(SeekRequest) returns (SeekResponse) {
     option (google.api.http) = {
       post: "/v1/{subscription=projects/*/subscriptions/*}:seek"
       body: "*"
     };
   }
-}
-
-message MessageStoragePolicy {
-  // The list of GCP region IDs where messages that are published to the topic
-  // may be persisted in storage. Messages published by publishers running in
-  // non-allowed GCP regions (or running outside of GCP altogether) will be
-  // routed for storage in one of the allowed regions. An empty list indicates a
-  // misconfiguration at the project or organization level, which will result in
-  // all Publish operations failing.
-  repeated string allowed_persistence_regions = 1;
-}
-
-// A topic resource.
-message Topic {
-  option (google.api.resource) = {
-    pattern: "projects/{project}/topics/{topic}"
-    pattern: "_deleted-topic_"
-    type: "pubsub.googleapis.com/Topic"
-  };
-
-  // The name of the topic. It must have the format
-  // `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-  // and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-  // underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-  // signs (`%`). It must be between 3 and 255 characters in length, and it
-  // must not start with `"goog"`.
-  string name = 1;
-
-  // See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
-  // managing labels</a>.
-  map<string, string> labels = 2;
-
-  // Policy constraining how messages published to the topic may be stored. It
-  // is determined when the topic is created based on the policy configured at
-  // the project level. It must not be set by the caller in the request to
-  // CreateTopic or to UpdateTopic. This field will be populated in the
-  // responses for GetTopic, CreateTopic, and UpdateTopic: if not present in the
-  // response, then no constraints are in effect.
-  MessageStoragePolicy message_storage_policy = 3;
-}
-
-// A message that is published by publishers and consumed by subscribers. The
-// message must contain either a non-empty data field or at least one attribute.
-// Note that client libraries represent this object differently
-// depending on the language. See the corresponding
-// <a href="https://cloud.google.com/pubsub/docs/reference/libraries">client
-// library documentation</a> for more information. See
-// <a href="https://cloud.google.com/pubsub/quotas">Quotas and limits</a>
-// for more information about message limits.
-message PubsubMessage {
-  // The message data field. If this field is empty, the message must contain
-  // at least one attribute.
-  bytes data = 1;
-
-  // Optional attributes for this message.
-  map<string, string> attributes = 2;
-
-  // ID of this message, assigned by the server when the message is published.
-  // Guaranteed to be unique within the topic. This value may be read by a
-  // subscriber that receives a `PubsubMessage` via a `Pull` call or a push
-  // delivery. It must not be populated by the publisher in a `Publish` call.
-  string message_id = 3;
-
-  // The time at which the message was published, populated by the server when
-  // it receives the `Publish` call. It must not be populated by the
-  // publisher in a `Publish` call.
-  google.protobuf.Timestamp publish_time = 4;
-
-  // Identifies related messages for which publish order should be respected.
-  // If a `Subscription` has `enable_message_ordering` set to `true`, messages
-  // published with the same `ordering_key` value will be delivered to
-  // subscribers in the order in which they are received by the Pub/Sub system.
-  // <b>EXPERIMENTAL:</b> This feature is part of a closed alpha release. This
-  // API might be changed in backward-incompatible ways and is not recommended
-  // for production use. It is not subject to any SLA or deprecation policy.
-  string ordering_key = 5;
-}
-
-// Request for the GetTopic method.
-message GetTopicRequest {
-  // The name of the topic to get.
-  // Format is `projects/{project}/topics/{topic}`.
-  string topic = 1;
-}
-
-// Request for the UpdateTopic method.
-message UpdateTopicRequest {
-  // The updated topic object.
-  Topic topic = 1;
-
-  // Indicates which fields in the provided topic to update. Must be specified
-  // and non-empty. Note that if `update_mask` contains
-  // "message_storage_policy" then the new value will be determined based on the
-  // policy configured at the project or organization level. The
-  // `message_storage_policy` must not be set in the `topic` provided above.
-  google.protobuf.FieldMask update_mask = 2;
-}
-
-// Request for the Publish method.
-message PublishRequest {
-  // The messages in the request will be published on this topic.
-  // Format is `projects/{project}/topics/{topic}`.
-  string topic = 1;
-
-  // The messages to publish.
-  repeated PubsubMessage messages = 2;
-}
-
-// Response for the `Publish` method.
-message PublishResponse {
-  // The server-assigned ID of each published message, in the same order as
-  // the messages in the request. IDs are guaranteed to be unique within
-  // the topic.
-  repeated string message_ids = 1;
-}
-
-// Request for the `ListTopics` method.
-message ListTopicsRequest {
-  // The name of the project in which to list topics.
-  // Format is `projects/{project-id}`.
-  string project = 1 [
-    (google.api.resource_reference).child_type = "pubsub.googleapis.com/Topic"];
-
-  // Maximum number of topics to return.
-  int32 page_size = 2;
-
-  // The value returned by the last `ListTopicsResponse`; indicates that this is
-  // a continuation of a prior `ListTopics` call, and that the system should
-  // return the next page of data.
-  string page_token = 3;
-}
-
-// Response for the `ListTopics` method.
-message ListTopicsResponse {
-  // The resulting topics.
-  repeated Topic topics = 1;
-
-  // If not empty, indicates that there may be more topics that match the
-  // request; this value should be passed in a new `ListTopicsRequest`.
-  string next_page_token = 2;
-}
-
-// Request for the `ListTopicSubscriptions` method.
-message ListTopicSubscriptionsRequest {
-  // The name of the topic that subscriptions are attached to.
-  // Format is `projects/{project}/topics/{topic}`.
-  string topic = 1;
-
-  // Maximum number of subscription names to return.
-  int32 page_size = 2;
-
-  // The value returned by the last `ListTopicSubscriptionsResponse`; indicates
-  // that this is a continuation of a prior `ListTopicSubscriptions` call, and
-  // that the system should return the next page of data.
-  string page_token = 3;
-}
-
-// Response for the `ListTopicSubscriptions` method.
-message ListTopicSubscriptionsResponse {
-  // The names of the subscriptions that match the request.
-  repeated string subscriptions = 1;
-
-  // If not empty, indicates that there may be more subscriptions that match
-  // the request; this value should be passed in a new
-  // `ListTopicSubscriptionsRequest` to get more subscriptions.
-  string next_page_token = 2;
-}
-
-// Request for the `ListTopicSnapshots` method. <br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
-message ListTopicSnapshotsRequest {
-  // The name of the topic that snapshots are attached to.
-  // Format is `projects/{project}/topics/{topic}`.
-  string topic = 1;
-
-  // Maximum number of snapshot names to return.
-  int32 page_size = 2;
-
-  // The value returned by the last `ListTopicSnapshotsResponse`; indicates
-  // that this is a continuation of a prior `ListTopicSnapshots` call, and
-  // that the system should return the next page of data.
-  string page_token = 3;
-}
-
-// Response for the `ListTopicSnapshots` method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
-message ListTopicSnapshotsResponse {
-  // The names of the snapshots that match the request.
-  repeated string snapshots = 1;
-
-  // If not empty, indicates that there may be more snapshots that match
-  // the request; this value should be passed in a new
-  // `ListTopicSnapshotsRequest` to get more snapshots.
-  string next_page_token = 2;
-}
-
-// Request for the `DeleteTopic` method.
-message DeleteTopicRequest {
-  // Name of the topic to delete.
-  // Format is `projects/{project}/topics/{topic}`.
-  string topic = 1;
 }
 
 // A subscription resource.
@@ -610,10 +590,6 @@ message Subscription {
   // <a
   // href="https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time">
   // Seek to a timestamp</a>.
-  // <br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
   bool retain_acked_messages = 7;
 
   // How long to retain unacknowledged messages in the subscription's backlog,
@@ -621,10 +597,7 @@ message Subscription {
   // If `retain_acked_messages` is true, then this also configures the retention
   // of acknowledged messages, and thus configures how far back in time a `Seek`
   // can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
-  // minutes.<br><br>
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
+  // minutes.
   google.protobuf.Duration message_retention_duration = 8;
 
   // See <a href="https://cloud.google.com/pubsub/docs/labels"> Creating and
@@ -646,9 +619,6 @@ message Subscription {
   // operations on the subscription. If `expiration_policy` is not set, a
   // *default policy* with `ttl` of 31 days will be used. The minimum allowed
   // value for `expiration_policy.ttl` is 1 day.
-  // <b>BETA:</b> This feature is part of a beta release. This API might be
-  // changed in backward-incompatible ways and is not recommended for production
-  // use. It is not subject to any SLA or deprecation policy.
   ExpirationPolicy expiration_policy = 11;
 }
 
@@ -666,6 +636,26 @@ message ExpirationPolicy {
 
 // Configuration for a push delivery endpoint.
 message PushConfig {
+  // Contains information needed for generating an
+  // [OpenID Connect
+  // token](https://developers.google.com/identity/protocols/OpenIDConnect).
+  message OidcToken {
+    // [Service account
+    // email](https://cloud.google.com/iam/docs/service-accounts)
+    // to be used for generating the OIDC token. The caller (for
+    // CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must
+    // have the iam.serviceAccounts.actAs permission for the service account.
+    string service_account_email = 1;
+
+    // Audience to be used when generating OIDC token. The audience claim
+    // identifies the recipients that the JWT is intended for. The audience
+    // value is a single case-sensitive string. Having multiple values (array)
+    // for the audience field is not supported. More info about the OIDC JWT
+    // token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+    // Note: if not specified, the Push endpoint URL will be used.
+    string audience = 2;
+  }
+
   // A URL locating the endpoint to which messages should be pushed.
   // For example, a Webhook endpoint might use "https://example.com/push".
   string push_endpoint = 1;
@@ -698,35 +688,10 @@ message PushConfig {
   // default to allow requests only from the Cloud Pub/Sub system, for example.
   // This field is optional and should be set only by users interested in
   // authenticated push.
-  // <b>EXPERIMENTAL:</b> This field a part of a closed alpha that may not be
-  // accessible to all users. It may be changed in backward-incompatible ways
-  // and is not subject to any SLA or deprecation policy.  It is not recommended
-  // for production use.
   oneof authentication_method {
     // If specified, Pub/Sub will generate and attach an OIDC JWT token as an
     // `Authorization` header in the HTTP request for every pushed message.
     OidcToken oidc_token = 3;
-  }
-
-  // Contains information needed for generating an
-  // [OpenID Connect
-  // token](https://developers.google.com/identity/protocols/OpenIDConnect).
-  message OidcToken {
-    // [Service account
-    // email](https://cloud.google.com/iam/docs/service-accounts)
-    // to be used for generating the OIDC token. The caller (for
-    // CreateSubscription, UpdateSubscription, and ModifyPushConfig calls) must
-    // have the iam.serviceAccounts.actAs permission for the service account.
-    // See https://cloud.google.com/iam/docs/understanding-roles#service-accounts-roles.
-    string service_account_email = 1;
-
-    // Audience to be used when generating OIDC token. The audience claim
-    // identifies the recipients that the JWT is intended for. The audience
-    // value is a single case-sensitive string. Having multiple values (array)
-    // for the audience field is not supported. More info about the OIDC JWT
-    // token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-    // Note: if not specified, the Push endpoint URL will be used.
-    string audience = 2;
   }
 }
 
@@ -912,10 +877,7 @@ message StreamingPullResponse {
   repeated ReceivedMessage received_messages = 1;
 }
 
-// Request for the `CreateSnapshot` method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Request for the `CreateSnapshot` method.
 message CreateSnapshotRequest {
   // Optional user-provided name for this snapshot.
   // If the name is not provided in the request, the server will assign a random
@@ -944,10 +906,7 @@ message CreateSnapshotRequest {
   map<string, string> labels = 3;
 }
 
-// Request for the UpdateSnapshot method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Request for the UpdateSnapshot method.
 message UpdateSnapshotRequest {
   // The updated snapshot object.
   Snapshot snapshot = 1;
@@ -962,10 +921,7 @@ message UpdateSnapshotRequest {
 // operations, which allow
 // you to manage message acknowledgments in bulk. That is, you can set the
 // acknowledgment state of messages in an existing subscription to the state
-// captured by a snapshot.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// captured by a snapshot.
 message Snapshot {
   option (google.api.resource) = {
     pattern: "projects/{project}/snapshots/{snapshot}"
@@ -995,20 +951,14 @@ message Snapshot {
   map<string, string> labels = 4;
 }
 
-// Request for the GetSnapshot method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Request for the GetSnapshot method.
 message GetSnapshotRequest {
   // The name of the snapshot to get.
   // Format is `projects/{project}/snapshots/{snap}`.
   string snapshot = 1;
 }
 
-// Request for the `ListSnapshots` method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Request for the `ListSnapshots` method.
 message ListSnapshotsRequest {
   // The name of the project in which to list snapshots.
   // Format is `projects/{project-id}`.
@@ -1023,10 +973,7 @@ message ListSnapshotsRequest {
   string page_token = 3;
 }
 
-// Response for the `ListSnapshots` method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Response for the `ListSnapshots` method.
 message ListSnapshotsResponse {
   // The resulting snapshots.
   repeated Snapshot snapshots = 1;
@@ -1036,20 +983,14 @@ message ListSnapshotsResponse {
   string next_page_token = 2;
 }
 
-// Request for the `DeleteSnapshot` method.<br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Request for the `DeleteSnapshot` method.
 message DeleteSnapshotRequest {
   // The name of the snapshot to delete.
   // Format is `projects/{project}/snapshots/{snap}`.
   string snapshot = 1;
 }
 
-// Request for the `Seek` method. <br><br>
-// <b>BETA:</b> This feature is part of a beta release. This API might be
-// changed in backward-incompatible ways and is not recommended for production
-// use. It is not subject to any SLA or deprecation policy.
+// Request for the `Seek` method.
 message SeekRequest {
   // The subscription to affect.
   string subscription = 1;

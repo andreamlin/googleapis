@@ -20,6 +20,7 @@ package google.ads.googleads.v1.common;
 import "google/ads/googleads/v1/common/ad_asset.proto";
 import "google/ads/googleads/v1/enums/call_conversion_reporting_state.proto";
 import "google/ads/googleads/v1/enums/display_ad_format_setting.proto";
+import "google/ads/googleads/v1/enums/display_upload_product_type.proto";
 import "google/ads/googleads/v1/enums/legacy_app_install_ad_app_store.proto";
 import "google/ads/googleads/v1/enums/mime_type.proto";
 import "google/protobuf/wrappers.proto";
@@ -293,6 +294,9 @@ message VideoTrueViewInStreamAdInfo {
   // Additional text displayed with the CTA (call-to-action) button to give
   // context and encourage clicking on the button.
   google.protobuf.StringValue action_headline = 2;
+
+  // The MediaFile resource name of the companion banner used with the ad.
+  google.protobuf.StringValue companion_banner = 3;
 }
 
 // Representation of video out-stream ad format (ad shown alongside a feed
@@ -436,6 +440,26 @@ message AppAdInfo {
   repeated AdMediaBundleAsset html5_media_bundles = 6;
 }
 
+// App engagement ads allow you to write text encouraging a specific action in
+// the app, like checking in, making a purchase, or booking a flight.
+// They allow you to send users to a specific part of your app where they can
+// find what they're looking for easier and faster.
+message AppEngagementAdInfo {
+  // List of text assets for headlines. When the ad serves the headlines will
+  // be selected from this list.
+  repeated AdTextAsset headlines = 1;
+
+  // List of text assets for descriptions. When the ad serves the descriptions
+  // will be selected from this list.
+  repeated AdTextAsset descriptions = 2;
+
+  // List of image assets that may be displayed with the ad.
+  repeated AdImageAsset images = 3;
+
+  // List of video assets that may be displayed with the ad.
+  repeated AdVideoAsset videos = 4;
+}
+
 // A legacy app install ad that only can be used by a few select customers.
 message LegacyAppInstallAdInfo {
   // The id of the mobile app.
@@ -524,4 +548,24 @@ message ResponsiveDisplayAdInfo {
 
   // Specifies which format the ad will be served in. Default is ALL_FORMATS.
   google.ads.googleads.v1.enums.DisplayAdFormatSettingEnum.DisplayAdFormatSetting format_setting = 16;
+}
+
+// A generic type of display ad. The exact ad format is controlled by the
+// display_upload_product_type field, which determines what kinds of data
+// need to be included with the ad.
+message DisplayUploadAdInfo {
+  // The product type of this ad. See comments on the enum for details.
+  google.ads.googleads.v1.enums.DisplayUploadProductTypeEnum.DisplayUploadProductType display_upload_product_type = 1;
+
+  // The asset data that makes up the ad.
+  oneof media_asset {
+    // A media bundle asset to be used in the ad. For information about the
+    // media bundle for HTML5_UPLOAD_AD see
+    // https://support.google.com/google-ads/answer/1722096
+    // Media bundles that are part of dynamic product types use a special format
+    // that needs to be created through the Google Web Designer. See
+    // https://support.google.com/webdesigner/answer/7543898 for more
+    // information.
+    AdMediaBundleAsset media_bundle = 2;
+  }
 }

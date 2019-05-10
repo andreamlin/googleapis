@@ -28,9 +28,12 @@ import "google/ads/googleads/v1/resources/ad_group_audience_view.proto";
 import "google/ads/googleads/v1/resources/ad_group_bid_modifier.proto";
 import "google/ads/googleads/v1/resources/ad_group_criterion.proto";
 import "google/ads/googleads/v1/resources/ad_group_criterion_label.proto";
+import "google/ads/googleads/v1/resources/ad_group_criterion_simulation.proto";
 import "google/ads/googleads/v1/resources/ad_group_extension_setting.proto";
 import "google/ads/googleads/v1/resources/ad_group_feed.proto";
 import "google/ads/googleads/v1/resources/ad_group_label.proto";
+import "google/ads/googleads/v1/resources/ad_group_simulation.proto";
+import "google/ads/googleads/v1/resources/ad_parameter.proto";
 import "google/ads/googleads/v1/resources/ad_schedule_view.proto";
 import "google/ads/googleads/v1/resources/age_range_view.proto";
 import "google/ads/googleads/v1/resources/asset.proto";
@@ -41,6 +44,7 @@ import "google/ads/googleads/v1/resources/campaign_audience_view.proto";
 import "google/ads/googleads/v1/resources/campaign_bid_modifier.proto";
 import "google/ads/googleads/v1/resources/campaign_budget.proto";
 import "google/ads/googleads/v1/resources/campaign_criterion.proto";
+import "google/ads/googleads/v1/resources/campaign_criterion_simulation.proto";
 import "google/ads/googleads/v1/resources/campaign_extension_setting.proto";
 import "google/ads/googleads/v1/resources/campaign_feed.proto";
 import "google/ads/googleads/v1/resources/campaign_label.proto";
@@ -62,6 +66,7 @@ import "google/ads/googleads/v1/resources/detail_placement_view.proto";
 import "google/ads/googleads/v1/resources/display_keyword_view.proto";
 import "google/ads/googleads/v1/resources/domain_category.proto";
 import "google/ads/googleads/v1/resources/dynamic_search_ads_search_term_view.proto";
+import "google/ads/googleads/v1/resources/expanded_landing_page_view.proto";
 import "google/ads/googleads/v1/resources/extension_feed_item.proto";
 import "google/ads/googleads/v1/resources/feed.proto";
 import "google/ads/googleads/v1/resources/feed_item.proto";
@@ -81,13 +86,16 @@ import "google/ads/googleads/v1/resources/keyword_plan_keyword.proto";
 import "google/ads/googleads/v1/resources/keyword_plan_negative_keyword.proto";
 import "google/ads/googleads/v1/resources/keyword_view.proto";
 import "google/ads/googleads/v1/resources/label.proto";
+import "google/ads/googleads/v1/resources/landing_page_view.proto";
 import "google/ads/googleads/v1/resources/language_constant.proto";
 import "google/ads/googleads/v1/resources/location_view.proto";
 import "google/ads/googleads/v1/resources/managed_placement_view.proto";
 import "google/ads/googleads/v1/resources/media_file.proto";
 import "google/ads/googleads/v1/resources/mobile_app_category_constant.proto";
 import "google/ads/googleads/v1/resources/mobile_device_constant.proto";
+import "google/ads/googleads/v1/resources/mutate_job.proto";
 import "google/ads/googleads/v1/resources/operating_system_version_constant.proto";
+import "google/ads/googleads/v1/resources/paid_organic_search_term_view.proto";
 import "google/ads/googleads/v1/resources/parental_status_view.proto";
 import "google/ads/googleads/v1/resources/product_bidding_category_constant.proto";
 import "google/ads/googleads/v1/resources/product_group_view.proto";
@@ -164,7 +172,55 @@ service GoogleAdsService {
     };
   }
 
-  // Creates, updates, or removes resources. Operation statuses are returned.
+  // Creates, updates, or removes resources. This method supports atomic
+  // transactions with multiple types of resources. For example, you can
+  // atomically create a campaign and a campaign budget, or perform up to
+  // thousands of mutates atomically.
+  //
+  // This method is essentially a wrapper around a series of mutate methods. The
+  // only features it offers over calling those methods directly are:
+  // - Atomic transactions
+  // - Temp resource names (described below)
+  // - Somewhat reduced latency over making a series of mutate calls.
+  //
+  // Note: Only resources that support atomic transactions are included, so this
+  // method can't replace all calls to individual services.
+  //
+  // ## Atomic Transaction Benefits
+  //
+  // Atomicity makes error handling much easier. If you're making a series of
+  // changes and one fails, it can leave your account in an inconsistent state.
+  // With atomicity, you either reach the desired state directly, or the request
+  // fails and you can retry.
+  //
+  // ## Temp Resource Names
+  //
+  // Temp resource names are a special type of resource name used to create a
+  // resource and reference that resource in the same request. For example, if a
+  // campaign budget is created with 'resource_name' equal to
+  // 'customers/123/campaignBudgets/-1', that resource name can be reused in
+  // the 'Campaign.budget' field in the same request. That way, the two
+  // resources are created and linked atomically.
+  //
+  // To create a temp resource name, put a negative number in the part of the
+  // name that the server would normally allocate.
+  //
+  // Note:
+  // - Resources must be created with a temp name before the name can be reused.
+  //   For example, the previous CampaignBudget+Campaign example would fail if
+  //   the mutate order was reversed.
+  // - Temp names are not remembered across requests.
+  // - There's no limit to the number of temp names in a request.
+  // - Each temp name must use a unique negative number, even if the resource
+  //   types differ.
+  //
+  // ## Latency
+  //
+  // It's important to group mutates by resource type or the request may time
+  // out and fail. Latency is roughly equal to a series of calls to individual
+  // mutate methods, where each change in resource type is a new call. For
+  // example, mutating 10 campaigns then 10 ad groups is like 2 calls, while
+  // mutating 1 campaign, 1 ad group, 1 campaign, 1 ad group is like 4 calls.
   rpc Mutate(MutateGoogleAdsRequest) returns (MutateGoogleAdsResponse) {
     option (google.api.http) = {
       post: "/v1/customers/{customer_id=*}/googleAds:mutate"
@@ -244,6 +300,9 @@ message GoogleAdsRow {
   // The ad group criterion label referenced in the query.
   google.ads.googleads.v1.resources.AdGroupCriterionLabel ad_group_criterion_label = 121;
 
+  // The ad group criterion simulation referenced in the query.
+  google.ads.googleads.v1.resources.AdGroupCriterionSimulation ad_group_criterion_simulation = 110;
+
   // The ad group extension setting referenced in the query.
   google.ads.googleads.v1.resources.AdGroupExtensionSetting ad_group_extension_setting = 112;
 
@@ -252,6 +311,12 @@ message GoogleAdsRow {
 
   // The ad group label referenced in the query.
   google.ads.googleads.v1.resources.AdGroupLabel ad_group_label = 115;
+
+  // The ad group simulation referenced in the query.
+  google.ads.googleads.v1.resources.AdGroupSimulation ad_group_simulation = 107;
+
+  // The ad parameter referenced in the query.
+  google.ads.googleads.v1.resources.AdParameter ad_parameter = 130;
 
   // The age range view referenced in the query.
   google.ads.googleads.v1.resources.AgeRangeView age_range_view = 48;
@@ -285,6 +350,9 @@ message GoogleAdsRow {
 
   // The campaign criterion referenced in the query.
   google.ads.googleads.v1.resources.CampaignCriterion campaign_criterion = 20;
+
+  // The campaign criterion simulation referenced in the query.
+  google.ads.googleads.v1.resources.CampaignCriterionSimulation campaign_criterion_simulation = 111;
 
   // The campaign extension setting referenced in the query.
   google.ads.googleads.v1.resources.CampaignExtensionSetting campaign_extension_setting = 113;
@@ -346,6 +414,9 @@ message GoogleAdsRow {
   // The dynamic search ads search term view referenced in the query.
   google.ads.googleads.v1.resources.DynamicSearchAdsSearchTermView dynamic_search_ads_search_term_view = 106;
 
+  // The expanded landing page view referenced in the query.
+  google.ads.googleads.v1.resources.ExpandedLandingPageView expanded_landing_page_view = 128;
+
   // The extension feed item referenced in the query.
   google.ads.googleads.v1.resources.ExtensionFeedItem extension_feed_item = 85;
 
@@ -403,6 +474,9 @@ message GoogleAdsRow {
   // The label referenced in the query.
   google.ads.googleads.v1.resources.Label label = 52;
 
+  // The landing page view referenced in the query.
+  google.ads.googleads.v1.resources.LandingPageView landing_page_view = 126;
+
   // The language constant referenced in the query.
   google.ads.googleads.v1.resources.LanguageConstant language_constant = 55;
 
@@ -421,8 +495,14 @@ message GoogleAdsRow {
   // The mobile device constant referenced in the query.
   google.ads.googleads.v1.resources.MobileDeviceConstant mobile_device_constant = 98;
 
+  // The mutate job referenced in the query.
+  google.ads.googleads.v1.resources.MutateJob mutate_job = 127;
+
   // The operating system version constant referenced in the query.
   google.ads.googleads.v1.resources.OperatingSystemVersionConstant operating_system_version_constant = 86;
+
+  // The paid organic search term view referenced in the query.
+  google.ads.googleads.v1.resources.PaidOrganicSearchTermView paid_organic_search_term_view = 129;
 
   // The parental status view referenced in the query.
   google.ads.googleads.v1.resources.ParentalStatusView parental_status_view = 45;

@@ -138,5 +138,8 @@ message CampaignCriterion {
 
     // Mobile Device.
     google.ads.googleads.v1.common.MobileDeviceInfo mobile_device = 33;
+
+    // Location Group
+    google.ads.googleads.v1.common.LocationGroupInfo location_group = 34;
   }
 }

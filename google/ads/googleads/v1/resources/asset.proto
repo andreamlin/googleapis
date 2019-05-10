@@ -61,5 +61,8 @@ message Asset {
 
     // An image asset.
     google.ads.googleads.v1.common.ImageAsset image_asset = 7;
+
+    // A text asset.
+    google.ads.googleads.v1.common.TextAsset text_asset = 8;
   }
 }

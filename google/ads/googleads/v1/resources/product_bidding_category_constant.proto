@@ -29,7 +29,7 @@ option java_outer_classname = "ProductBiddingCategoryConstantProto";
 option java_package = "com.google.ads.googleads.v1.resources";
 option objc_class_prefix = "GAA";
 option php_namespace = "Google\\Ads\\GoogleAds\\V1\\Resources";
-option ruby_package = "Google::Ads::GoogleAds::V1::Enums";
+option ruby_package = "Google::Ads::GoogleAds::V1::Resources";
 
 // Proto file describing the ProductBiddingCategoryConstant resource.
 

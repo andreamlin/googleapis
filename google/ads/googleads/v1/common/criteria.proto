@@ -29,6 +29,7 @@ import "google/ads/googleads/v1/enums/interaction_type.proto";
 import "google/ads/googleads/v1/enums/keyword_match_type.proto";
 import "google/ads/googleads/v1/enums/listing_custom_attribute_index.proto";
 import "google/ads/googleads/v1/enums/listing_group_type.proto";
+import "google/ads/googleads/v1/enums/location_group_radius_units.proto";
 import "google/ads/googleads/v1/enums/minute_of_hour.proto";
 import "google/ads/googleads/v1/enums/parental_status_type.proto";
 import "google/ads/googleads/v1/enums/preferred_content_type.proto";
@@ -95,6 +96,9 @@ message MobileApplicationInfo {
   // and "2-com.labpixies.colordrips" for Android.
   // This field is required and must be set in CREATE operations.
   google.protobuf.StringValue app_id = 2;
+
+  // Name of this mobile application.
+  google.protobuf.StringValue name = 3;
 }
 
 // A location criterion.
@@ -568,4 +572,23 @@ message CustomAffinityInfo {
 message CustomIntentInfo {
   // The CustomInterest resource name.
   google.protobuf.StringValue custom_intent = 1;
+}
+
+// A radius around a list of locations specified via a feed.
+message LocationGroupInfo {
+  // Feed specifying locations for targeting.
+  // This is required and must be set in CREATE operations.
+  google.protobuf.StringValue feed = 1;
+
+  // Geo target constant(s) restricting the scope of the geographic area within
+  // the feed. Currently only one geo target constant is allowed.
+  repeated google.protobuf.StringValue geo_target_constants = 2;
+
+  // Distance in units specifying the radius around targeted locations.
+  // This is required and must be set in CREATE operations.
+  google.protobuf.Int64Value radius = 3;
+
+  // Unit of the radius, miles and meters supported currently.
+  // This is required and must be set in CREATE operations.
+  google.ads.googleads.v1.enums.LocationGroupRadiusUnitsEnum.LocationGroupRadiusUnits radius_units = 4;
 }

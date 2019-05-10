@@ -105,10 +105,10 @@ message BiddingErrorEnum {
     // Invalid domain name specified.
     INVALID_DOMAIN_NAME = 33;
 
-    // The field is not compatible with payment mode.
+    // The field is not compatible with the payment mode.
     NOT_COMPATIBLE_WITH_PAYMENT_MODE = 34;
 
-    // Bidding strategy is incompatible with the budget type.
+    // The field is not compatible with the budget type.
     NOT_COMPATIBLE_WITH_BUDGET_TYPE = 35;
   }
 

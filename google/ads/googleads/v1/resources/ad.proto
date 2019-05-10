@@ -19,6 +19,7 @@ package google.ads.googleads.v1.resources;
 
 import "google/ads/googleads/v1/common/ad_type_infos.proto";
 import "google/ads/googleads/v1/common/custom_parameter.proto";
+import "google/ads/googleads/v1/common/final_app_url.proto";
 import "google/ads/googleads/v1/common/url_collection.proto";
 import "google/ads/googleads/v1/enums/ad_type.proto";
 import "google/ads/googleads/v1/enums/device.proto";
@@ -45,6 +46,10 @@ message Ad {
   // The list of possible final URLs after all cross-domain redirects for the
   // ad.
   repeated google.protobuf.StringValue final_urls = 2;
+
+  // A list of final app URLs that will be used on mobile if the user has the
+  // specific app installed.
+  repeated google.ads.googleads.v1.common.FinalAppUrl final_app_urls = 35;
 
   // The list of possible final mobile URLs after all cross-domain redirects
   // for the ad.
@@ -139,5 +144,11 @@ message Ad {
 
     // Details pertaining to a responsive display ad.
     google.ads.googleads.v1.common.ResponsiveDisplayAdInfo responsive_display_ad = 31;
+
+    // Details pertaining to a display upload ad.
+    google.ads.googleads.v1.common.DisplayUploadAdInfo display_upload_ad = 33;
+
+    // Details pertaining to an app engagement ad.
+    google.ads.googleads.v1.common.AppEngagementAdInfo app_engagement_ad = 34;
   }
 }

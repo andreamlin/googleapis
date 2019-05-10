@@ -87,6 +87,7 @@ import "google/ads/googleads/v1/errors/language_code_error.proto";
 import "google/ads/googleads/v1/errors/list_operation_error.proto";
 import "google/ads/googleads/v1/errors/media_bundle_error.proto";
 import "google/ads/googleads/v1/errors/media_file_error.proto";
+import "google/ads/googleads/v1/errors/media_upload_error.proto";
 import "google/ads/googleads/v1/errors/multiplier_error.proto";
 import "google/ads/googleads/v1/errors/mutate_error.proto";
 import "google/ads/googleads/v1/errors/mutate_job_error.proto";
@@ -110,10 +111,12 @@ import "google/ads/googleads/v1/errors/resource_count_limit_exceeded_error.proto
 import "google/ads/googleads/v1/errors/setting_error.proto";
 import "google/ads/googleads/v1/errors/shared_criterion_error.proto";
 import "google/ads/googleads/v1/errors/shared_set_error.proto";
+import "google/ads/googleads/v1/errors/size_limit_error.proto";
 import "google/ads/googleads/v1/errors/string_format_error.proto";
 import "google/ads/googleads/v1/errors/string_length_error.proto";
 import "google/ads/googleads/v1/errors/url_field_error.proto";
 import "google/ads/googleads/v1/errors/user_list_error.proto";
+import "google/ads/googleads/v1/errors/youtube_video_registration_error.proto";
 import "google/protobuf/wrappers.proto";
 import "google/api/annotations.proto";
 
@@ -269,6 +272,9 @@ message ErrorCode {
     // The reasons for the media bundle error
     MediaBundleErrorEnum.MediaBundleError media_bundle_error = 42;
 
+    // The reasons for media uploading errors.
+    MediaUploadErrorEnum.MediaUploadError media_upload_error = 116;
+
     // The reasons for the media file error
     MediaFileErrorEnum.MediaFileError media_file_error = 86;
 
@@ -313,6 +319,9 @@ message ErrorCode {
 
     // The reasons for the resource count limit exceeded error
     ResourceCountLimitExceededErrorEnum.ResourceCountLimitExceededError resource_count_limit_exceeded_error = 57;
+
+    // The reasons for YouTube video registration errors.
+    YoutubeVideoRegistrationErrorEnum.YoutubeVideoRegistrationError youtube_video_registration_error = 117;
 
     // The reasons for the ad group bid modifier error
     AdGroupBidModifierErrorEnum.AdGroupBidModifierError ad_group_bid_modifier_error = 59;
@@ -442,6 +451,9 @@ message ErrorCode {
 
     // The reasons for the policy validation parameter error
     PolicyValidationParameterErrorEnum.PolicyValidationParameterError policy_validation_parameter_error = 114;
+
+    // The reasons for the size limit error
+    SizeLimitErrorEnum.SizeLimitError size_limit_error = 118;
   }
 }
 

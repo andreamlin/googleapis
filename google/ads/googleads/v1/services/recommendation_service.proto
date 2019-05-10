@@ -17,6 +17,7 @@ syntax = "proto3";
 
 package google.ads.googleads.v1.services;
 
+import "google/ads/googleads/v1/common/extensions.proto";
 import "google/ads/googleads/v1/enums/keyword_match_type.proto";
 import "google/ads/googleads/v1/resources/ad.proto";
 import "google/ads/googleads/v1/resources/recommendation.proto";
@@ -124,6 +125,24 @@ message ApplyRecommendationOperation {
     google.protobuf.Int64Value new_campaign_budget_amount_micros = 2;
   }
 
+  // Parameters to use when applying callout extension recommendation.
+  message CalloutExtensionParameters {
+    // Callout extensions to be added. This is a required field.
+    repeated google.ads.googleads.v1.common.CalloutFeedItem callout_extensions = 1;
+  }
+
+  // Parameters to use when applying call extension recommendation.
+  message CallExtensionParameters {
+    // Call extensions to be added. This is a required field.
+    repeated google.ads.googleads.v1.common.CallFeedItem call_extensions = 1;
+  }
+
+  // Parameters to use when applying call extension recommendation.
+  message SitelinkExtensionParameters {
+    // Sitelink extensions to be added. This is a required field.
+    repeated google.ads.googleads.v1.common.SitelinkFeedItem sitelink_extensions = 1;
+  }
+
   // Parameters to use when applying move unused budget recommendation.
   message MoveUnusedBudgetParameters {
     // Budget amount to move from excess budget to constrained budget. This is
@@ -149,6 +168,15 @@ message ApplyRecommendationOperation {
     // Optional parameters to use when applying target CPA opt-in
     // recommendation.
     TargetCpaOptInParameters target_cpa_opt_in = 5;
+
+    // Parameters to use when applying callout extension recommendation.
+    CalloutExtensionParameters callout_extension = 6;
+
+    // Parameters to use when applying call extension recommendation.
+    CallExtensionParameters call_extension = 7;
+
+    // Parameters to use when applying call extension recommendation.
+    SitelinkExtensionParameters sitelink_extension = 8;
 
     // Parameters to use when applying move unused budget recommendation.
     MoveUnusedBudgetParameters move_unused_budget = 9;

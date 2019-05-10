@@ -33,6 +33,7 @@ import "google/ads/googleads/v1/enums/placeholder_type.proto";
 import "google/ads/googleads/v1/enums/product_channel.proto";
 import "google/ads/googleads/v1/enums/product_channel_exclusivity.proto";
 import "google/ads/googleads/v1/enums/product_condition.proto";
+import "google/ads/googleads/v1/enums/search_engine_results_page_type.proto";
 import "google/ads/googleads/v1/enums/search_term_match_type.proto";
 import "google/ads/googleads/v1/enums/slot.proto";
 import "google/protobuf/wrappers.proto";
@@ -103,11 +104,27 @@ message Segments {
   // Resource name of the geo target constant that represents a city.
   google.protobuf.StringValue geo_target_city = 62;
 
+  // Resource name of the geo target constant that represents a county.
+  google.protobuf.StringValue geo_target_county = 68;
+
+  // Resource name of the geo target constant that represents a district.
+  google.protobuf.StringValue geo_target_district = 69;
+
   // Resource name of the geo target constant that represents a metro.
   google.protobuf.StringValue geo_target_metro = 63;
 
+  // Resource name of the geo target constant that represents the most
+  // specific location.
+  google.protobuf.StringValue geo_target_most_specific_location = 72;
+
+  // Resource name of the geo target constant that represents a postal code.
+  google.protobuf.StringValue geo_target_postal_code = 71;
+
   // Resource name of the geo target constant that represents a region.
   google.protobuf.StringValue geo_target_region = 64;
+
+  // Resource name of the geo target constant that represents a state.
+  google.protobuf.StringValue geo_target_state = 67;
 
   // Hotel booking window in days.
   google.protobuf.Int64Value hotel_booking_window_days = 6;
@@ -246,6 +263,9 @@ message Segments {
   // Uses the calendar year for quarters, e.g., the second quarter of 2018
   // starts on 2018-04-01. Formatted as yyyy-MM-dd.
   google.protobuf.StringValue quarter = 21;
+
+  // Type of the search engine results page.
+  google.ads.googleads.v1.enums.SearchEngineResultsPageTypeEnum.SearchEngineResultsPageType search_engine_results_page_type = 70;
 
   // Match type of the keyword that triggered the ad, including variants.
   google.ads.googleads.v1.enums.SearchTermMatchTypeEnum.SearchTermMatchType search_term_match_type = 22;
